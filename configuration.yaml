@@ -333,6 +333,12 @@ zone 7:
   radius: 200
   icon: mdi:heart
 
+zone 8:
+  name: Barrow
+  latitude: !secret 8latitude
+  longitude: !secret 8longitude
+  radius: 1000
+  icon: mdi:hospital
 
   # notes
   # threshhold sensor to the outside temp
