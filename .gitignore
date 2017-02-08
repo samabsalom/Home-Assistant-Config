@@ -1,0 +1,22 @@
+secrets.yaml
+*.txt
+/www
+/deps
+/Network Trash Folder
+/Temporary Items
+/tts
+.DS_Store
+.google.token
+.HA_VERSION
+.uuid
+google_calendars.yaml
+*.db
+*.db-journal
+*.log
+*.conf
+stuff
+/.AppleDB
+/.AppleDesktop
+/.AppleDouble
+emulated_hue_ids.json
+group.yaml.save

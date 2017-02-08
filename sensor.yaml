@@ -1,0 +1,115 @@
+  - platform: mold_indicator
+    indoor_temp_sensor: sensor.lounge_temperature
+    indoor_humidity_sensor: sensor.lounge_humidity
+    outdoor_temp_sensor: sensor.owm_temperature
+    calibration_factor: 2.0
+  - platform: haveibeenpwned
+    email:
+      - !secret yahoo
+      - !secret hotmail
+      - !secret me
+      - !secret icloud
+      - !secret gmail
+  - platform: transmission
+    host: !secret transmissionhost
+    username: !secret transmissionuser
+    password: !secret transmissionpass
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+  - platform: speedtest
+    minute:
+      - 0
+      - 20
+      - 40
+      - 50
+    monitored_conditions:
+      - download
+      - upload
+  - platform: openweathermap
+    api_key: !secret openweatherkey
+    monitored_conditions:
+      - weather
+      - temperature
+      - wind_speed
+      - humidity
+      - pressure
+      - clouds
+      - rain
+      - snow
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+  - platform: mqtt
+    state_topic: "owntracks/pi/nexus"
+    name: "Battery Nexus"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json.batt }}"
+  - platform: mqtt
+    state_topic: "owntracks/pi/nexus"
+    name: "Connectivity Nexus"
+    unit_of_measurement: "-"
+    value_template: "{{ value_json.conn }}"
+  - platform: mqtt
+    state_topic: "avondale/temp/set"
+    name: Target temperature
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge temperature'
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge humidity'
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.humidity }}'
+  - platform: mqtt
+    state_topic: 'loungelight/allonoff/switch'
+    name: allonoff
+  - platform: wunderground
+    api_key: !secret wundergroundapi
+    monitored_conditions:
+      - alerts
+      - dewpoint_c
+      - dewpoint_f
+      - dewpoint_string
+      - feelslike_c
+      - feelslike_f
+      - feelslike_string
+      - heat_index_c
+      - heat_index_f
+      - heat_index_string
+      - elevation
+      - location
+      - observation_time
+      - precip_1hr_in
+      - precip_1hr_metric
+      - precip_1hr_string
+      - precip_today_in
+      - precip_today_metric
+      - precip_today_string
+      - pressure_in
+      - pressure_mb
+      - pressure_trend
+      - relative_humidity
+      - station_id
+      - solarradiation
+      - temperature_string
+      - temp_c
+      - temp_f
+      - UV
+      - visibility_km
+      - visibility_mi
+      - weather
+      - wind_degrees
+      - wind_dir
+      - wind_gust_kph
+      - wind_gust_mph
+      - wind_kph
+      - wind_mph
+      - wind_string

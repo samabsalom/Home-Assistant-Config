@@ -1,0 +1,111 @@
+  intents:
+    WhereAreWeIntent:
+      speech:
+        type: plaintext
+        text: >
+          {%- if is_state('device_tracker.pi_nexus', 'home') and
+                 is_state('device_tracker.hazbag', 'home') and
+                 is_state('device_tracker.lizzie', 'home') and
+                 is_state('device_tracker.rosie', 'home') -%}
+            Everyone is in the house
+          {% endif %}
+          {%- if is_state('device_tracker.hazbag', 'not_home') and
+                 is_state('device_tracker.lizzie', 'home') and
+                 is_state('device_tracker.rosie', 'home') -%}
+                 is_state('device_tracker.pi_nexus', 'home') and
+          Harriet has left. but everyone else is in
+          {% endif %}
+
+          {%- if is_state('device_tracker.hazbag', 'home') and
+                 is_state('device_tracker.pi_nexus', 'home') and
+                 is_state('device_tracker.lizzie', 'not_home') and
+                 is_state('device_tracker.rosie', 'home') -%}
+            Lizzie has left and rosie, sam and harriet are in.
+          {% endif %}
+
+          {%- if is_state('device_tracker.hazbag', 'home') and
+                 is_state('device_tracker.lizzie', 'home') and
+                 is_state('device_tracker.rosie', 'not_home') -%}
+                 is_state('device_tracker.pi_nexus', 'home') and
+            Rosie has left. but harriet, sam and lizzie are home.
+          {% endif %}
+
+          {%- if is_state('device_tracker.hazbag', 'not_home') and
+                 is_state('device_tracker.lizzie', 'not_home') and
+                 is_state('device_tracker.rosie', 'not_home') -%}
+                 is_state('device_tracker.pi_nexus', 'home') and
+            Sam is the only one in.
+          {% endif %}
+
+          {%- if is_state('device_tracker.hazbag', 'not_home') and
+                 is_state('device_tracker.lizzie', 'not_home') and
+                 is_state('device_tracker.pi_nexus', 'home') and
+                 is_state('device_tracker.rosie', 'home') -%}
+            Harriet and lizzie have left but rosie is here with sam
+          {% endif %}
+          {%- if is_state('device_tracker.hazbag', 'not_home') and
+                 is_state('device_tracker.pi_nexus', 'home') and
+                 is_state('device_tracker.lizzie', 'home') and
+                 is_state('device_tracker.rosie', 'not_home') -%}
+            Harriet and Rosie have left. but liz and sam are in
+          {% endif %}
+          {%- if is_state('device_tracker.hazbag', 'not_home') and
+                 is_state('device_tracker.lizzie', 'home') and
+                 is_state('device_tracker.rosie', 'not_home') -%}
+                 is_state('device_tracker.pi_nexus', 'home') and
+            Lizzie and Rosie have left. but haz is in with sam.
+          {% endif %}
+
+# Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}
+    LocateIntent:
+      action:
+        service: notify.pushbullet
+        data_template:
+          message: The location of {{ User }} has been queried via Alexa.
+      speech:
+        type: plaintext
+        text: >
+          {%- for state in states.device_tracker -%}
+            {%- if state.name.lower() == User.lower() -%}
+              {{ state.name }} is at {{ state.state }}
+            {%- endif -%}
+          {%- else -%}
+            I am sorry, I do not know where {{ User }} is.
+          {%- endfor -%}
+      # card:
+      #   type: simple
+      #   title: Sample title
+      #   content: Some more content
+
+    RunScriptIntent:
+      action:
+        service: script.turn_on
+        data_template:
+          entity_id: script.{{ Script | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+
+    ActivateSceneIntent:
+      action:
+        service: scene.turn_on
+        data_template:
+          entity_id: scene.{{ Scene | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+
+    WhatTempIntent:
+      action:
+        service_template: notify.kodi
+        data_template:
+          message: "It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
+          title: "Somebody asked alexa about the temperature"
+      speech:
+        type: plaintext
+        text: >
+          It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}
+      # card:
+      #   type: simple
+      #   title: Sample title
+      #   content: Some more content

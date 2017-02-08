@@ -1,0 +1,63 @@
+      # Only the 'entity_id' is required.  All other options are optional.
+      switch.boiler:
+        icon: mdi:fire
+      switch.main_light:
+        icon: mdi:lightbulb
+      switch.spot_lights:
+        icon: mdi:spotlight
+      device_tracker.hazbag:
+        entity_picture: !secret hazpic
+      device_tracker.pi_nexus:
+        entity_picture: !secret sampic
+      device_tracker.lizzie:
+        entity_picture: !secret lizziepic
+      device_tracker.rosie:
+        entity_picture: !secret rosiepic
+      switch.mirror:
+        icon: mdi:glassdoor
+      climate.home:
+        icon: mdi:home-variant
+      switch.christmas_tree:
+        icon: mdi:pine-tree
+      switch.lamp:
+        icon: mdi:lamp
+      switch.bedroom_lamp:
+        icon: mdi:lamp
+      switch.fish_tank:
+        icon: mdi:fish
+      sensor.battery_nexus:
+        icon: mdi:battery-charging
+      sensor.connectivity_nexus:
+        icon: mdi:wifi
+      switch.tv:
+        icon: mdi:television
+        assumed_state: true
+      light.living_room_light:
+        friendly_name: lounge light
+        emulated_hue: false
+      light.bedroom_light:
+        emulated_hue_name: sams room light
+        emulated_hue: false
+      group.thermostat:
+        emulated_hue: false
+      group.breach:
+        emulated_hue: false
+      group.phone:
+        emulated_hue: false
+      group.weather:
+        emulated_hue: false
+      group.network:
+        emulated_hue: false
+      group.printer:
+        emulated_hue: false
+      group.who_is_in:
+        emulated_hue: false
+      switch.blinds:
+        icon: mdi:blinds
+      switch.desktop:
+        icon: mdi:desktop-mac
+        emulated_hue: false
+      switch.linux:
+        emulated_hue: false
+      switch.ubuntu:
+        icon: mdi:desktop-mac

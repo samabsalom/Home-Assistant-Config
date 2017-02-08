@@ -1,0 +1,310 @@
+##############################################################
+##############################################################
+#                Boiler
+##############################################################
+##############################################################
+  - alias: Set MQTT temp from Slider
+    trigger:
+      platform: state
+      entity_id: input_slider.slider1
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "avondale/temp/set"
+          payload: '{{ states.input_slider.slider1.state | int }}'
+  - alias: Set Climate from MQTT
+    trigger:
+      platform: mqtt
+      topic: avondale/temp/set
+    action:
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{trigger.payload}} "
+      - service_template: notify.pushbullet
+        data_template:
+          message: "This was done by a user"
+          title: "Set the boiler to {{trigger.payload}}C"
+      - service_template: notify.kodi
+        data_template:
+          message: "This was done by a user"
+          title: "The boiler has been set to {{trigger.payload}}C"
+  - alias: heating on at 6
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '06:00:00'
+    condition:
+     condition: state
+     entity_id: group.all_devices
+     state: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseat6
+  - alias: Turn boiler on when people return
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.boilerwhenhome
+  - alias: set heating to 21 if below 3 degrees outside in morning
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '05:55:00'
+    condition:
+     condition: and
+     conditions:
+       - condition: state
+         entity_id: group.all_devices
+         state: home
+       - condition: numeric_state
+         entity_id: 'sensor.owm_temperature'
+         below: '3'
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.tempfor6
+        data:
+          option: 21
+
+
+
+
+
+
+
+##############################################################
+##############################################################
+#            lights based on location and sun
+##############################################################
+##############################################################
+  - alias: Turn on light when sun sets
+    hide_entity: False
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-01:00:00"
+    condition:
+     condition: state
+     entity_id: group.all_devices
+     state: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.evening
+      - service: notify.kodi
+        data:
+          message: "This was done automatically"
+          title: "Turning the lights on ready for sunset in an hour"
+  - alias: lights out after midnight
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '00:00:01'
+    action:
+      service: scene.turn_on
+      entity_id: scene.loungeoff
+  - alias: Turn everything and boiler off when people leave
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: not_home
+      for:
+        seconds: 600
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.living_room
+          - group.bedroom
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.away_from_home_temp.state | int }} "
+      - service: notify.pushbullet
+        data:
+          message: "This was done automatically as everybody left"
+          title: "Turned Everything off and set the boiler to 19C"
+      - service: notify.kodi
+        data:
+          message: "This was done automatically as everybody left"
+          title: "Turned Everything off and set the boiler to 19C"
+  - alias: lights on when someone gets home
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: home
+    condition:
+     condition: state
+     entity_id: sun.sun
+     state: below_horizon
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.return_home
+      - service: notify.kodi
+        data:
+          message: "This was done automatically"
+          title: "Turning the lights as someone has arrived home"
+
+
+
+##############################################################
+##############################################################
+#                Location for the mirror
+##############################################################
+##############################################################
+
+  # - alias: mqtthaz
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: device_tracker.hazbag
+  #   action:
+  #     - service: notify.hazfile
+  #       data_template:
+  #         message: "<p>Haz is {{ states.device_tracker.hazbag.state }}</p>"
+  # - alias: mqttlizzie
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: device_tracker.lizzie
+  #   action:
+  #     - service: notify.lizziefile
+  #       data_template:
+  #         message: "<p>Lizzie is {{ states.device_tracker.Lizzie.state }}</p>"
+  # - alias: mqttrosie
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: device_tracker.rosie
+  #   action:
+  #     - service: notify.rosiefile
+  #       data_template:
+  #         message: "<p>Rosie is {{ states.device_tracker.rosie.state }}</p>"
+  # - alias: mqttsam
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: device_tracker.pi_nexus
+  #   action:
+  #     - service: notify.samfile
+  #       data_template:
+  #         message: "<p>Sam is {{ states.device_tracker.pi_nexus.state }}</p>"
+  # - alias: mqttandy
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: device_tracker.andy
+  #   action:
+  #     - service: notify.andyfile
+  #       data_template:
+  #         message: "
+  #         {% if is_state('device_tracker.andy', 'home') %}
+  #           <p>Andy is here!</p>
+  #         {% else %}
+  #           andyno
+  #         {% endif %}"
+  #
+  # - alias: tempmirror
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: sensor.lounge_temperature
+  #   action:
+  #     - service: notify.tempfile
+  #       data_template:
+  #         message: "<p> It is currently {{ states.sensor.lounge_temperature.state }}C inside</p>"
+  #     - service: switch.turn_on
+  #       entity_id: switch.mirrortemp
+  # - alias: aimmirror
+  #   hide_entity: False
+  #   trigger:
+  #     platform: state
+  #     entity_id: sensor.target_temperature
+  #   action:
+  #     - service: notify.aimfile
+  #       data_template:
+  #         message: "<p> aiming to be {{ states.sensor.target_temperature.state }}C</p>"
+  #     - service: switch.turn_on
+  #       entity_id: switch.mirrortemp
+
+################################   update   ####################################
+  - alias: 'Update Available Notifications'
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      service: notify.pushbullet
+      data:
+        message: 'Update for Home Assistant is available.'
+
+################################################################################
+#                       light switch
+################################################################################
+
+  - alias: all on
+    trigger:
+      platform: state
+      entity_id: sensor.allonoff
+      to: "ON"
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.loungeon
+  - alias: all off
+    trigger:
+      platform: state
+      entity_id: sensor.allonoff
+      to: "OFF"
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.loungeoff
+
+################################################################################
+#                       hall
+################################################################################
+
+
+  - alias: hallbright
+    trigger:
+      platform: state
+      entity_id: binary_sensor.hall_motion
+      to: "on"
+    condition:
+      condition: and
+      conditions:
+        - condition: sun
+          after: sunset
+          before_offset: "-1:00:00"
+        - condition: time
+          before: '22:59:55'
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.hallbright
+
+  - alias: halldim
+    trigger:
+      platform: state
+      entity_id: binary_sensor.hall_motion
+      to: "on"
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          before: 08:00:00
+        - condition: time
+          after: '23:00:00'
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.halldim
+
+  - alias: halloff
+    trigger:
+      platform: state
+      entity_id: binary_sensor.hall_motion
+      state: "off"
+      for:
+        minutes: 3
+    action:
+      service: homeassistant.turn_off
+      entity_id: light.hall_light

@@ -1,0 +1,311 @@
+# Sam:
+#   name: Sam
+#   mac: AC:CF:85:2A:13:2D
+#   picture:
+#   track: yes
+#   hide_if_away: no
+pi_nexus:
+  hide_if_away: false
+  mac: AC:CF:85:2A:13:2D
+  name: Sam
+  picture:
+  track: true
+
+Hazbag:
+  name: Hazbag
+  mac: 84:8E:0C:EC:82:03
+  picture:
+  track: yes
+  hide_if_away: false
+
+Lizzie:
+  name: Lizzie
+  mac: 2C:F0:A2:96:AA:DF
+  picture:
+  track: yes
+  hide_if_away: false
+
+Andy:
+  name: Andy
+  mac: 1C:5C:F2:A6:D3:41
+  picture:
+  track: yes
+  hide_if_away: yes
+
+Rosie:
+  name: Rosie
+  mac: 80:5A:04:D4:50:3A
+  track: yes
+  hide_if_away: false
+
+chromecast:
+  hide_if_away: false
+  mac: 6C:AD:F8:B4:3F:0A
+  name: Chromecast
+  picture:
+  track: false
+
+hp9de945:
+  hide_if_away: false
+  mac: 3C:D9:2B:9D:E9:45
+  name: HP9DE945
+  picture:
+  track: false
+
+ipad:
+  hide_if_away: false
+  mac: 70:11:24:47:AC:7E
+  name: iPad
+  picture:
+  track: false
+
+50f5da22b75e:
+  hide_if_away: false
+  mac: 50:F5:DA:22:B7:5E
+  name: 50f5da22b75e
+  picture:
+  track: false
+
+lounge:
+  hide_if_away: false
+  mac: B8:27:EB:94:DD:9B
+  name: lounge
+  picture:
+  track: false
+
+esp_85e8a1:
+  hide_if_away: false
+  mac: 5C:CF:7F:85:E8:A1
+  name: ESP 85E8A1
+  picture:
+  track: false
+
+home:
+  hide_if_away: false
+  mac: 80:1F:02:AF:1A:44
+  name: home
+  picture:
+  track: false
+
+samsmbp:
+  hide_if_away: false
+  mac: 14:10:9F:D6:19:8B
+  name: Sams-MBP
+  picture:
+  track: false
+
+elizabethsair:
+  hide_if_away: false
+  mac: A4:D1:8C:E6:40:6E
+  name: Elizabeths-Air
+  picture:
+  track: false
+
+rosiesphone:
+  hide_if_away: false
+  mac: A4:C3:61:6C:65:CD
+  name: Rosies-Phone
+  picture:
+  track: false
+
+pi_ipad:
+  hide_if_away: false
+  mac:
+  name: pi
+  picture:
+  track: false
+
+samsipad:
+  hide_if_away: false
+  mac: 4C:B1:99:27:9B:C0
+  name: Sams-iPad
+  picture:
+  track: false
+
+egc001000002:
+  hide_if_away: false
+  mac: E0:06:E6:52:34:87
+  name: egc001000002
+  picture:
+  track: false
+
+grahamsiphone:
+  hide_if_away: false
+  mac: 38:71:DE:B5:CC:D3
+  name: Grahams-iPhone
+  picture:
+  track: false
+
+esp_092331:
+  hide_if_away: false
+  mac: 60:01:94:09:23:31
+  name: ESP 092331
+  picture:
+  track: false
+
+thor:
+  hide_if_away: false
+  mac: 0C:84:DC:EB:CA:EB
+  name: Thor
+  picture:
+  track: false
+
+samsprinter:
+  hide_if_away: false
+  mac: 24:EC:99:2C:90:4A
+  name: Sam'sPrinter
+  picture:
+  track: false
+
+lauren:
+  hide_if_away: false
+  mac: BC:6C:21:02:1D:0E
+  name: LAUREN
+  picture:
+  track: false
+
+esp_16fade:
+  hide_if_away: false
+  mac: 5C:CF:7F:16:FA:DE
+  name: ESP 16FADE
+  picture:
+  track: false
+
+esp_0a90c9:
+  hide_if_away: false
+  mac: 60:01:94:0A:90:C9
+  name: ESP 0A90C9
+  picture:
+  track: false
+
+kindlee4042c539:
+  hide_if_away: false
+  mac: 34:D2:70:0D:8E:35
+  name: kindle-e4042c539
+  picture:
+  track: false
+
+printer:
+  hide_if_away: false
+  mac: 74:DA:38:2E:17:21
+  name: printer
+  picture:
+  track: false
+
+me000ug130034:
+  hide_if_away: false
+  mac: F8:2F:A8:B0:47:AB
+  name: ME000UG130034
+  picture:
+  track: false
+
+9801a78982e5:
+  hide_if_away: false
+  mac: 98:01:A7:89:82:E5
+  name: 9801a78982e5
+  picture:
+  track: false
+
+stanpc:
+  hide_if_away: false
+  mac: 80:1F:02:D3:32:49
+  name: StanPC
+  picture:
+  track: false
+  vendor:
+
+androidfc6665da8d922e92:
+  hide_if_away: false
+  mac: F8:A9:D0:1B:21:05
+  name: android-fc6665da8d922e92
+  picture:
+  track: false
+  vendor:
+
+student00113:
+  hide_if_away: false
+  mac: 28:CF:DA:E6:22:D6
+  name: STUDENT00113
+  picture:
+  track: false
+  vendor:
+
+octopi:
+  hide_if_away: false
+  mac: B8:27:EB:DC:F2:CA
+  name: octopi
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+andylaptop:
+  hide_if_away: false
+  mac: 00:22:FB:88:88:9A
+  name: Andy-Laptop
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+elainesiphone:
+  hide_if_away: false
+  mac: 84:B1:53:B2:C5:C4
+  name: Elaines-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+esp_2cc819:
+  hide_if_away: false
+  mac: 5C:CF:7F:2C:C8:19
+  name: ESP 2CC819
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_8ef44e:
+  hide_if_away: false
+  mac: 5C:CF:7F:8E:F4:4E
+  name: ESP 8EF44E
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_d9fa13:
+  hide_if_away: false
+  mac: 5C:CF:7F:D9:FA:13
+  name: ESP D9FA13
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+gears30af1:
+  hide_if_away: false
+  mac: 84:B5:41:AA:0A:F2
+  name: GearS3-0AF1
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+android7cac47a72b8eb617:
+  hide_if_away: false
+  mac: 78:F8:82:A1:C5:A5
+  name: android-7cac47a72b8eb617
+  picture:
+  track: false
+  vendor: LG Electronics (Mobile Communications)
+
+esp_16a00c:
+  hide_if_away: false
+  mac: A0:20:A6:16:A0:0C
+  name: ESP 16A00C
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+hayleysiphone:
+  hide_if_away: false
+  mac: 2C:F0:EE:DD:E6:EE
+  name: Hayleys-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
