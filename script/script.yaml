@@ -1,0 +1,70 @@
+  evening:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: scene.evening
+
+
+  ttstest:
+    alias: testing voice
+    sequence:
+      - service: tts.google_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.voicerss_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.picotts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.yandextts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+
+  loungeon:
+    alias: Lounge on
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: scene.loungeon
+      - service: mqtt.publish
+        data:
+          payload: waiting
+          topic: loungelight/allonoff/switch
+          qos: 0
+          retain: true
+
+  loungeoff:
+    alias: Lounge off
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: scene.loungeoff
+      - service: mqtt.publish
+        data:
+          payload: waiting
+          topic: loungelight/allonoff/switch
+          qos: 0
+          retain: true
+
+  halldim:
+    alias: Hall on dim
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 75
+  hallbright:
+    alias: Hall on bright
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 255
+  mirroron:
+    alias: Turn on the mirror UI
+    sequence:
+      - service: shell_command.startmirror

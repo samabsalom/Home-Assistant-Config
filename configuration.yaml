@@ -15,7 +15,6 @@ homeassistant:
 
   customize: !include customize.yaml
 
-
 frontend:
 
 http:
@@ -49,14 +48,13 @@ google:
 
 scene: !include scene.yaml
 
-script: !include script.yaml
+script: !include_dir_merge_list script
 
 alexa: !include alexa.yaml
 
 shell_command:
   hibernatelinux: "ssh ubuntu sudo pm-hibernate"
   startmirror: "pm2 start /home/pi/mm.sh"
-
 
 tts:
   - platform: google
@@ -67,7 +65,7 @@ tts:
     language: en-GB
   - platform: yandextts
     api_key: !secret yandextts
-    language: 'en-en'
+    language: 'en-EN'
 
 digital_ocean:
   access_token: !secret digocean
@@ -282,7 +280,7 @@ climate:
 
 group: !include group.yaml
 
-automation: !include automation.yaml
+automation: !include_dir_merge_list automation
 
 zone:
   name: Uni

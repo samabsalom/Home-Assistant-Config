@@ -1,0 +1,32 @@
+  - alias: lights out after midnight
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '00:00:01'
+    action:
+      service: scene.turn_on
+      entity_id: scene.loungeoff
+  - alias: Turn everything and boiler off when people leave
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: not_home
+      for:
+        seconds: 600
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.living_room
+          - group.bedroom
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.away_from_home_temp.state | int }} "
+      - service: notify.pushbullet
+        data:
+          message: "This was done automatically as everybody left"
+          title: "Turned Everything off and set the boiler to 19C"
+      - service: notify.kodi
+        data:
+          message: "This was done automatically as everybody left"
+          title: "Turned Everything off and set the boiler to 19C"

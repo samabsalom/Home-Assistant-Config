@@ -1,0 +1,39 @@
+##############################################################
+##############################################################
+#            lights based on location and sun
+##############################################################
+##############################################################
+  - alias: Turn on light when sun sets
+    hide_entity: False
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-01:00:00"
+    condition:
+     condition: state
+     entity_id: group.all_devices
+     state: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.evening
+      - service: notify.kodi
+        data:
+          message: "This was done automatically"
+          title: "Turning the lights on ready for sunset in an hour"
+  - alias: lights on when someone gets home
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: home
+    condition:
+     condition: state
+     entity_id: sun.sun
+     state: below_horizon
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.return_home
+      - service: notify.kodi
+        data:
+          message: "This was done automatically"
+          title: "Turning the lights as someone has arrived home"

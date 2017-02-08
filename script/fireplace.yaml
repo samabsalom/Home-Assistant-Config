@@ -1,0 +1,29 @@
+  return_home:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: scene.evening
+      - service: homeassistant.turn_on
+        entity_id: script.fireplace
+
+  fireplace:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: switch.tv
+      - service: media_player.turn_on
+        entity_id: media_player.kodi
+      - service: media_player.play_media
+        entity_id: media_player.kodi
+        data:
+          media_content_type: video
+          media_content_id: "plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid=L_LUpnjgPso"
+
+          # NiqM3lVirkw  bit darker
+# mountain norway EqqpcFj8G-s
+
+  bedroomfire:
+    sequence:
+      - service: media_player.play_media
+        entity_id: media_player.bedroom
+        data:
+          media_content_type: video
+          media_content_id: http://hybrid.servemp3.com/storage/fireplace.mp4
