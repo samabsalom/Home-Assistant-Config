@@ -98,11 +98,11 @@
 
 ############# components for the above tabs
 
-  Thermostat quick settings:
-    entities:
-      - switch.boiler
-      - input_slider.slider1
-      - climate.home
+  # Thermostat quick settings:
+  #   entities:
+  #     - switch.boiler
+  #     - input_slider.slider1
+  #     - climate.home
 
   Hallway:
     entities:
@@ -203,14 +203,14 @@
       - sensor.transmission_status
       - sensor.transmission_up_speed
 
-  Auto heating settings:
-    entities:
-      - input_select.tempfor6
-      - input_select.preheatdelay
-      - input_select.tempfornormal
-      - input_select.away_from_home_temp
-      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
-      - automation.heating_on_at_6
+  # Auto heating settings:
+  #   entities:
+  #     - input_select.tempfor6
+  #     - input_select.preheatdelay
+  #     - input_select.tempfornormal
+  #     - input_select.away_from_home_temp
+  #     - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
+  #     - automation.heating_on_at_6
 
 
 

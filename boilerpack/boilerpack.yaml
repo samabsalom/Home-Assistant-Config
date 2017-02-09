@@ -42,6 +42,20 @@ group:
       - group.set_the_temperature
       - script.boost_the_heating
       - group.boost
+  Thermostat quick settings:
+    entities:
+      - switch.boiler
+      - input_slider.slider1
+      - climate.home
+  Auto heating settings:
+    entities:
+      - input_select.tempfor6
+      - input_select.preheatdelay
+      - input_select.tempfornormal
+      - input_select.away_from_home_temp
+      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
+      - automation.heating_on_at_6
+
 
 climate:
   - platform: generic_thermostat
@@ -51,7 +65,8 @@ climate:
     min_temp: 7
     max_temp: 32
     target_temp: 19
-light:
+
+light: #to allow alexa to control the temp
   - platform: mqtt
     name: heating
     command_topic: 'avondale/temp/poo/switch'
@@ -60,6 +75,7 @@ light:
     brightness_state_topic: 'avondale/temp/set'
     optimistic: false
     brightness_scale: 102
+
 input_slider:
   slider1:
     name: temperature
@@ -133,3 +149,15 @@ input_select:
       - 23
       - 24
     initial: 17
+
+alexa:
+  WhatTempIntent:
+    action:
+      service_template: notify.kodi
+      data_template:
+        message: "It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
+        title: "Somebody asked alexa about the temperature"
+    speech:
+      type: plaintext
+      text: >
+        It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}
