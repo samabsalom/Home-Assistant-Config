@@ -10,7 +10,6 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
 
-# Sho links to resources in log and frontend
 #introduction:
   customize: !include customize.yaml
   packages:

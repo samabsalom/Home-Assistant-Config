@@ -1,3 +1,4 @@
+script:
   boilerwhenhome:
     sequence:
       - service_template: climate.set_temperature
@@ -20,7 +21,7 @@
         data_template:
           message: "This was done automatically 10 minutes after someone returned"
           title: "Boiler set to the normal temperature"
-          
+
   warmhouseat6:
     sequence:
       - service_template: climate.set_temperature
