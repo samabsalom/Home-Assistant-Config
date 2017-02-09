@@ -48,7 +48,7 @@ google:
 
 scene: !include scene.yaml
 
-script: !include_dir_merge_list script
+script: !include_dir_merge_named script
 
 alexa: !include alexa.yaml
 
