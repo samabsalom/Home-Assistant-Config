@@ -21,6 +21,13 @@
       - group.hallway
       - script.mirroron
 
+  Weather:
+    view: yes
+    icon: mdi:weather-cloudy
+    entities:
+      - group.weather1
+      - group.weather2
+
   Bedroom:
     view: yes
     icon: mdi:hotel
@@ -103,6 +110,51 @@
       - media_player.sams__chromecast
       - switch.christmas_tree
       - switch.mirror
+
+  Weather1:
+    entities:
+      - sun.sun
+      - sensor.owm_cloud_coverage
+      - sensor.owm_condition
+      - sensor.owm_humidity
+      - sensor.owm_pressure
+      - sensor.owm_rain
+      - sensor.owm_temperature
+      - sensor.owm_wind_speed
+      - sensor.owm_snow
+
+  Flying:
+    entities:
+      - sensor.pws_dewpoint_c
+      - sensor.pws_feelslike_c
+      - sensor.pws_pressure_mb
+      - sensor.pws_temp_c
+      - sensor.pws_visibility_km
+      - sensor.pws_visibility_mi
+      - sensor.pws_wind_degrees
+      - sensor.pws_wind_dir
+      - sensor.pws_wind_gust_kph
+      - sensor.pws_wind_kph
+
+  Weather2:
+    entities:
+      - sensor.pws_alerts
+      - sensor.pws_dewpoint_c
+      - sensor.pws_feelslike_c
+      - sensor.pws_elevation
+      - sensor.pws_precip_1hr_metric
+      - sensor.pws_precip_today_metric
+      - sensor.pws_pressure_mb
+      - sensor.pws_pressure_trend
+      - sensor.pws_relative_humidity
+      - sensor.pws_solarradiation
+      - sensor.pws_temp_c
+      - sensor.pws_UV
+      - sensor.pws_weather
+      - sensor.pws_wind_degrees
+      - sensor.pws_wind_dir
+      - sensor.pws_wind_gust_mph
+      - sensor.pws_wind_mph
 
   Printer:
     entities:
