@@ -21,20 +21,20 @@
       - group.hallway
       - script.mirroron
 
-  Heating:
-    view: yes
-    icon: mdi:radiator
-    entities:
-      - switch.boiler
-      - climate.home
-      - sensor.target_temperature
-      - sensor.lounge_temperature
-      - sensor.lounge_humidity
-      - sensor.mold_indicator
-      - group.auto_heating_settings
-      - group.set_the_temperature
-      - script.boost_the_heating
-      - group.boost
+  # Heating:
+  #   view: yes
+  #   icon: mdi:radiator
+  #   entities:
+  #     - switch.boiler
+  #     - climate.home
+  #     - sensor.target_temperature
+  #     - sensor.lounge_temperature
+  #     - sensor.lounge_humidity
+  #     - sensor.mold_indicator
+  #     - group.auto_heating_settings
+  #     - group.set_the_temperature
+  #     - script.boost_the_heating
+  #     - group.boost
 
   Weather:
     view: yes
