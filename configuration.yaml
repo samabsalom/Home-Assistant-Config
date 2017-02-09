@@ -71,7 +71,6 @@ tts:
 digital_ocean:
   access_token: !secret digocean
 
-s
 
 proximity:
   home:
