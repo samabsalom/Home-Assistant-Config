@@ -70,7 +70,6 @@ tts:
 digital_ocean:
   access_token: !secret digocean
 
-
 proximity:
   home:
     ignored_zones:
@@ -83,14 +82,6 @@ proximity:
 
 switch: !include switch.yaml
 
-# input_slider:
-#   slider1:
-#     name: temperature
-#     initial: 22
-#     min: 10
-#     max: 30
-#     step: 1
-
 octoprint:
   host: "10.10.10.195"
   api_key: "02CC0E4BDA80449F9BDD81E437F64A44"
@@ -99,14 +90,6 @@ light:
   - platform: hue
     host: !secret huebridgeip
     allow_unreachable: true
-  # - platform: mqtt
-  #   name: heating
-  #   command_topic: 'avondale/temp/poo/switch'
-  #   state_topic: 'avondale/temp/poo/status'
-  #   brightness_command_topic: 'avondale/temp/set'
-  #   brightness_state_topic: 'avondale/temp/set'
-  #   optimistic: false
-  #   brightness_scale: 102
 
 binary_sensor:
   - platform: octoprint
@@ -130,29 +113,7 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
-  # - name: samfile
-  #   platform: file
-  #   filename: sam.txt
-  # - name: rosiefile
-  #   platform: file
-  #   filename: rosie.txt
-  # - name: hazfile
-  #   platform: file
-  #   filename: haz.txt
-  # - name: lizziefile
-  #   platform: file
-  #   filename: lizzie.txt
-  # - name: andyfile
-  #   platform: file
-  #   filename: andy.txt
-  # - name: tempfile
-  #   platform: file
-  #   filename: temp.txt
-  # - name: aimfile
-  #   platform: file
-  #   filename: aim.txt
 
-# /var/www/html/MagicMirror/modules/whoin-module/
 sensor: !include sensor.yaml
 
 camera:
@@ -200,16 +161,6 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
-
-
-# climate:
-#   - platform: generic_thermostat
-#     name: Home
-#     heater: switch.boiler
-#     target_sensor: sensor.lounge_temperature
-#     min_temp: 7
-#     max_temp: 32
-#     target_temp: 19
 
 group: !include group.yaml
 

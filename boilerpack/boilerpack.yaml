@@ -4,14 +4,12 @@ switch:
     state_topic: 'avondale/boiler/status'
     command_topic: 'avondale/boiler/switch'
     optimistic: false
-#switch.yaml line 34
 sensor:
   - platform: mold_indicator
     indoor_temp_sensor: sensor.lounge_temperature
     indoor_humidity_sensor: sensor.lounge_humidity
     outdoor_temp_sensor: sensor.owm_temperature
     calibration_factor: 2.0
-#line 1
   - platform: mqtt
     state_topic: "avondale/temp/set"
     name: Target temperature
@@ -26,7 +24,6 @@ sensor:
     name: 'Lounge humidity'
     unit_of_measurement: '%'
     value_template: '{{ value_json.humidity }}'
-# line 57
 group:
   Heating:
     view: yes
@@ -55,6 +52,9 @@ group:
       - input_select.away_from_home_temp
       - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
       - automation.heating_on_at_6
+  Set the temperature:
+    entities:
+      - input_slider.slider1
 
 
 climate:
@@ -83,6 +83,7 @@ input_slider:
     min: 10
     max: 30
     step: 1
+    
 input_select:
   tempfor6:
     name: Set temperature for 6am
