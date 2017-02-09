@@ -21,21 +21,6 @@
       - group.hallway
       - script.mirroron
 
-  Heating:
-    view: yes
-    icon: mdi:radiator
-    entities:
-      - switch.boiler
-      - climate.home
-      - sensor.target_temperature
-      - sensor.lounge_temperature
-      - sensor.lounge_humidity
-      - sensor.mold_indicator
-      - group.auto_heating_settings
-      - group.set_the_temperature
-      - script.boost_the_heating
-      - group.boost
-
   Weather:
     view: yes
     icon: mdi:weather-cloudy
@@ -98,11 +83,6 @@
 
 ############# components for the above tabs
 
-  Thermostat quick settings:
-    entities:
-      - switch.boiler
-      - input_slider.slider1
-      - climate.home
 
   Hallway:
     entities:
@@ -202,21 +182,4 @@
       - sensor.transmission_down_speed
       - sensor.transmission_status
       - sensor.transmission_up_speed
-
-  Auto heating settings:
-    entities:
-      - input_select.tempfor6
-      - input_select.preheatdelay
-      - input_select.tempfornormal
-      - input_select.away_from_home_temp
-      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
-      - automation.heating_on_at_6
-
-
-
-
-  Set the temperature:
-    entities:
-      - input_slider.slider1
-
 ######## TABS
