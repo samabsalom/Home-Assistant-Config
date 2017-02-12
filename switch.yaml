@@ -32,6 +32,11 @@
           service: switch.turn_off
           entity_id: switch.desktop
   - platform: mqtt
+    name: boiler
+    state_topic: 'avondale/boiler/status'
+    command_topic: 'avondale/boiler/switch'
+    optimistic: false
+  - platform: mqtt
     name: 1
     state_topic: 'avondale/1/status'
     command_topic: 'avondale/1/switch'
