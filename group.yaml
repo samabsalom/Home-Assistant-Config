@@ -55,7 +55,7 @@
 
   Misc:
     name: Misc
-    icon: mdi:menu
+    icon: mdi:robot
     view: yes
     entities:
       - group.breach
