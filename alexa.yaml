@@ -95,16 +95,16 @@
         type: plaintext
         text: !include alexa_confirm.yaml
 
-    # WhatTempIntent:
-    #   action:
-    #     service_template: notify.kodi
-    #     data_template:
-    #       message: "It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
-    #       title: "Somebody asked alexa about the temperature"
-    #   speech:
-    #     type: plaintext
-    #     text: >
-    #       It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}
+    WhatTempIntent:
+      action:
+        service_template: notify.kodi
+        data_template:
+          message: "It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
+          title: "Somebody asked alexa about the temperature"
+      speech:
+        type: plaintext
+        text: >
+          It is currently {{ states.sensor.lounge_temperature.state }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}
       # card:
       #   type: simple
       #   title: Sample title
