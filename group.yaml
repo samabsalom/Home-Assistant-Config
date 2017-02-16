@@ -48,6 +48,7 @@
     icon: mdi:hotel
     entities:
       - light.bedroom_light
+      - light.bed_light
       - media_player.bedroom
       - switch.blinds
       - switch.ubuntu
