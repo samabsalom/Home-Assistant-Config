@@ -267,6 +267,8 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
+  - platform: nmap_tracker
+    hosts: 10.10.10.1/24
 
 
 climate:

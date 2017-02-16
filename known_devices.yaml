@@ -309,3 +309,67 @@ hayleysiphone:
   picture:
   track: false
   vendor: Apple, Inc.
+
+dc9fdb29a0bc:
+  hide_if_away: false
+  mac: DC:9F:DB:29:A0:BC
+  name: dc9fdb29a0bc
+  picture:
+  track: false
+  vendor: Ubiquiti Networks Inc.
+
+00178812baf0:
+  hide_if_away: false
+  mac: 00:17:88:12:BA:F0
+  name: 00178812baf0
+  picture:
+  track: false
+  vendor: Philips Lighting BV
+
+b827eb493405:
+  hide_if_away: false
+  mac: B8:27:EB:49:34:05
+  name: b827eb493405
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+b827ebbb90a3:
+  hide_if_away: false
+  mac: B8:27:EB:BB:90:A3
+  name: b827ebbb90a3
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+b827ebaf2179:
+  hide_if_away: false
+  mac: B8:27:EB:AF:21:79
+  name: b827ebaf2179
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+b827eb80ee51:
+  hide_if_away: false
+  mac: B8:27:EB:80:EE:51
+  name: b827eb80ee51
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+204e7f4ebf79:
+  hide_if_away: false
+  mac: 20:4E:7F:4E:BF:79
+  name: 204e7f4ebf79
+  picture:
+  track: false
+  vendor: NETGEAR
+
+002722f28339:
+  hide_if_away: false
+  mac: 00:27:22:F2:83:39
+  name: 002722f28339
+  picture:
+  track: false
+  vendor: Ubiquiti Networks Inc.
