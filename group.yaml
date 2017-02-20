@@ -20,6 +20,8 @@
       - binary_sensor.hall_motion
       - group.hallway
       - script.mirroron
+      - sensor.lounge_sound
+      - sensor,lounge_light
 
   Heating:
     view: yes

@@ -1,3 +1,9 @@
+  - platform: arduino
+    pins:
+      0:
+        name: Lounge Sound
+      1: 
+        name: Lounge Light
   - platform: mold_indicator
     indoor_temp_sensor: sensor.lounge_temperature
     indoor_humidity_sensor: sensor.lounge_humidity

@@ -30,6 +30,9 @@ logbook:
 
 sun:
 
+arduino:
+  port: /dev/ttyACM0
+
 mqtt:
   broker: !secret mqttbroker
   port: 1883
@@ -63,9 +66,9 @@ tts:
     language: en-gb
   - platform: picotts
     language: en-GB
-  - platform: yandextts
-    api_key: !secret yandextts
-    language: 'en-EN'
+  # - platform: yandextts
+  #   api_key: !secret yandextts
+  #   language: 'en-EN'
 
 digital_ocean:
   access_token: !secret digocean
