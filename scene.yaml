@@ -25,26 +25,6 @@
       switch.ubuntu: off
       switch.bedroom_lamp: off
       switch.desk: off
-<<<<<<< HEAD
-  - name: loungeoff
-    entities:
-      switch.tv: off
-      switch.lamp: off
-      switch.fish_tank: off
-      switch.mirror: off
-      switch.main_light: off
-      switch.spot_lights: off
-  - name: loungeon
-    entities:
-      switch.tv: on
-      switch.lamp: on
-      switch.fish_tank: on
-      switch.mirror: on
-      switch.main_light: on
-      switch.spot_lights: on
-=======
-
->>>>>>> parent of 1dfeda9... lounge package
   - name: Evening
     entities:
       light.bedroom_light:
