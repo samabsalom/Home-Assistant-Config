@@ -11,13 +11,13 @@ homeassistant:
   time_zone: Europe/London
   customize: !include customize.yaml
   packages:
-    pack_1: !include packages/loungelightswitch.yaml
-    pack_2: !include_dir_merge_named packages/lounge
-    pack_3: !include packages/octoprint.yaml
-    pack_4: !include packages/digitalocean.yaml
-    pack_5: !include_dir_merge_named packages/heating
-    pack_6: !include packages/weather.yaml
-    pack_7: !include packages/hall.yaml
+    pack_1: !include packages/arduino.yaml
+    pack_2: !include packages/octoprint.yaml
+    pack_3: !include packages/digitalocean.yaml
+    pack_4: !include_dir_merge_named packages/heating
+    pack_5: !include packages/weather.yaml
+    pack_6: !include packages/hall.yaml
+    pack_7: !include packages/loungelightswitch.yaml
 
 frontend:
 http:
@@ -108,6 +108,14 @@ notify:
     api_key: !secret pushbullet
 
 media_player:
+  - platform: kodi
+    host: !secret kodihost
+    port: 80
+    name: Kodi
+    username: !secret kodiuser
+    password: !secret kodipass
+    turn_off_action: reboot
+  - platform: cast
   - platform: kodi
     host: !secret kodibedhost
     port: 80

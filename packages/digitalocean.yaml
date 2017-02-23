@@ -4,9 +4,9 @@ digital_ocean:
 switch:
   - platform: digital_ocean
     droplets:
-      - !secret digoceandroplet1
+      - '!secret digoceandroplet1'
 
 binary_sensor:
   - platform: digital_ocean
     droplets:
-      - !secret digoceandroplet1
+      - '!secret digoceandroplet1'

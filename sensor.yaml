@@ -22,7 +22,6 @@
     monitored_conditions:
       - download
       - upload
-      
 ######### owntracks
   - platform: mqtt
     state_topic: "owntracks/pi/nexus"
