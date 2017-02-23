@@ -21,7 +21,7 @@
       - group.hallway
       - script.mirroron
       - sensor.lounge_sound
-      - sensor,lounge_light
+      - sensor.lounge_light
 
   Heating:
     view: yes
