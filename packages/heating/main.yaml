@@ -1,0 +1,83 @@
+sensor:
+  - platform: mqtt
+    state_topic: "avondale/temp/set"
+    name: Target temperature
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge temperature'
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge humidity'
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.humidity }}'
+  - platform: mold_indicator
+    indoor_temp_sensor: sensor.lounge_temperature
+    indoor_humidity_sensor: sensor.lounge_humidity
+    outdoor_temp_sensor: sensor.owm_temperature
+    calibration_factor: 2.0
+switch:
+  - platform: mqtt
+    name: boiler
+    state_topic: 'avondale/boiler/status'
+    command_topic: 'avondale/boiler/switch'
+    optimistic: false
+
+light:
+  - platform: mqtt
+  name: heating
+  command_topic: 'avondale/temp/poo/switch'
+  state_topic: 'avondale/temp/poo/status'
+  brightness_command_topic: 'avondale/temp/set'
+  brightness_state_topic: 'avondale/temp/set'
+  optimistic: false
+  brightness_scale: 102
+
+climate:
+  - platform: generic_thermostat
+    name: Home
+    heater: switch.boiler
+    target_sensor: sensor.lounge_temperature
+    min_temp: 7
+    max_temp: 32
+    target_temp: 19
+
+group:
+  Heating:
+    view: yes
+    icon: mdi:radiator
+    entities:
+      - switch.boiler
+      - climate.home
+      - sensor.target_temperature
+      - sensor.lounge_temperature
+      - sensor.lounge_humidity
+      - sensor.mold_indicator
+      - group.auto_heating_settings
+      - group.set_the_temperature
+      - script.boost_the_heating
+      - group.boost
+  Thermostat quick settings:
+    entities:
+      - switch.boiler
+      - input_slider.slider1
+      - climate.home
+  Boost:
+    entities:
+      - script.boost_the_heating
+      - input_select.boostdelay
+  Auto heating settings:
+    entities:
+      - input_select.tempfor6
+      - input_select.preheatdelay
+      - input_select.tempfornormal
+      - input_select.away_from_home_temp
+      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
+      - automation.heating_on_at_6
+      - automation.turn_boiler_on_when_people_return
+
+  Set the temperature:
+    entities:
+      - input_slider.slider1

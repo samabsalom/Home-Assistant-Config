@@ -23,21 +23,6 @@
       - sensor.lounge_sound
       - sensor.lounge_light
 
-  Heating:
-    view: yes
-    icon: mdi:radiator
-    entities:
-      - switch.boiler
-      - climate.home
-      - sensor.target_temperature
-      - sensor.lounge_temperature
-      - sensor.lounge_humidity
-      - sensor.mold_indicator
-      - group.auto_heating_settings
-      - group.set_the_temperature
-      - script.boost_the_heating
-      - group.boost
-
   Weather:
     view: yes
     icon: mdi:weather-cloudy
@@ -73,7 +58,6 @@
       # - automation.heating_on_at_6
       - automation.lights_out_after_midnight
       - automation.turn_everything_and_boiler_off_when_people_leave
-      - automation.turn_boiler_on_when_people_return
       - automation.turn_on_light_when_sun_sets
       - automation.lights_on_when_someone_gets_home
       - automation.allofffromswitch
@@ -93,20 +77,10 @@
 
 ############# components for the above tabs
 
-  Thermostat quick settings:
-    entities:
-      - switch.boiler
-      - input_slider.slider1
-      - climate.home
 
   Hallway:
     entities:
       - light.hall_light
-
-  Boost:
-    entities:
-      - script.boost_the_heating
-      - input_select.boostdelay
 
   Phone:
     entities:
@@ -186,21 +160,3 @@
       - sensor.transmission_down_speed
       - sensor.transmission_status
       - sensor.transmission_up_speed
-
-  Auto heating settings:
-    entities:
-      - input_select.tempfor6
-      - input_select.preheatdelay
-      - input_select.tempfornormal
-      - input_select.away_from_home_temp
-      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
-      - automation.heating_on_at_6
-
-
-
-
-  Set the temperature:
-    entities:
-      - input_slider.slider1
-
-######## TABS
