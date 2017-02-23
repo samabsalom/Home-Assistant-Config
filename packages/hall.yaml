@@ -1,8 +1,38 @@
-################################################################################
-#                       hall
-################################################################################
+binary_sensor:
+  - platform: mqtt
+    state_topic: 'alarm/hall/status'
+    name: 'Hall Motion'
+    sensor_class: motion
 
+group:
+  Hall:
+    view: yes
+    icon: mdi:stairs
+    entities:
+      - automation.hallbright
+      - automation.halldim
+      - automation.halloff
+      - script.halldim
+      - script.hallon
+      - binary_sensor.hall_motion
+      
+script:
+  halldim:
+    alias: Hall on dim
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 75
+  hallbright:
+    alias: Hall on bright
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 255
 
+automation:
   - alias: hallbright
     trigger:
       platform: state
@@ -19,7 +49,6 @@
     action:
       service: homeassistant.turn_on
       entity_id: script.hallbright
-
   - alias: halldim
     trigger:
       platform: state
@@ -35,7 +64,6 @@
     action:
       service: homeassistant.turn_on
       entity_id: script.halldim
-
   - alias: halloff
     trigger:
       platform: state

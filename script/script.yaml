@@ -50,20 +50,6 @@
           qos: 0
           retain: true
 
-  halldim:
-    alias: Hall on dim
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: light.hall_light
-          brightness: 75
-  hallbright:
-    alias: Hall on bright
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: light.hall_light
-          brightness: 255
   mirroron:
     alias: Turn on the mirror UI
     sequence:
