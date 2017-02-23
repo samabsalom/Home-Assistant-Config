@@ -1,27 +1,16 @@
-
   default_view:
     view: yes
     icon: mdi:sofa
     entities:
       - group.living_room
+      - group.loungelightswitch
       - group.thermostat_quick_settings
       - device_tracker.pi_nexus
       - device_tracker.rosie
       - device_tracker.lizzie
       - device_tracker.hazbag
       - device_tracker.andy
-      - script.loungeon
-      - script.loungeoff
-      - script.evening
-      - script.return_home
-      - script.fireplace
-      - script.halldim
-      - script.hallbright
-      - binary_sensor.hall_motion
-      - group.hallway
       - script.mirroron
-      - sensor.lounge_sound
-      - sensor.lounge_light
 
   Bedroom:
     view: yes
@@ -76,18 +65,6 @@
       - device_tracker.pi_nexus
       - sensor.battery_nexus
       - sensor.connectivity_nexus
-
-  Living room:
-    entities:
-      - switch.main_light
-      - switch.spot_lights
-      - switch.fish_tank
-      - switch.lamp
-      - switch.tv
-      - media_player.kodi
-      - media_player.sams__chromecast
-      - switch.christmas_tree
-      - switch.mirror
 
   Breach:
     entities:

@@ -1,9 +1,3 @@
-  evening:
-    sequence:
-      - service: homeassistant.turn_on
-        entity_id: scene.evening
-
-
   ttstest:
     alias: testing voice
     sequence:

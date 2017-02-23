@@ -16,7 +16,7 @@ group:
       - automation.halldim
       - automation.halloff
       - script.halldim
-      - script.hallon
+      - script.hallbright
       - binary_sensor.hall_motion
       - light.hall_light
 
