@@ -8,7 +8,6 @@
         command_off: "bash /home/pi/pcoff.sh"
       mirrortemp:
         command_on: "bash /var/www/html/MagicMirror/modules/temp-module/run.sh"
-
       # switch2:
       #   command_on: "/usr/bin/python /home/pi/energenie/switch2on.py"
       #   command_off: "/usr/bin/python /home/pi/energenie/switch2off.py"
@@ -31,6 +30,9 @@
         turn_off:
           service: switch.turn_off
           entity_id: switch.desktop
+
+
+####### fish tank switches
   - platform: mqtt
     name: 1
     state_topic: 'avondale/1/status'
@@ -71,6 +73,8 @@
     state_topic: 'avondale/8/status'
     command_topic: 'avondale/8/switch'
     optimistic: false
+
+####### bedroom
   - platform: mqtt
     name: Blinds
     state_topic: 'blinds/1/status'
@@ -86,11 +90,17 @@
     state_topic: 'desk/2/status'
     command_topic: 'desk/2/switch'
     optimistic: false
+
+
+
+######### pi switches
   - platform: rpi_gpio
     ports:
       20: MirrorOther
       21: Mirror
     invert_logic: true
+
+######## testing switches
   - platform: mqtt
     name: changeme1
     state_topic: 'changeme/1/status'
@@ -100,14 +110,4 @@
     name: changeme2
     state_topic: 'changeme/2/status'
     command_topic: 'changeme/2/switch'
-    optimistic: false
-  - platform: mqtt
-    name: Spot lights
-    state_topic: 'loungelight/1/status'
-    command_topic: 'loungelight/1/switch'
-    optimistic: false
-  - platform: mqtt
-    name: Main Light
-    state_topic: 'loungelight/2/status'
-    command_topic: 'loungelight/2/switch'
     optimistic: false

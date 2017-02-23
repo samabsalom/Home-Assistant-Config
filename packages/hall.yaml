@@ -5,6 +5,9 @@ binary_sensor:
     sensor_class: motion
 
 group:
+  Hallway:
+    entities:
+      - light.hall_light
   Hall:
     view: yes
     icon: mdi:stairs
@@ -15,7 +18,8 @@ group:
       - script.halldim
       - script.hallon
       - binary_sensor.hall_motion
-      
+      - light.hall_light
+
 script:
   halldim:
     alias: Hall on dim

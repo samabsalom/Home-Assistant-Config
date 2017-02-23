@@ -33,7 +33,3 @@
     name: "Connectivity Nexus"
     unit_of_measurement: "-"
     value_template: "{{ value_json.conn }}"
-
-  - platform: mqtt
-    state_topic: 'loungelight/allonoff/switch'
-    name: allonoff

@@ -23,7 +23,6 @@
       - sensor.lounge_sound
       - sensor.lounge_light
 
-
   Bedroom:
     view: yes
     icon: mdi:hotel
@@ -71,10 +70,6 @@
 
 ############# components for the above tabs
 
-
-  Hallway:
-    entities:
-      - light.hall_light
 
   Phone:
     entities:

@@ -24,31 +24,6 @@
         data:
           message: the quick brown fox jumped over the lazy dog
 
-  loungeon:
-    alias: Lounge on
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: scene.loungeon
-      - service: mqtt.publish
-        data:
-          payload: waiting
-          topic: loungelight/allonoff/switch
-          qos: 0
-          retain: true
-
-  loungeoff:
-    alias: Lounge off
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: scene.loungeoff
-      - service: mqtt.publish
-        data:
-          payload: waiting
-          topic: loungelight/allonoff/switch
-          qos: 0
-          retain: true
 
   mirroron:
     alias: Turn on the mirror UI
