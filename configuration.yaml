@@ -11,7 +11,7 @@ homeassistant:
   time_zone: Europe/London
   customize: !include customize.yaml
   packages:
-    pack_1: !include packages/loungelightswitch
+    pack_1: !include packages/loungelightswitch.yaml
     pack_2: !include_dir_merge_named packages/lounge
     pack_3: !include packages/octoprint.yaml
     pack_4: !include packages/digitalocean.yaml
