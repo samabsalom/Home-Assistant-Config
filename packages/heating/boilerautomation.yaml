@@ -3,6 +3,7 @@
 #                Boiler
 ##############################################################
 ##############################################################
+automation:
   - alias: Set MQTT temp from Slider
     trigger:
       platform: state
@@ -53,7 +54,7 @@
     action:
       - service: homeassistant.turn_on
         entity_id: script.boilerwhenhome
-        
+
   - alias: set heating to 21 if below 3 degrees outside in morning
     hide_entity: False
     trigger:
