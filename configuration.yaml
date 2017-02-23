@@ -13,6 +13,7 @@ homeassistant:
   packages:
     pack_1: !include packages/arduino.yaml
     pack_2: !include packages/octoprint.yaml
+    pack_3: !include packages/digitalocean.yaml
 
 
 frontend:
@@ -66,9 +67,6 @@ tts:
   # - platform: yandextts
   #   api_key: !secret yandextts
   #   language: 'en-EN'
-
-digital_ocean:
-  access_token: !secret digocean
 
 input_select:
   tempfor6:

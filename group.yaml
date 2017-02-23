@@ -63,14 +63,6 @@
       - script.bedroomfire
       - alarm_control_panel.avondale_alarm
 
-
-  3D Printer:
-    view: yes
-    icon: mdi:printer-3d
-    entities:
-      - group.printer
-      - camera.printcam
-
   Misc:
     name: Misc
     icon: mdi:robot
@@ -178,17 +170,6 @@
       - sensor.pws_wind_dir
       - sensor.pws_wind_gust_mph
       - sensor.pws_wind_mph
-
-  Printer:
-    entities:
-      - sensor.octoprint_actual_bed_temp
-      - sensor.octoprint_actual_tool0_temp
-      - sensor.octoprint_current_state
-      - sensor.octoprint_job_percentage
-      - sensor.octoprint_target_bed_temp
-      - sensor.octoprint_target_tool0_temp
-      - binary_sensor.octoprint_printing
-      - binary_sensor.octoprint_printing_error
 
   Breach:
     entities:

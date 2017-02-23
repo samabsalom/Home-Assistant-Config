@@ -21,3 +21,21 @@ camera:
   platform: mjpeg
   mjpeg_url: !secret printercam
   name: printcam
+
+group:
+  3D Printer:
+    view: yes
+    icon: mdi:printer-3d
+    entities:
+      - group.printer
+      - camera.printcam
+  Printer:
+    entities:
+      - sensor.octoprint_actual_bed_temp
+      - sensor.octoprint_actual_tool0_temp
+      - sensor.octoprint_current_state
+      - sensor.octoprint_job_percentage
+      - sensor.octoprint_target_bed_temp
+      - sensor.octoprint_target_tool0_temp
+      - binary_sensor.octoprint_printing
+      - binary_sensor.octoprint_printing_error
