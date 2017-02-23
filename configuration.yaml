@@ -9,9 +9,11 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
-  packages:
-    pack_1: !include arduino.yaml
   customize: !include customize.yaml
+  packages:
+    pack_1: !include packages/arduino.yaml
+    pack_2: !include packages/octoprint.yaml
+
 
 frontend:
 
@@ -156,10 +158,6 @@ input_slider:
     max: 30
     step: 1
 
-octoprint:
-  host: "10.10.10.195"
-  api_key: "02CC0E4BDA80449F9BDD81E437F64A44"
-
 light:
   - platform: hue
     host: !secret huebridgeip
@@ -184,16 +182,10 @@ light:
     optimistic: false
 
 binary_sensor:
-  - platform: octoprint
-    monitored_conditions:
-      - Printing
-      - Printing Error
-    name: Octoprint
   - platform: mqtt
     state_topic: 'alarm/hall/status'
     name: 'Hall Motion'
     sensor_class: motion
-
 
 notify:
   - name: kodi
@@ -205,35 +197,8 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
-  # - name: samfile
-  #   platform: file
-  #   filename: sam.txt
-  # - name: rosiefile
-  #   platform: file
-  #   filename: rosie.txt
-  # - name: hazfile
-  #   platform: file
-  #   filename: haz.txt
-  # - name: lizziefile
-  #   platform: file
-  #   filename: lizzie.txt
-  # - name: andyfile
-  #   platform: file
-  #   filename: andy.txt
-  # - name: tempfile
-  #   platform: file
-  #   filename: temp.txt
-  # - name: aimfile
-  #   platform: file
-  #   filename: aim.txt
 
-# /var/www/html/MagicMirror/modules/whoin-module/
 sensor: !include sensor.yaml
-
-camera:
-  platform: mjpeg
-  mjpeg_url: !secret printercam
-  name: printcam
 
 media_player:
   - platform: kodi

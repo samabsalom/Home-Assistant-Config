@@ -38,12 +38,6 @@
       - clouds
       - rain
       - snow
-  - platform: octoprint
-    name: OctoPrint
-    monitored_conditions:
-      - Current State
-      - Temperatures
-      - Job Percentage
   - platform: mqtt
     state_topic: "owntracks/pi/nexus"
     name: "Battery Nexus"

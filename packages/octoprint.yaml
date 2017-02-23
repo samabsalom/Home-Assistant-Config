@@ -1,0 +1,23 @@
+octoprint:
+  host: "10.10.10.195"
+  api_key: "02CC0E4BDA80449F9BDD81E437F64A44"
+
+sensor:
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+    name: Octoprint
+
+camera:
+  platform: mjpeg
+  mjpeg_url: !secret printercam
+  name: printcam
