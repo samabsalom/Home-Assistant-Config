@@ -3,6 +3,26 @@ binary_sensor:
     state_topic: 'alarm/hall/status'
     name: 'Hall Motion'
     sensor_class: motion
+script:
+  halldim:
+    alias: Hall on dim
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 75
+  hallbright:
+    alias: Hall on bright
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.hall_light
+          brightness: 255
+
+alarm_control_panel:
+  - platform: manual
+    name: Avondale Alarm
+    code: !secret alarmcode
 
 group:
   Hallway:
@@ -19,22 +39,7 @@ group:
       - script.hallbright
       - binary_sensor.hall_motion
       - light.hall_light
-
-script:
-  halldim:
-    alias: Hall on dim
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: light.hall_light
-          brightness: 75
-  hallbright:
-    alias: Hall on bright
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: light.hall_light
-          brightness: 255
+      - alarm_control_panel.avondale_alarm
 
 automation:
   - alias: hallbright

@@ -22,24 +22,8 @@
       - script.mirroron
       - sensor.lounge_sound
       - sensor.lounge_light
-
-  Bedroom:
-    view: yes
-    icon: mdi:hotel
-    entities:
-      - light.bedroom_light
-      - light.bed_light
-      - media_player.bedroom
-      - switch.blinds
-      - switch.ubuntu
-      - switch.bedroom_lamp
-      - switch.desk
-      - group.phone
-      - group.flying
-      - group.network
       - proximity.home
-      - script.bedroomfire
-      - alarm_control_panel.avondale_alarm
+
 
   Misc:
     name: Misc
@@ -48,13 +32,10 @@
     entities:
       - group.breach
       - group.all_automations
-      # - automation.heating_on_at_6
       - automation.lights_out_after_midnight
       - automation.turn_everything_and_boiler_off_when_people_leave
       - automation.turn_on_light_when_sun_sets
       - automation.lights_on_when_someone_gets_home
-      - automation.allofffromswitch
-      - automation.allonfromswitch
       - automation.all_on
       - automation.all_off
       - switch.changeme1
@@ -67,6 +48,8 @@
       - switch.6
       - script.wake_up
       - script.ttstest
+      - group.network
+
 
 ############# components for the above tabs
 

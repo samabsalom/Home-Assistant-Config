@@ -4,10 +4,6 @@
         command_on: "/usr/bin/python /home/pi/energenie/switch1on.py"
         command_off: "/usr/bin/python /home/pi/energenie/switch1off.py"
         friendly_name: television
-      desktop:
-        command_off: "bash /home/pi/pcoff.sh"
-      mirrortemp:
-        command_on: "bash /var/www/html/MagicMirror/modules/temp-module/run.sh"
       # switch2:
       #   command_on: "/usr/bin/python /home/pi/energenie/switch2on.py"
       #   command_off: "/usr/bin/python /home/pi/energenie/switch2off.py"
@@ -16,20 +12,6 @@
       #   command_on: "/usr/bin/python /home/pi/energenie/switch3on.py"
       #   command_off: "/usr/bin/python /home/pi/energenie/switch3off.py"
       #   friendly_name: switch 3
-  - platform: wake_on_lan
-    mac_address: "00:1A:92:66:F7:22"
-    name: linux
-    host: 10.10.10.199
-  - platform: template
-    switches:
-      ubuntu:
-        value_template: '{{ states.switch.linux.state }}'
-        turn_on:
-          service: switch.turn_on
-          entity_id: switch.linux
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.desktop
 
 
 ####### fish tank switches
@@ -73,24 +55,6 @@
     state_topic: 'avondale/8/status'
     command_topic: 'avondale/8/switch'
     optimistic: false
-
-####### bedroom
-  - platform: mqtt
-    name: Blinds
-    state_topic: 'blinds/1/status'
-    command_topic: 'blinds/1/switch'
-    optimistic: false
-  - platform: mqtt
-    name: Bedroom Lamp
-    state_topic: 'desk/1/status'
-    command_topic: 'desk/1/switch'
-    optimistic: false
-  - platform: mqtt
-    name: desk
-    state_topic: 'desk/2/status'
-    command_topic: 'desk/2/switch'
-    optimistic: false
-
 
 
 ######### pi switches

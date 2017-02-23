@@ -5,6 +5,8 @@ group:
     entities:
       - group.weather1
       - group.weather2
+      - group.flying
+
   Weather1:
     entities:
       - sun.sun

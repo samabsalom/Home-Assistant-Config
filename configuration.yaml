@@ -18,6 +18,7 @@ homeassistant:
     pack_5: !include packages/weather.yaml
     pack_6: !include packages/hall.yaml
     pack_7: !include packages/loungelightswitch.yaml
+    pack_8: !include_dir_merge_named packages/bedroom
 
 frontend:
 http:
@@ -46,11 +47,6 @@ mqtt:
   client_id: home-assistant-1
   username: !secret mqttuser
   password: !secret mqttpass
-
-alarm_control_panel:
-  - platform: manual
-    name: Avondale Alarm
-    code: !secret alarmcode
 
 google:
   client_id: !secret googleid
@@ -85,16 +81,6 @@ light:
   - platform: hue
     host: !secret huebridgeip
     allow_unreachable: true
-  - platform: mqtt
-    name: 'Bed light'
-    state_topic: 'bed/rgb1/light/status'
-    command_topic: 'bed/rgb1/light/switch'
-    brightness_state_topic: 'bed/rgb1/brightness/status'
-    brightness_command_topic: 'bed/rgb1/brightness/set'
-    rgb_state_topic: 'bed/rgb1/rgb/status'
-    rgb_command_topic: 'bed/rgb1/rgb/set'
-    brightness_scale: 100
-    optimistic: false
 
 notify:
   - name: kodi
@@ -116,13 +102,6 @@ media_player:
     password: !secret kodipass
     turn_off_action: reboot
   - platform: cast
-  - platform: kodi
-    host: !secret kodibedhost
-    port: 80
-    name: bedroom
-    username: !secret kodibeduser
-    password: !secret kodibedpass
-    turn_off_action: reboot
 
 emulated_hue:
   host_ip: !secret hueip
