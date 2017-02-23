@@ -14,7 +14,7 @@ homeassistant:
     pack_1: !include packages/arduino.yaml
     pack_2: !include packages/octoprint.yaml
     pack_3: !include packages/digitalocean.yaml
-    pack_4: !!include_dir_named packages/heating
+    pack_4: !include_dir_named packages/heating
 
 
 frontend:

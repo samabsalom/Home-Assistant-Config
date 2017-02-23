@@ -20,3 +20,4 @@ stuff
 /.AppleDouble
 emulated_hue_ids.json
 group.yaml.save
+*/.AppleDouble/*

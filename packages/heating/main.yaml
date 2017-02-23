@@ -27,13 +27,13 @@ switch:
 
 light:
   - platform: mqtt
-  name: heating
-  command_topic: 'avondale/temp/poo/switch'
-  state_topic: 'avondale/temp/poo/status'
-  brightness_command_topic: 'avondale/temp/set'
-  brightness_state_topic: 'avondale/temp/set'
-  optimistic: false
-  brightness_scale: 102
+    name: heating
+    command_topic: 'avondale/temp/poo/switch'
+    state_topic: 'avondale/temp/poo/status'
+    brightness_command_topic: 'avondale/temp/set'
+    brightness_state_topic: 'avondale/temp/set'
+    optimistic: false
+    brightness_scale: 102
 
 climate:
   - platform: generic_thermostat
