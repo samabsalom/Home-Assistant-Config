@@ -30,13 +30,14 @@
     view: yes
     entities:
       - group.breach
-      - group.all_automations
+      - group.loungelightswitch
+
       - automation.lights_out_after_midnight
-      - automation.turn_everything_and_boiler_off_when_people_leave
+      - automation.lights_out_after_2am
+      - automation.turn_everything_off_when_people_leave
       - automation.turn_on_light_when_sun_sets
       - automation.lights_on_when_someone_gets_home
-      - automation.all_on
-      - automation.all_off
+
       - switch.changeme1
       - switch.changeme2
       - switch.1

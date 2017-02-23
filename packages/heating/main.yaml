@@ -77,6 +77,7 @@ group:
       - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
       - automation.heating_on_at_6
       - automation.turn_boiler_on_when_people_return
+      - automation.turn_boiler_off_when_people_leave
 
   Set the temperature:
     entities:
