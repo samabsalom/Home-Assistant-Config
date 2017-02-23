@@ -9,10 +9,8 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
-
-# Sho links to resources in log and frontend
-#introduction:
-
+  packages:
+    pack_1: !include arduino.yaml
   customize: !include customize.yaml
 
 frontend:
@@ -29,9 +27,6 @@ history:
 logbook:
 
 sun:
-
-arduino:
-  port: /dev/ttyACM0
 
 mqtt:
   broker: !secret mqttbroker
