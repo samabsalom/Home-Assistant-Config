@@ -5,11 +5,14 @@
     entities:
       - group.living_room
       - group.thermostat_quick_settings
+      - group.hallway
+
       - device_tracker.pi_nexus
       - device_tracker.rosie
       - device_tracker.lizzie
       - device_tracker.hazbag
       - device_tracker.andy
+
       - script.loungeon
       - script.loungeoff
       - script.evening
@@ -17,9 +20,7 @@
       - script.fireplace
       - script.halldim
       - script.hallbright
-      - binary_sensor.hall_motion
-      - group.hallway
-      - script.mirroron
+
       - sensor.lounge_sound
       - sensor.lounge_light
       - proximity.home

@@ -54,7 +54,6 @@ google:
 
 shell_command:
   hibernatelinux: "ssh ubuntu sudo pm-hibernate"
-  startmirror: "pm2 start /home/pi/mm.sh"
 
 tts:
   - platform: google
