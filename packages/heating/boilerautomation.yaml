@@ -1,0 +1,76 @@
+##############################################################
+##############################################################
+#                Boiler
+##############################################################
+##############################################################
+automation:
+  - alias: Set MQTT temp from Slider
+    trigger:
+      platform: state
+      entity_id: input_slider.slider1
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "avondale/temp/set"
+          payload: '{{ states.input_slider.slider1.state | int }}'
+
+  - alias: Set Climate from MQTT
+    trigger:
+      platform: mqtt
+      topic: avondale/temp/set
+    action:
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{trigger.payload}} "
+      - service_template: notify.pushbullet
+        data_template:
+          message: "This was done by a user"
+          title: "Set the boiler to {{trigger.payload}}C"
+      - service_template: notify.kodi
+        data_template:
+          message: "This was done by a user"
+          title: "The boiler has been set to {{trigger.payload}}C"
+
+  - alias: heating on at 6
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '06:00:00'
+    condition:
+     condition: state
+     entity_id: group.all_devices
+     state: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseat6
+
+
+  - alias: Turn boiler on when people return
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.boilerwhenhome
+
+  - alias: set heating to 21 if below 3 degrees outside in morning
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '05:55:00'
+    condition:
+     condition: and
+     conditions:
+       - condition: state
+         entity_id: group.all_devices
+         state: home
+       - condition: numeric_state
+         entity_id: 'sensor.owm_temperature'
+         below: '3'
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.tempfor6
+        data:
+          option: 21
