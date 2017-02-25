@@ -19,6 +19,7 @@ homeassistant:
     pack_6: !include packages/hall.yaml
     pack_7: !include packages/loungelightswitch.yaml
     pack_8: !include packages/bedroom.yaml
+    pack_9: !include packages/rebootpi.yaml
 
 frontend:
 http:
