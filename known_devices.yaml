@@ -373,3 +373,27 @@ b827eb80ee51:
   picture:
   track: false
   vendor: Ubiquiti Networks Inc.
+
+android832cb7a10d6f6b9:
+  hide_if_away: false
+  mac: EC:1F:72:F1:CA:96
+  name: android-832cb7a10d6f6b9
+  picture:
+  track: false
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+jojosiphone:
+  hide_if_away: false
+  mac: CC:20:E8:B1:AD:63
+  name: Jojos-Iphone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphone:
+  hide_if_away: false
+  mac: D0:25:98:E7:39:13
+  name: iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
