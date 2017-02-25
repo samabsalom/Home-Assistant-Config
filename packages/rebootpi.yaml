@@ -14,11 +14,11 @@ switch:
     host: 10.10.10.1
 
 automation:
-  - alias: all on
+  - alias: reboot pi if connection lost to router
     trigger:
       platform: state
       entity_id: switch.router
-      to: off
+      to: 'off'
     action:
       - service: homeassistant.turn_on
         entity_id: script.reboot_pi
