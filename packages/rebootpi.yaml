@@ -21,8 +21,6 @@ automation:
       entity_id: switch.router
       to: 'off'
     action:
-      - service: homeassistant.turn_on
-        entity_id: script.reboot_pi
       - service_template: notify.pushbullet
         data_template:
           message: "This was done because HA lost connection to the router"
@@ -31,3 +29,5 @@ automation:
         data_template:
           message: "This was done because HA lost connection to the router"
           title: "REBOOT"
+      - service: homeassistant.turn_on
+        entity_id: script.reboot_pi
