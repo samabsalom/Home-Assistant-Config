@@ -20,7 +20,7 @@ homeassistant:
     pack_7: !include packages/loungelightswitch.yaml
     pack_8: !include packages/bedroom.yaml
     pack_9: !include packages/rebootpi.yaml
-
+config:
 frontend:
 http:
   api_password: !secret http_apipassword
