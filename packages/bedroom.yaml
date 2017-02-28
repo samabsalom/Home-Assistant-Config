@@ -1,0 +1,80 @@
+switch:
+  - platform: mqtt
+    name: Blinds
+    state_topic: 'blinds/1/status'
+    command_topic: 'blinds/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: Bedroom Lamp
+    state_topic: 'desk/1/status'
+    command_topic: 'desk/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: desk
+    state_topic: 'desk/2/status'
+    command_topic: 'desk/2/switch'
+    optimistic: false
+  - platform: command_line
+    switches:
+      desktop:
+        command_off: "bash /home/pi/pcoff.sh"
+  - platform: wake_on_lan
+    mac_address: "00:1A:92:66:F7:22"
+    name: linux
+    host: 10.10.10.199
+  - platform: template
+    switches:
+      ubuntu:
+        value_template: '{{ states.switch.linux.state }}'
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.linux
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.desktop
+
+
+media_player:
+  - platform: kodi
+    host: !secret kodibedhost
+    port: 80
+    name: bedroom
+    username: !secret kodibeduser
+    password: !secret kodibedpass
+    turn_off_action: reboot
+
+script:
+  bedroomfire:
+    sequence:
+      - service: media_player.play_media
+        entity_id: media_player.bedroom
+        data:
+          media_content_type: video
+          media_content_id: http://hybrid.servemp3.com/storage/fireplace.mp4
+
+light:
+  - platform: mqtt
+    name: 'Bed light'
+    state_topic: 'bed/rgb1/light/status'
+    command_topic: 'bed/rgb1/light/switch'
+    brightness_state_topic: 'bed/rgb1/brightness/status'
+    brightness_command_topic: 'bed/rgb1/brightness/set'
+    rgb_state_topic: 'bed/rgb1/rgb/status'
+    rgb_command_topic: 'bed/rgb1/rgb/set'
+    brightness_scale: 100
+    optimistic: false
+
+group:
+  Bedroom:
+    view: yes
+    icon: mdi:hotel
+    entities:
+      - light.bedroom_light
+      - light.bed_light
+      - media_player.bedroom
+      - switch.blinds
+      - switch.ubuntu
+      - switch.bedroom_lamp
+      - switch.desk
+      - group.phone
+      - script.bedroomfire

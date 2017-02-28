@@ -19,11 +19,3 @@
 
           # NiqM3lVirkw  bit darker
 # mountain norway EqqpcFj8G-s
-
-  bedroomfire:
-    sequence:
-      - service: media_player.play_media
-        entity_id: media_player.bedroom
-        data:
-          media_content_type: video
-          media_content_id: http://hybrid.servemp3.com/storage/fireplace.mp4

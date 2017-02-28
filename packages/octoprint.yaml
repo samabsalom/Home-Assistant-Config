@@ -1,0 +1,58 @@
+octoprint:
+  host: "10.10.10.195"
+  api_key: !secret octoapi
+
+sensor:
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+    name: Octoprint
+
+camera:
+  platform: mjpeg
+  mjpeg_url: !secret printercam
+  name: printcam
+
+group:
+  3D Printer:
+    view: yes
+    icon: mdi:printer-3d
+    entities:
+      - group.printer
+      - camera.printcam
+  Printer:
+    entities:
+      - sensor.octoprint_actual_bed_temp
+      - sensor.octoprint_actual_tool0_temp
+      - sensor.octoprint_current_state
+      - sensor.octoprint_job_percentage
+      - sensor.octoprint_target_bed_temp
+      - sensor.octoprint_target_tool0_temp
+      - binary_sensor.octoprint_printing
+      - binary_sensor.octoprint_printing_error
+      - automation.notify_about_printer_error
+
+automation:
+  - alias: notify about printer error
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing_error
+      to: 'on'
+    action:
+      - service_template: notify.pushbullet
+        data_template:
+          message: "Something has triggered an octoprint printer error"
+          title: "Printer error"
+      - service_template: notify.kodi
+        data_template:
+          message: "Something has triggered an octoprint printer error"
+          title: "Printer error"

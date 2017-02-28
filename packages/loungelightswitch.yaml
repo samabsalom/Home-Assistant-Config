@@ -1,0 +1,72 @@
+switch:
+  - platform: mqtt
+    name: Spot lights
+    state_topic: 'loungelight/1/status'
+    command_topic: 'loungelight/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: Main Light
+    state_topic: 'loungelight/2/status'
+    command_topic: 'loungelight/2/switch'
+    optimistic: false
+
+sensor:
+  - platform: mqtt
+    state_topic: 'loungelight/allonoff/switch'
+    name: allonoff
+
+automation:
+  - alias: all on
+    trigger:
+      platform: state
+      entity_id: sensor.allonoff
+      to: "ON"
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.loungeon
+  - alias: all off
+    trigger:
+      platform: state
+      entity_id: sensor.allonoff
+      to: "OFF"
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.loungeoff
+
+script:
+  loungeon:
+    alias: Lounge on
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: scene.loungeon
+      - service: mqtt.publish
+        data:
+          payload: waiting
+          topic: loungelight/allonoff/switch
+          qos: 0
+          retain: true
+  loungeoff:
+    alias: Lounge off
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: scene.loungeoff
+      - service: mqtt.publish
+        data:
+          payload: waiting
+          topic: loungelight/allonoff/switch
+          qos: 0
+          retain: true
+
+group:
+  loungelightswitch:
+    # icon: mdi:
+    entities:
+      - script.loungeon
+      - script.loungeoff
+      - switch.spot_lights
+      - switch.main_light
+      - sensor.allonoff
+      - automation.all_on
+      - automation.all_off

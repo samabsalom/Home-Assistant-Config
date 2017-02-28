@@ -1,0 +1,10 @@
+arduino:
+  port: /dev/ttyACM0
+
+sensor:
+  - platform: arduino
+    pins:
+      0:
+        name: Lounge Sound
+      1:
+        name: Lounge Light

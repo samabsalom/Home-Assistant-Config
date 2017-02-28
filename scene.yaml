@@ -25,7 +25,6 @@
       switch.ubuntu: off
       switch.bedroom_lamp: off
       switch.desk: off
-
   - name: Evening
     entities:
       light.bedroom_light:

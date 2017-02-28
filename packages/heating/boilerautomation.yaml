@@ -1,8 +1,9 @@
 ##############################################################
 ##############################################################
-#                Boiler
+#                Boiler functions
 ##############################################################
 ##############################################################
+automation:
   - alias: Set MQTT temp from Slider
     trigger:
       platform: state
@@ -30,6 +31,40 @@
           message: "This was done by a user"
           title: "The boiler has been set to {{trigger.payload}}C"
 
+
+##############################  automations based on location
+  - alias: Turn boiler on when people return
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: home
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.boilerwhenhome
+
+  - alias: Turn boiler off when people leave
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: not_home
+      for:
+        seconds: 600
+    action:
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.away_from_home_temp.state | int }} "
+      - service: notify.pushbullet
+        data:
+          message: "This was done automatically as everybody left"
+          title: "set the boiler to away"
+      - service: notify.kodi
+        data:
+          message: "This was done automatically as everybody left"
+          title: "set the boiler to away"
+
+############### on at 6am   ##########################
   - alias: heating on at 6
     hide_entity: False
     trigger:
@@ -43,17 +78,6 @@
       - service: homeassistant.turn_on
         entity_id: script.warmhouseat6
 
-
-  - alias: Turn boiler on when people return
-    hide_entity: False
-    trigger:
-      platform: state
-      entity_id: group.all_devices
-      to: home
-    action:
-      - service: homeassistant.turn_on
-        entity_id: script.boilerwhenhome
-        
   - alias: set heating to 21 if below 3 degrees outside in morning
     hide_entity: False
     trigger:
@@ -73,3 +97,4 @@
         entity_id: input_select.tempfor6
         data:
           option: 21
+################################################
