@@ -163,7 +163,7 @@ input_slider:
 
 octoprint:
   host: "10.10.10.195"
-  api_key: "02CC0E4BDA80449F9BDD81E437F64A44"
+  api_key: "!secret octoapi"
 
 light:
   - platform: hue
