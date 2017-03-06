@@ -17,6 +17,8 @@ google_calendars.yaml
 stuff
 /.AppleDB
 /.AppleDesktop
+/.AppleDesktop/*
+/.AppleDouble/*
 /.AppleDouble
 emulated_hue_ids.json
 group.yaml.save
