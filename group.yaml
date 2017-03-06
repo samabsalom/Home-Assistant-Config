@@ -29,7 +29,6 @@
     icon: mdi:robot
     view: yes
     entities:
-      - group.breach
       - group.loungelightswitch
 
       - automation.lights_out_after_midnight
@@ -48,7 +47,6 @@
       - switch.6
       - script.wake_up
       - script.ttstest
-      - group.network
 
 
 ############# components for the above tabs
@@ -71,19 +69,3 @@
       - media_player.sams__chromecast
       - switch.christmas_tree
       - switch.mirror
-
-  Breach:
-    entities:
-      - sensor.breaches_samabsalomyahoocom
-      - sensor.breaches_samabsalommecom
-      - sensor.breaches_sam_absalomhotmailcom
-      - sensor.breaches_samabsalomicloudcom
-      - sensor.breaches_sabsalom93gmailcom
-
-  Network:
-    entities:
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.transmission_down_speed
-      - sensor.transmission_status
-      - sensor.transmission_up_speed

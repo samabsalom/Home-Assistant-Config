@@ -1,27 +1,3 @@
-  - platform: haveibeenpwned
-    email:
-      - !secret yahoo
-      - !secret hotmail
-      - !secret me
-      - !secret icloud
-      - !secret gmail
-  - platform: transmission
-    host: !secret transmissionhost
-    username: !secret transmissionuser
-    password: !secret transmissionpass
-    monitored_variables:
-      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
-  - platform: speedtest
-    minute:
-      - 0
-      - 20
-      - 40
-      - 50
-    monitored_conditions:
-      - download
-      - upload
 ######### owntracks
   - platform: mqtt
     state_topic: "owntracks/pi/nexus"
