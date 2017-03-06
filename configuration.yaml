@@ -27,7 +27,12 @@ http:
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret sslkey
   base_url: !secret baseurl
-
+panel_custom:
+  - name: react
+    sidebar_title: TodoMVC
+    sidebar_icon: mdi:checkbox-marked-outline
+    config:
+      title: Wow hello!
 updater:
 conversation:
 history:
