@@ -23,7 +23,7 @@
       - proximity.home
 
   Lounge:
-    Name: Lounge
+    name: Lounge
     icon: mdi:sofa
     view: yes
     entities:
