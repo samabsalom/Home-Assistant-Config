@@ -18,17 +18,6 @@
       - sensor.lounge_light
       - proximity.home
 
-  Misc:
-    name: Misc
-    icon: mdi:robot
-    view: yes
-    entities:
-      - switch.changeme1
-      - switch.changeme2
-
-      - script.wake_up
-      - script.ttstest
-
   Phone:
     entities:
       - device_tracker.pi_nexus

@@ -1,3 +1,23 @@
+script:
+  ttstest:
+    alias: testing voice
+    sequence:
+      - service: tts.google_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.voicerss_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.picotts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.yandextts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
   wake_up:
     sequence:
       - service_template: tts.picotts_say

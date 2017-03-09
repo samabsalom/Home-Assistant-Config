@@ -18,10 +18,11 @@ homeassistant:
     pack_5: !include packages/octoprint.yaml
     pack_6: !include packages/tinterweb.yaml
     pack_7: !include packages/weather.yaml
+    pack_8: !include_dir_merge_named packages/testing
     #######   non tabs
-    pack_8: !include packages/loungelightswitch.yaml
-    pack_9: !include packages/rebootpi.yaml
-    pack_10: !include packages/arduino.yaml
+    pack_9: !include packages/loungelightswitch.yaml
+    pack_10: !include packages/rebootpi.yaml
+    pack_11: !include packages/arduino.yaml
 
 config:
 frontend:
@@ -42,10 +43,10 @@ history:
 logbook:
 sun:
 
-switch: !include switch.yaml
+# switch: !include switch.yaml
 sensor: !include sensor.yaml
 # scene: !include scene.yaml
-script: !include_dir_merge_named script
+# script: !include_dir_merge_named script
 alexa: !include alexa.yaml
 group: !include group.yaml
 automation: !include_dir_merge_list automation
