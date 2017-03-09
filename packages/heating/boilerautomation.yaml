@@ -65,18 +65,6 @@ automation:
           title: "set the boiler to away"
 
 ############### on at 6am   ##########################
-  - alias: heating on at 6
-    hide_entity: False
-    trigger:
-      platform: time
-      after: '06:00:00'
-    condition:
-     condition: state
-     entity_id: group.all_devices
-     state: home
-    action:
-      - service: homeassistant.turn_on
-        entity_id: script.warmhouseat6
 
   - alias: set heating to 21 if below 3 degrees outside in morning
     hide_entity: False
@@ -94,7 +82,212 @@ automation:
          below: '3'
     action:
       - service: input_select.select_option
-        entity_id: input_select.tempfor6
+        entity_id: input_select.tempformorning
         data:
           option: 21
-################################################
+
+  - alias: heating on at 6
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '06:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '6am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+
+  - alias: heating on at 1
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '01:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '1am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 2
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '02:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '2am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 3
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '03:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '3am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 4
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '04:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '4am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 5
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '05:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '5am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 6
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '06:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '6am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 7
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '07:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '7am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 8
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '08:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '8am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 9
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '09:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '9am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 10
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '10:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '10am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning
+  - alias: heating on at 11
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '11:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.all_devices
+          state: home
+        - condition: state
+          entity_id: 'input_select.boiler_on_time'
+          state: '11am'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.warmhouseinmorning

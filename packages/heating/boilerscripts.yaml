@@ -22,15 +22,15 @@ script:
           message: "This was done automatically 10 minutes after someone returned"
           title: "Boiler set to the normal temperature"
 
-  warmhouseat6:
+  warmhouseinmorning:
     sequence:
       - service_template: climate.set_temperature
         data_template:
-          temperature: " {{ states.input_select.tempfor6.state | int }} "
+          temperature: " {{ states.input_select.tempformorning.state | int }} "
       - service_template: notify.kodi
         data_template:
           message: "This was done automatically"
-          title: "I set the boiler to {{ states.input_select.tempfor6.state | int }}C"
+          title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
       - delay: '{{ states.input_select.preheatdelay.state }}:00'
       - service_template: climate.set_temperature
         data_template:

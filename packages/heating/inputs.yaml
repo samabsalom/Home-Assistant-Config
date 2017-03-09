@@ -7,8 +7,37 @@ input_slider:
     step: 1
 
 input_select:
-  tempfor6:
-    name: Set temperature for 6am
+  boiler_on_time:
+    name: Time for the boiler to come on
+    options:
+      - 'Do not turn on'
+      - '1am'
+      - '2am'
+      - '3am'
+      - '4am'
+      - '5am'
+      - '6am'
+      - '7am'
+      - '8am'
+      - '9am'
+      - '10am'
+      - '11am'
+      - 'midday'
+      - '1pm'
+      - '2pm'
+      - '3pm'
+      - '4pm'
+      - '5pm'
+      - '6pm'
+      - '7pm'
+      - '8pm'
+      - '9pm'
+      - '10pm'
+      - '11pm'
+      - 'midnight'
+    initial: 'Do not turn on'
+  tempformorning:
+    name: Set temperature for morning
     options:
       - 5
       - 15
