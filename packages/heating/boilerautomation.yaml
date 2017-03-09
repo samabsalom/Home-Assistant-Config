@@ -86,24 +86,6 @@ automation:
         data:
           option: 21
 
-  - alias: heating on at 6
-    hide_entity: False
-    trigger:
-      platform: time
-      after: '06:00:00'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: group.all_devices
-          state: home
-        - condition: state
-          entity_id: 'input_select.boiler_on_time'
-          state: '6am'
-    action:
-      - service: homeassistant.turn_on
-        entity_id: script.warmhouseinmorning
-
   - alias: heating on at 1
     hide_entity: False
     trigger:
