@@ -3,7 +3,6 @@
     view: yes
     icon: mdi:sofa
     entities:
-      - group.living_room
       - group.thermostat_quick_settings
       - group.hallway
 
@@ -22,6 +21,13 @@
       - sensor.lounge_sound
       - sensor.lounge_light
       - proximity.home
+
+  Lounge:
+    Name: Lounge
+    icon: mdi:sofa
+    view: yes
+    entities:
+      - group.living_room
 
 
   Misc:

@@ -1,0 +1,48 @@
+switch:
+  - platform: command_line
+    switches:
+      tv:
+        command_on: "/usr/bin/python /home/pi/energenie/switch1on.py"
+        command_off: "/usr/bin/python /home/pi/energenie/switch1off.py"
+        friendly_name: television
+      # switch2:
+      #   command_on: "/usr/bin/python /home/pi/energenie/switch2on.py"
+      #   command_off: "/usr/bin/python /home/pi/energenie/switch2off.py"
+      #   friendly_name: switch 2
+      # switch3:
+      #   command_on: "/usr/bin/python /home/pi/energenie/switch3on.py"
+      #   command_off: "/usr/bin/python /home/pi/energenie/switch3off.py"
+      #   friendly_name: switch 3
+
+######### pi switches
+  - platform: rpi_gpio
+    ports:
+      20: MirrorOther
+      21: Mirror
+    invert_logic: true
+
+script:
+  evening:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: scene.evening
+  return_home:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: scene.evening
+      - service: homeassistant.turn_on
+        entity_id: script.fireplace
+  fireplace:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: switch.tv
+      - service: media_player.turn_on
+        entity_id: media_player.kodi
+      - service: media_player.play_media
+        entity_id: media_player.kodi
+        data:
+          media_content_type: video
+          media_content_id: "plugin://plugin.video.youtube/?path=/root/video&action=play_video&videoid=L_LUpnjgPso"
+
+          # NiqM3lVirkw  bit darker
+# mountain norway EqqpcFj8G-s
