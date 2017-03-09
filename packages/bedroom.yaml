@@ -63,16 +63,6 @@ light:
     rgb_command_topic: 'bed/rgb1/rgb/set'
     brightness_scale: 100
     optimistic: false
-scene:
-  - name: Bed Time
-    entities:
-      light.bedroom_light:
-        state: on
-        brightness: 10
-      switch.blinds: off
-      switch.ubuntu: off
-      switch.bedroom_lamp: off
-      switch.desk: off
 group:
   Bedroom:
     view: yes
