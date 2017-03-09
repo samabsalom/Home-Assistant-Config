@@ -44,7 +44,7 @@ sun:
 
 switch: !include switch.yaml
 sensor: !include sensor.yaml
-scene: !include scene.yaml
+# scene: !include scene.yaml
 script: !include_dir_merge_named script
 alexa: !include alexa.yaml
 group: !include group.yaml
