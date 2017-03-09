@@ -1,3 +1,4 @@
+scene:
   - name: loungeoff
     entities:
       switch.tv: off
@@ -16,15 +17,6 @@
       switch.main_light: on
       switch.spot_lights: on
 
-  - name: Bed Time
-    entities:
-      light.bedroom_light:
-        state: on
-        brightness: 10
-      switch.blinds: off
-      switch.ubuntu: off
-      switch.bedroom_lamp: off
-      switch.desk: off
   - name: Evening
     entities:
       light.bedroom_light:
