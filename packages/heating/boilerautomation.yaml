@@ -64,7 +64,7 @@ automation:
           message: "This was done automatically as everybody left"
           title: "set the boiler to away"
 
-############### on at 6am   ##########################
+############### on in the morning   ##########################
 
   - alias: set heating to 21 if below 3 degrees outside in morning
     hide_entity: False

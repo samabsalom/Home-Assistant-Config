@@ -29,7 +29,11 @@ script:
           temperature: " {{ states.input_select.tempformorning.state | int }} "
       - service_template: notify.kodi
         data_template:
-          message: "This was done automatically"
+          message: "This was done automatically "
+          title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
+      - service_template: notify.pushbullet
+        data_template:
+          message: "This was done automatically at {{ states.input_select.boiler_on_time.state | int }}"
           title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
       - delay: '{{ states.input_select.preheatdelay.state }}:00'
       - service_template: climate.set_temperature
@@ -41,7 +45,7 @@ script:
           title: "I set the boiler to {{ states.input_select.tempfornormal.state | int }}C"
       - service_template: notify.pushbullet
         data_template:
-          message: "This was done automatically"
+          message: "This was done automatically after {{ states.input_select.preheatdelay.state }}:00"
           title: "I set the boiler to {{ states.input_select.tempfornormal.state | int }}C"
 
   boost_the_heating:
