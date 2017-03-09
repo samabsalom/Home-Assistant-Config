@@ -17,7 +17,7 @@ homeassistant:
     pack_4: !include_dir_merge_named packages/heating
     pack_5: !include packages/weather.yaml
     pack_6: !include packages/hall.yaml
-    pack_7: !include packages/loungelightswitch.yaml
+    # pack_7: !include packages/loungelightswitch.yaml
     pack_8: !include packages/bedroom.yaml
     pack_9: !include packages/rebootpi.yaml
 config:
