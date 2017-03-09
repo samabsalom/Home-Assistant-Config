@@ -13,59 +13,13 @@
       - device_tracker.hazbag
       - device_tracker.andy
 
-      - script.loungeon
-      - script.loungeoff
-      - script.evening
-      - script.return_home
-      - script.fireplace
 
       - sensor.lounge_sound
       - sensor.lounge_light
       - proximity.home
-
-
-  Misc:
-    name: Misc
-    icon: mdi:robot
-    view: yes
-    entities:
-      - group.loungelightswitch
-
-      - automation.lights_out_after_midnight
-      - automation.lights_out_after_2am
-      - automation.turn_everything_off_when_people_leave
-      - automation.turn_on_light_when_sun_sets
-      - automation.lights_on_when_someone_gets_home
-
-      - switch.changeme1
-      - switch.changeme2
-      - switch.1
-      - switch.2
-      - switch.3
-      - switch.4
-      - switch.5
-      - switch.6
-      - script.wake_up
-      - script.ttstest
-
-
-############# components for the above tabs
-
 
   Phone:
     entities:
       - device_tracker.pi_nexus
       - sensor.battery_nexus
       - sensor.connectivity_nexus
-
-  Living room:
-    entities:
-      - switch.main_light
-      - switch.spot_lights
-      - switch.fish_tank
-      - switch.lamp
-      - switch.tv
-      - media_player.kodi
-      - media_player.sams__chromecast
-      - switch.christmas_tree
-      - switch.mirror

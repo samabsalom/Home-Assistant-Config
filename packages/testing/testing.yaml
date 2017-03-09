@@ -1,0 +1,23 @@
+switch: ######## testing switches
+  - platform: mqtt
+    name: changeme1
+    state_topic: 'changeme/1/status'
+    command_topic: 'changeme/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: changeme2
+    state_topic: 'changeme/2/status'
+    command_topic: 'changeme/2/switch'
+    optimistic: false
+
+group:
+  Misc:
+    name: Misc
+    icon: mdi:robot
+    view: yes
+    entities:
+      - switch.changeme1
+      - switch.changeme2
+
+      - script.wake_up
+      - script.ttstest

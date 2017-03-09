@@ -1,19 +1,4 @@
-  - platform: command_line
-    switches:
-      tv:
-        command_on: "/usr/bin/python /home/pi/energenie/switch1on.py"
-        command_off: "/usr/bin/python /home/pi/energenie/switch1off.py"
-        friendly_name: television
-      # switch2:
-      #   command_on: "/usr/bin/python /home/pi/energenie/switch2on.py"
-      #   command_off: "/usr/bin/python /home/pi/energenie/switch2off.py"
-      #   friendly_name: switch 2
-      # switch3:
-      #   command_on: "/usr/bin/python /home/pi/energenie/switch3on.py"
-      #   command_off: "/usr/bin/python /home/pi/energenie/switch3off.py"
-      #   friendly_name: switch 3
-
-
+switch:
 ####### fish tank switches
   - platform: mqtt
     name: 1
@@ -56,6 +41,20 @@
     command_topic: 'avondale/8/switch'
     optimistic: false
 
+  - platform: command_line
+    switches:
+      tv:
+        command_on: "/usr/bin/python /home/pi/energenie/switch1on.py"
+        command_off: "/usr/bin/python /home/pi/energenie/switch1off.py"
+        friendly_name: television
+      # switch2:
+      #   command_on: "/usr/bin/python /home/pi/energenie/switch2on.py"
+      #   command_off: "/usr/bin/python /home/pi/energenie/switch2off.py"
+      #   friendly_name: switch 2
+      # switch3:
+      #   command_on: "/usr/bin/python /home/pi/energenie/switch3on.py"
+      #   command_off: "/usr/bin/python /home/pi/energenie/switch3off.py"
+      #   friendly_name: switch 3
 
 ######### pi switches
   - platform: rpi_gpio
@@ -63,15 +62,3 @@
       20: MirrorOther
       21: Mirror
     invert_logic: true
-
-######## testing switches
-  - platform: mqtt
-    name: changeme1
-    state_topic: 'changeme/1/status'
-    command_topic: 'changeme/1/switch'
-    optimistic: false
-  - platform: mqtt
-    name: changeme2
-    state_topic: 'changeme/2/status'
-    command_topic: 'changeme/2/switch'
-    optimistic: false

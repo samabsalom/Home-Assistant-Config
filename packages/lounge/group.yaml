@@ -1,0 +1,37 @@
+group:
+  Lounge:
+    name: Lounge
+    icon: mdi:sofa
+    view: yes
+    entities:
+      - group.living_room
+      - group.loungelightswitch  # from a different package
+
+      - automation.lights_out_after_midnight
+      - automation.lights_out_after_2am
+      - automation.turn_everything_off_when_people_leave
+      - automation.turn_on_light_when_sun_sets
+      - automation.lights_on_when_someone_gets_home
+
+      - switch.1
+      - switch.2
+      - switch.3
+      - switch.4
+      - switch.5
+      - switch.6
+
+      - script.evening
+      - script.return_home
+      - script.fireplace
+
+
+  Living room:
+    entities:
+      - switch.main_light
+      - switch.spot_lights
+      - switch.fish_tank
+      - switch.lamp
+      - switch.tv
+      - media_player.kodi
+      - media_player.sams__chromecast
+      - switch.mirror

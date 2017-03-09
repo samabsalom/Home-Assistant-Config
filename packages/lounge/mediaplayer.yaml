@@ -1,0 +1,9 @@
+media_player:
+  - platform: kodi
+    host: !secret kodihost
+    port: 80
+    name: Kodi
+    username: !secret kodiuser
+    password: !secret kodipass
+    turn_off_action: reboot
+  - platform: cast

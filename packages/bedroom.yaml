@@ -63,7 +63,6 @@ light:
     rgb_command_topic: 'bed/rgb1/rgb/set'
     brightness_scale: 100
     optimistic: false
-
 group:
   Bedroom:
     view: yes

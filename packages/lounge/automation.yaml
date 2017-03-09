@@ -1,3 +1,4 @@
+automation:
 ##############################################################
 ##############################################################
 #            lights based on location and sun
@@ -37,3 +38,37 @@
         data:
           message: "This was done automatically"
           title: "Turning the lights as someone has arrived home"
+
+######## off
+  - alias: lights out after midnight
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '00:00:01'
+    action:
+      service: scene.turn_on
+      entity_id: scene.loungeoff
+
+  - alias: lights out after 2am
+    hide_entity: False
+    trigger:
+      platform: time
+      after: '02:00:01'
+    action:
+      service: scene.turn_on
+      entity_id: scene.loungeoff
+
+  - alias: Turn everything off when people leave
+    hide_entity: False
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: not_home
+      for:
+        seconds: 600
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.bedroom
+      - service: scene.turn_on
+        entity_id: scene.loungeoff

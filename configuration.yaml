@@ -11,15 +11,19 @@ homeassistant:
   time_zone: Europe/London
   customize: !include customize.yaml
   packages:
-    pack_1: !include packages/arduino.yaml
-    pack_2: !include packages/octoprint.yaml
-    pack_3: !include packages/tinterweb.yaml
-    pack_4: !include_dir_merge_named packages/heating
-    pack_5: !include packages/weather.yaml
-    pack_6: !include packages/hall.yaml
-    pack_7: !include packages/loungelightswitch.yaml
-    pack_8: !include packages/bedroom.yaml
-    pack_9: !include packages/rebootpi.yaml
+    pack_1: !include_dir_merge_named packages/lounge
+    pack_2: !include packages/bedroom.yaml
+    pack_3: !include_dir_merge_named packages/heating
+    pack_4: !include packages/hall.yaml
+    pack_5: !include packages/octoprint.yaml
+    pack_6: !include packages/tinterweb.yaml
+    pack_7: !include packages/weather.yaml
+    pack_8: !include_dir_merge_named packages/testing
+    #######   non tabs
+    pack_9: !include packages/loungelightswitch.yaml
+    pack_10: !include packages/rebootpi.yaml
+    pack_11: !include packages/arduino.yaml
+
 config:
 frontend:
 http:
@@ -39,10 +43,10 @@ history:
 logbook:
 sun:
 
-switch: !include switch.yaml
+# switch: !include switch.yaml
 sensor: !include sensor.yaml
-scene: !include scene.yaml
-script: !include_dir_merge_named script
+# scene: !include scene.yaml
+# script: !include_dir_merge_named script
 alexa: !include alexa.yaml
 group: !include group.yaml
 automation: !include_dir_merge_list automation
@@ -97,16 +101,6 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
-
-media_player:
-  - platform: kodi
-    host: !secret kodihost
-    port: 80
-    name: Kodi
-    username: !secret kodiuser
-    password: !secret kodipass
-    turn_off_action: reboot
-  - platform: cast
 
 emulated_hue:
   host_ip: !secret hueip
@@ -189,8 +183,3 @@ zone 8:
   longitude: !secret 8longitude
   radius: 1000
   icon: mdi:hospital
-
-  # notes
-  # threshhold sensor to the outside temp
-  # set an automation with the threshold as a condition
-  # below the threshold tunr heating onn sooner and higher
