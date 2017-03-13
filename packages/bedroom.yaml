@@ -11,8 +11,8 @@ switch:
     optimistic: false
   - platform: mqtt
     name: desk
-    state_topic: 'desk/2/status'
-    command_topic: 'desk/2/switch'
+    state_topic: 'sonoff/1/status'
+    command_topic: 'sonoff/1/switch'
     optimistic: false
   - platform: command_line
     switches:
