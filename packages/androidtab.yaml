@@ -1,0 +1,14 @@
+notify:
+  - name: tab
+    platform: lannouncer
+    host: 10.10.10.152
+
+android_ip_webcam:
+  - host: 10.10.10.152
+    name: tab
+
+group:
+  view: yes
+  icon: mdi:phone
+  entities:
+    - camera.tab

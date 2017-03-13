@@ -19,6 +19,7 @@ homeassistant:
     pack_6: !include packages/tinterweb.yaml
     pack_7: !include packages/weather.yaml
     pack_8: !include_dir_merge_named packages/testing
+    # pack_12: !include packages/androidtab.yaml
     #######   non tabs
     pack_9: !include packages/loungelightswitch.yaml
     pack_10: !include packages/rebootpi.yaml
@@ -101,13 +102,6 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
-  - name: nexus5
-    platform: lannouncer
-    host: 10.10.10.96
-
-android_ip_webcam:
-  - host: 10.10.10.96
-    name: nexus5
 
 emulated_hue:
   host_ip: !secret hueip
