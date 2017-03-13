@@ -6,13 +6,13 @@ switch:
     optimistic: false
   - platform: mqtt
     name: Bedroom Lamp
-    state_topic: '983B83/switch/state'
-    command_topic: '983B83/switch/switch'
+    state_topic: 'sonoff/1/status'
+    command_topic: 'sonoff/1/switch'
     optimistic: false
   - platform: mqtt
     name: desk
-    state_topic: 'sonoff/1/status'
-    command_topic: 'sonoff/1/switch'
+    state_topic: 'sonoff/2/status'
+    command_topic: 'sonoff/2/switch'
     optimistic: false
   - platform: command_line
     switches:
