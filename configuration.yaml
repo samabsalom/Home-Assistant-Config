@@ -101,12 +101,19 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
+  - name: nexus5
+    platform: lannouncer
+    host: 10.10.10.96
+
+android_ip_webcam:
+  - host: 10.10.10.96
+    name: nexus5
 
 emulated_hue:
   host_ip: !secret hueip
   listen_port: 8300
   exposed_domains:
-    - media_player
+    # - media_player
     - switch
     - light
 
