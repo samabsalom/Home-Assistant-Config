@@ -55,8 +55,7 @@ group:
       - sensor.lounge_temperature
       - sensor.lounge_humidity
       - sensor.mold_indicator
-      - group.morning_heating_settings
-      - group.boiler_home_or_away_settings
+      - group.auto_heating_settings
       - group.set_the_temperature
       - script.boost_the_heating
       - group.boost
@@ -69,23 +68,17 @@ group:
     entities:
       - script.boost_the_heating
       - input_select.boostdelay
-  Boiler home or away settings:
-    entities:
-      - automation.turn_boiler_on_when_people_return
-      - automation.turn_boiler_off_when_people_leave
-
-      - input_select.adddegreeforwhenhome
-      - input_select.tempfornormal
-      - input_select.away_from_home_temp
-
-  Morning heating settings:
+  Auto heating settings:
     entities:
       - input_select.boiler_on_time
       - input_select.tempformorning
       - input_select.preheatdelay
       - input_select.tempfornormal
+      - input_select.away_from_home_temp
       - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
       # - automation.heating_on_at_6
+      - automation.turn_boiler_on_when_people_return
+      - automation.turn_boiler_off_when_people_leave
 
   Set the temperature:
     entities:

@@ -3,7 +3,7 @@ script:
     sequence:
       - service_template: climate.set_temperature
         data_template:
-          temperature: " {{ states.input_select.tempfornormal.state | float + {{ states.input_slider.adddegreeforwhenhome.state }} }} "
+          temperature: " {{ states.input_select.tempfornormal.state | float + 2 }} "
       - service: notify.pushbullet
         data:
           message: "This was done automatically as someone has returned home"
