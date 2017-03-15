@@ -33,7 +33,7 @@ script:
           title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
       - service_template: notify.pushbullet
         data_template:
-          message: "This was done automatically at {{ states.input_select.boiler_on_time.state | int }}"
+          message: "This was done automatically at {{ states.input_select.boiler_on_time.state }}"
           title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
       - delay: '{{ states.input_select.preheatdelay.state }}:00'
       - service_template: climate.set_temperature
