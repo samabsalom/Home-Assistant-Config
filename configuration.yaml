@@ -122,7 +122,7 @@ device_tracker:
     password: !secret unifipass
     site_id: !secret unifiid
     track_new_devices: False
-    consider_home: 420
+    consider_home: 600
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
