@@ -29,10 +29,11 @@ sensor:
   - platform: dnsip
     hostname: !secret parentsdns
     resolver: 8.8.8.8
+    friendly_name: Parents DNS
   - platform: dnsip
     hostname: !secret cornwalldns
     resolver: 8.8.8.8
-
+    friendly_name: Cornwall DNS
 
 digital_ocean:
   access_token: !secret digocean
@@ -62,6 +63,11 @@ group:
       - sensor.breaches_sam_absalomhotmailcom
       - sensor.breaches_samabsalomicloudcom
       - sensor.breaches_sabsalom93gmailcom
+  DNS:
+    entities:
+      - sensor.myipopendnscom
+      - sensor.huntsfieldddnsnet
+      - sensor.penymorfaddnsnet
   tinterweb:
     name: Misc
     icon: mdi:ethernet
@@ -69,6 +75,7 @@ group:
     entities:
       - group.breach
       - group.network
+      - group.dns
 
       - binary_sensor.ubuntu512mbsgp101
       - switch.ubuntu512mbsgp101
