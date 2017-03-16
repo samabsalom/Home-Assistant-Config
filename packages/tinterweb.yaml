@@ -23,6 +23,16 @@ sensor:
     monitored_conditions:
       - download
       - upload
+  # Own public IPv4 address
+  - platform: dnsip
+  # Resolve IP address of home-assistant.io via Google DNS
+  - platform: dnsip
+    hostname: !secret parentsdns
+    resolver: 8.8.8.8
+  - platform: dnsip
+    hostname: !secret cornwalldns
+    resolver: 8.8.8.8
+
 
 digital_ocean:
   access_token: !secret digocean
