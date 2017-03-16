@@ -29,11 +29,11 @@ sensor:
   - platform: dnsip
     hostname: !secret parentsdns
     resolver: 8.8.8.8
-    friendly_name: Parents DNS
+    name: Parents DNS
   - platform: dnsip
     hostname: !secret cornwalldns
     resolver: 8.8.8.8
-    friendly_name: Cornwall DNS
+    name: Cornwall DNS
 
 digital_ocean:
   access_token: !secret digocean
