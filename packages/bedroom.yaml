@@ -14,14 +14,17 @@ switch:
     state_topic: 'sonoff/2/status'
     command_topic: 'sonoff/2/switch'
     optimistic: false
+########### DESKTOP ########################
   - platform: command_line
     switches:
       desktop:
-        command_off: "bash /home/pi/pcoff.sh"
+        command_off: "bash /home/pi/pcoff.sh"  # need to make sure user hass can run this - could copy rebootpi packages shell command to accomplish this
+
   - platform: wake_on_lan
     mac_address: "00:1A:92:66:F7:22"
     name: linux
     host: 10.10.10.199
+
   - platform: template
     switches:
       ubuntu:
@@ -32,13 +35,13 @@ switch:
         turn_off:
           service: switch.turn_off
           entity_id: switch.desktop
-
+########### end desktop  ####################
 
 media_player:
   - platform: kodi
     host: !secret kodibedhost
     port: 80
-    name: bedroom
+    name: bedroom television
     username: !secret kodibeduser
     password: !secret kodibedpass
     turn_off_action: reboot
@@ -47,7 +50,7 @@ script:
   bedroomfire:
     sequence:
       - service: media_player.play_media
-        entity_id: media_player.bedroom
+        entity_id: media_player.bedroom_television
         data:
           media_content_type: video
           media_content_id: http://hybrid.servemp3.com/storage/fireplace.mp4
@@ -70,7 +73,7 @@ group:
     entities:
       - light.bedroom_light
       - light.bed_light
-      - media_player.bedroom
+      - media_player.bedroom_television
       - switch.blinds
       - switch.ubuntu
       - switch.bedroom_lamp
