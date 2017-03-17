@@ -2,7 +2,7 @@ binary_sensor:
   - platform: mqtt
     state_topic: 'alarm/hall/status'
     name: 'Hall Motion'
-    sensor_class: motion
+    device_class: motion
 script:
   halldim:
     alias: Hall on dim
