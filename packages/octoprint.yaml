@@ -9,6 +9,10 @@ sensor:
       - Current State
       - Temperatures
       - Job Percentage
+  - platform: command_line
+    command: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
+    name: time left on print
+    scan_interval: 5
 
 binary_sensor:
   - platform: octoprint
@@ -40,17 +44,15 @@ input_slider:
 #  https://github.com/dragondgold/octo-control  for below shell commands
 shell_command:
   bedtemp95: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp 95
-  bedtemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp 0
+  bedtemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp 5
   exttemp240: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S240'
   exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S0'
   pause: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --pause
   resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --resume
   print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --print
-  bedtempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp {{ states.input_slider.bedtemp.state }}'
+  cancel: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --cancel
+  bedtempslider: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp {{ states.input_slider.bedtemp.state }}"
   exttempslider: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S{{ states.input_slider.exttemp.state }}'"
-
-  # timeleft: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
-
 
 script:
   bedtemp95:
@@ -88,15 +90,21 @@ script:
   print:
     sequence:
     - service: shell_command.print
+  cancel:
+    sequence:
+    - service: shell_command.cancel
 group:
   3D Printer:
     view: yes
     icon: mdi:printer-3d
     entities:
       - group.printer
+      - group.control_temperatures
       - group.control
       - camera.printcam
-  Control:
+      - sensor.time_left_on_print
+      
+  Control temperatures:
     entities:
       - input_slider.exttemp
       - input_slider.bedtemp
@@ -108,9 +116,13 @@ group:
       - script.bedtempslider
       - script.heatall
       - script.heatoff
+
+  Control:
+    entities:
       - script.resume
       - script.pause
       - script.print
+      - script.cancel
 
   Printer:
     entities:
