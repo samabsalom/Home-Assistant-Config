@@ -98,6 +98,8 @@ group:
       - camera.printcam
   Control:
     entities:
+      - input_slider.exttempslider
+      - input_slider.bedtempslider
       - script.bedtemp0
       - script.bedtemp95
       - script.exttemp0
