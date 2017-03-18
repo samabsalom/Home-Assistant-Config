@@ -41,13 +41,13 @@ input_slider:
 shell_command:
   bedtemp95: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp 95
   bedtemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp 0
-  exttemp240: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --ext-target 240
-  exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --ext-target 0
+  exttemp240: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode M104 S190
+  exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode M104 S0
   pause: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --pause
   resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --resume
   print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --print
   bedtempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp {{ states.input_slider.bedtemp.state }}'
-  exttempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --ext-target {{ states.input_slider.exttemp.state }}'
+  exttempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode M104 S{{ states.input_slider.exttemp.state }}'
 
   # timeleft: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
 
