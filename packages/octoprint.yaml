@@ -22,18 +22,34 @@ camera:
   mjpeg_url: !secret printercam
   name: printcam
 
+input_slider:
+  bedtemp:
+    name: temperature of the bed
+    initial: 5
+    min: 0
+    max: 100
+    step: 5
+  exttemp:
+    name: temperature of the extruder
+    initial: 5
+    min: 0
+    max: 255
+    step: 1
+
+
 #  https://github.com/dragondgold/octo-control  for below shell commands
 shell_command:
-  bedtemp95: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --set-bed-temp 95
-  bedtemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --set-bed-temp 0
-  exttemp240: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --ext-target 240
-  exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --ext-target 0
-  pause: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --pause
-  resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --resume
-  print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --print
+  bedtemp95: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --set-bed-temp 95
+  bedtemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --set-bed-temp 0
+  exttemp240: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --ext-target 240
+  exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --ext-target 0
+  pause: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --pause
+  resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --resume
+  print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --print
+  bedtempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --set-bed-temp {{ states.input_slider.bedtemp.state }}'
+  exttempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --ext-target {{ states.input_slider.exttemp.state }}'
 
-
-  timeleft: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --left-time
+  timeleft: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey '!secret octoapi' --host 10.10.10.195 --port 80 --left-time
 
 
 script:
@@ -49,6 +65,12 @@ script:
   exttemp240:
     sequence:
     - service: shell_command.exttemp240
+  exttempslider:
+    sequence:
+    - service: shell_command.exttempslider
+  bedtempslider:
+    sequence:
+    - service: shell_command.bedtempslider
   heatoff:
     sequence:
     - service: shell_command.bedtemp0
@@ -80,6 +102,8 @@ group:
       - script.bedtemp95
       - script.exttemp0
       - script.exttemp240
+      - script.exttempslider
+      - script.bedtempslider
       - script.heatall
       - script.heatoff
       - script.resume
