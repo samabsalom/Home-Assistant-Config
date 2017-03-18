@@ -33,6 +33,9 @@ shell_command:
   print: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --print"
 
 
+  timeleft: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --left-time"
+
+
 script:
   bedtemp95:
     sequence:
@@ -50,7 +53,7 @@ script:
     sequence:
     - service: shell_command.bedtemp0
     - service: shell_command.exttemp0
-  heatoff:
+  heatall:
     sequence:
     - service: shell_command.bedtemp95
     - service: shell_command.exttemp240
