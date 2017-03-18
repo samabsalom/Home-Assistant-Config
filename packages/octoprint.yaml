@@ -22,13 +22,67 @@ camera:
   mjpeg_url: !secret printercam
   name: printcam
 
+#  https://github.com/dragondgold/octo-control  for below shell commands
+shell_command:
+  bedtemp95: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --set-bed-temp 95"
+  bedtemp0: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --set-bed-temp 0"
+  exttemp240: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --ext-target 240"
+  exttemp0: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --ext-target 0"
+  pause: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --pause"
+  resume: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --resume"
+  print: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey !secret octoapi --host 10.10.10.195 --port 80 --print"
+
+
+script:
+  bedtemp95:
+    sequence:
+    - service: shell_command.bedtemp95
+  bedtemp0:
+    sequence:
+    - service: shell_command.bedtemp0
+  exttemp0:
+    sequence:
+    - service: shell_command.exttemp0
+  exttemp240:
+    sequence:
+    - service: shell_command.exttemp240
+  heatoff:
+    sequence:
+    - service: shell_command.bedtemp0
+    - service: shell_command.exttemp0
+  heatoff:
+    sequence:
+    - service: shell_command.bedtemp95
+    - service: shell_command.exttemp240
+  pause:
+    sequence:
+    - service: shell_command.pause
+  resume:
+    sequence:
+    - service: shell_command.resume
+  print:
+    sequence:
+    - service: shell_command.print
 group:
   3D Printer:
     view: yes
     icon: mdi:printer-3d
     entities:
       - group.printer
+      - group.control
       - camera.printcam
+  Control:
+    entities:
+      - script.bedtemp0
+      - script.bedtemp95
+      - script.exttemp0
+      - script.exttemp240
+      - script.heatall
+      - script.heatoff
+      - script.resume
+      - script.pause
+      - script.print
+
   Printer:
     entities:
       - sensor.octoprint_actual_bed_temp
