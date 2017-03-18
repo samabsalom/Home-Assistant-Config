@@ -47,7 +47,7 @@ shell_command:
   resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --resume
   print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --print
   bedtempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --set-bed-temp {{ states.input_slider.bedtemp.state }}'
-  exttempslider: 'python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S{{ states.input_slider.exttemp.state }}''
+  exttempslider: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S{{ states.input_slider.exttemp.state }}'"
 
   # timeleft: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
 
