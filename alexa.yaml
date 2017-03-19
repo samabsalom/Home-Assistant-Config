@@ -265,7 +265,7 @@
       action:
         - service: mqtt.publish
           data_template:
-            payload: "{{Number}}"
+            payload: "{{ExtNumber}}"
             topic: octoprint/extruder/temp
             qos: 0
             retain: true
@@ -276,12 +276,12 @@
       speech:
         type: plaintext
         text: >
-          Setting the extruder to {{Number}} degrees
+          Setting the extruder to {{ExtNumber}} degrees
     BedTempManual:
       action:
         - service: mqtt.publish
           data_template:
-            payload: "{{Number}}"
+            payload: "{{BedNumber}}"
             topic: octoprint/bed/temp
             qos: 0
             retain: true
@@ -292,4 +292,4 @@
       speech:
         type: plaintext
         text: >
-          Setting the heat bed to {{Number}} degrees
+          Setting the heat bed to {{BedNumber}} degrees
