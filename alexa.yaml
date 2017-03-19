@@ -109,3 +109,61 @@
       #   type: simple
       #   title: Sample title
       #   content: Some more content
+
+
+
+##################  printer skill
+    BedTempON:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.bedtemp95
+      speech:
+        type: plaintext
+        text: >
+          Alrighty then. Heating the 3D printer bed to 95 degrees celcius for you Sam
+    BedTempOFF:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.bedtemp0
+      speech:
+        type: plaintext
+        text: >
+          Turning off the printers heated bed
+    ExtTempON:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.exttemp240
+      speech:
+        type: plaintext
+        text: >
+          Ok. Heating the 3D printer extruder to 240 degrees celcius for you Sam
+    ExtTempOFF:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.exttemp0
+      speech:
+        type: plaintext
+        text: >
+          Turning off the printers extruder
+    HeatAllON:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.heatall
+      speech:
+        type: plaintext
+        text: >
+          Heating the whole printer
+    HeatAllOFF:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.heatoff
+      speech:
+        type: plaintext
+        text: >
+          Turning off the heat of the extruder and heat bed
