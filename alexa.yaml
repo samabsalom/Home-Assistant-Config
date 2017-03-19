@@ -166,4 +166,82 @@
       speech:
         type: plaintext
         text: >
-          Turning off the heat of the extruder and heat bed
+          Turning off the extruder and heat bed
+    Pause:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.pause
+      speech:
+        type: plaintext
+        text: >
+          Pausing the print
+    Cancel:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.cancel
+      speech:
+        type: plaintext
+        text: >
+          Cancelling the print
+    Resume:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.resume
+      speech:
+        type: plaintext
+        text: >
+          Resuming the print
+    Print:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.print
+      speech:
+        type: plaintext
+        text: >
+          Printing the currently selected print. If neccessary the bed will be heated automatically
+    HomeXY:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.homexy
+      speech:
+        type: plaintext
+        text: >
+          Homing the x and y axis'
+    HomeZ:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.homez
+      speech:
+        type: plaintext
+        text: >
+          Homing the z axis
+    HomeXYZ:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.homexyz
+      speech:
+        type: plaintext
+        text: >
+          Homing all axis'
+    FilamentClean:
+      action:
+        service: script.turn_on
+        data:
+          entity_id: script.filamentclean
+      speech:
+        type: plaintext
+        text: >
+          {{ [
+          "It's blocked again?",
+          "Isn't 3D printing shit and infuriating",
+          "why do we even bother",
+          "throw it out of the window",
+          "for fucks sake",
+          ] | random }}
