@@ -139,7 +139,7 @@
       speech:
         type: plaintext
         text: >
-          Ok. Heating the 3D printer extruder to 240 degrees celcius for you Sam
+          Ok. Heating the 3D printer extruder to 240 degrees celcius
     ExtTempOFF:
       action:
         service: script.turn_on
