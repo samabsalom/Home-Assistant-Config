@@ -73,7 +73,7 @@ shell_command:
   homexyz: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G28 X0 Y0 Z0'
   filamentclean: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G28 X0 Y0' 'G0 Z50' 'M104 S240'
   extrudemanual: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{{ states.sensor.extrudermm.state }}'"
-  extrude: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{{ states.states.input_slider.extrude.state.state }}'"
+  extrude: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{{ states.input_slider.extrude.state }}'"
   ExtTempManual: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S{{ states.sensor.extrudertemp.state }}'"
   BedTempManual: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M140 S{{ states.sensor.heatbedtemp.state }}'"
 
