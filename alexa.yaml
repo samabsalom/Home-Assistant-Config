@@ -249,7 +249,7 @@
       action:
         - service: mqtt.publish
           data_template:
-            payload: {{Number}}
+            payload: "{{Number}}"
             topic: octoprint/extruder/mm
             qos: 0
             retain: true
