@@ -260,4 +260,4 @@
       speech:
         type: plaintext
         text: >
-          Hopefully extruded {{Number}} millimeters of filament
+          Extruding {{Number}} millimeters of filament

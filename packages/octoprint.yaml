@@ -69,9 +69,6 @@ shell_command:
   filamentclean: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G28 X0 Y0' 'G0 Z50' 'M104 S240'
   extrude: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{{ states.sensor.extrudermm.state }}'"
   extrudemk2: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{{ states.sensor.extrudermm.state }}'"
-  extrude5: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E5'
-  extrude20: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E20'
-  extrude50: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E50'
 
 script:
   bedtemp95:
@@ -130,15 +127,6 @@ script:
   extrudemk2:
     sequence:
     - service: shell_command.extrudemk2
-  extrude5:
-    sequence:
-    - service: shell_command.extrude5
-  extrude20:
-    sequence:
-    - service: shell_command.extrude20
-  extrude50:
-    sequence:
-    - service: shell_command.extrude50
 
 group:
   3D Printer:
