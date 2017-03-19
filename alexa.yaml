@@ -272,7 +272,7 @@
         - delay: 00:00:02
         - service: script.turn_on
           data:
-            entity_id: script.ExtTempManual
+            entity_id: script.exttempmanual
       speech:
         type: plaintext
         text: >
@@ -288,7 +288,7 @@
         - delay: 00:00:02
         - service: script.turn_on
           data:
-            entity_id: script.BedTempManual
+            entity_id: script.bedtempmanual
       speech:
         type: plaintext
         text: >
