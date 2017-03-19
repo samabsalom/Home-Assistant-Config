@@ -245,7 +245,7 @@
           "throw it out of the window",
           "for fucks sake",
           ] | random }}
-    Extrude:
+    ExtrudeManual:
       action:
         - service: mqtt.publish
           data_template:
@@ -256,8 +256,40 @@
         - delay: 00:00:02
         - service: script.turn_on
           data:
-            entity_id: script.extrude
+            entity_id: script.extrudemanual
       speech:
         type: plaintext
         text: >
           Extruding {{Number}} millimeters of filament
+    ExtTempManual:
+      action:
+        - service: mqtt.publish
+          data_template:
+            payload: "{{Number}}"
+            topic: octoprint/extruder/temp
+            qos: 0
+            retain: true
+        - delay: 00:00:02
+        - service: script.turn_on
+          data:
+            entity_id: script.ExtTempManual
+      speech:
+        type: plaintext
+        text: >
+          Setting the extruder to {{Number}} degrees
+    BedTempManual:
+      action:
+        - service: mqtt.publish
+          data_template:
+            payload: "{{Number}}"
+            topic: octoprint/bed/temp
+            qos: 0
+            retain: true
+        - delay: 00:00:02
+        - service: script.turn_on
+          data:
+            entity_id: script.BedTempManual
+      speech:
+        type: plaintext
+        text: >
+          Setting the heat bed to {{Number}} degrees
