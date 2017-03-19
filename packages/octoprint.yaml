@@ -64,7 +64,6 @@ shell_command:
   exttemp0: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S0'
   pause: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --pause
   resume: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --resume
-  print: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --print
   cancel: python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --cancel
   bedtempslider: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M140 S{{ states.input_slider.bedtemp.state }}'"
   exttempslider: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'M104 S{{ states.input_slider.exttemp.state }}'"
@@ -110,9 +109,6 @@ script:
   resume:
     sequence:
     - service: shell_command.resume
-  print:
-    sequence:
-    - service: shell_command.print
   cancel:
     sequence:
     - service: shell_command.cancel
@@ -170,7 +166,6 @@ group:
       - input_slider.extrude
       - script.resume
       - script.pause
-      - script.print
       - script.cancel
       - script.homexy
       - script.homexyz

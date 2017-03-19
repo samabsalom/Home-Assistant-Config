@@ -194,15 +194,6 @@
         type: plaintext
         text: >
           Resuming the print
-    Print:
-      action:
-        service: script.turn_on
-        data:
-          entity_id: script.print
-      speech:
-        type: plaintext
-        text: >
-          Printing the currently selected print. If neccessary the bed will be heated automatically
     HomeXY:
       action:
         service: script.turn_on
