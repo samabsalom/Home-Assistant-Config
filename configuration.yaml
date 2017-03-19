@@ -102,6 +102,9 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
+  - name: printer
+    platform: command_line
+    command: ""
 
 emulated_hue:
   host_ip: !secret hueip

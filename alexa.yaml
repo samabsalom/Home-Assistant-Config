@@ -245,3 +245,12 @@
           "throw it out of the window",
           "for fucks sake",
           ] | random }}
+    Extrude:
+      action:
+        service: notify.printer
+        data_template:
+          message: "python3 /home/hass/.homeassistant/conf/octo-control/octo-control.py --apikey absalomoctoprintapi --host 10.10.10.195 --port 80 --send-gcode 'G1 F200 E{Number}'"
+      speech:
+        type: plaintext
+        text: >
+          Hopefully extruded {Number} amount
