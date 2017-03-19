@@ -124,6 +124,9 @@ script:
   filamentclean:
     sequence:
     - service: shell_command.filamentclean
+  extrude:
+    sequence:
+    - service: shell_command.extrude
   extrudemk2:
     sequence:
     - service: shell_command.extrudemk2
