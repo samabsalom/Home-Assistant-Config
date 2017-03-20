@@ -26,7 +26,7 @@ switch:
     command_topic: 'avondale/5/switch'
     optimistic: false
   - platform: mqtt
-    name: 6
+    name: Mirror
     state_topic: 'avondale/6/status'
     command_topic: 'avondale/6/switch'
     optimistic: false
@@ -60,5 +60,5 @@ switch:
   - platform: rpi_gpio
     ports:
       20: MirrorOther
-      21: Mirror
+      # 21: Mirror
     invert_logic: true
