@@ -129,10 +129,6 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
-  # - platform: nmap_tracker
-  #   home_interval: 10
-  #   hosts: 10.10.10.1/24
-  #   scan_options: " --privileged -sP "
 
 zone:
   name: Uni
