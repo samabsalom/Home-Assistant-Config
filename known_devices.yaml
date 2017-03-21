@@ -17,6 +17,7 @@ Hazbag:
   picture:
   track: yes
   hide_if_away: false
+  consider_home: 800
 
 Lizzie:
   name: Lizzie

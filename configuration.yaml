@@ -118,17 +118,18 @@ ifttt:
   key: !secret ifkey
 
 device_tracker:
-  - platform: unifi
-    host: !secret unifihost
-    port: 8443
-    username: !secret unifiuser
-    password: !secret unifipass
-    site_id: !secret unifiid
-    track_new_devices: False
-    consider_home: 600
-  - platform: owntracks
-    max_gps_accuracy: 300
-    waypoints: True
+ - platform: unifi
+   host: !secret unifihost
+   port: 8443
+   username: !secret unifiuser
+   password: !secret unifipass
+   site_id: !secret unifiid
+   track_new_devices: False
+   consider_home: 600
+   verify_ssl: false
+ - platform: owntracks
+   max_gps_accuracy: 300
+   waypoints: True
 
 zone:
   name: Uni
