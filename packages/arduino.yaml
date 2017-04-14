@@ -1,10 +1,20 @@
 arduino:
   port: /dev/ttyACM0
 
-sensor:
-  - platform: arduino
-    pins:
-      0:
-        name: Lounge Sound
-      1:
-        name: Lounge Light
+# sensor:
+#   - platform: arduino
+#     pins:
+#       0:
+#         name: Lounge Sound
+#       1:
+#         name: Lounge Light
+
+switch:
+  platform: arduino
+  pins:
+    52:
+      name: Lamp
+    50:
+      name: Fish Tank
+    48:
+      name: Mirror
