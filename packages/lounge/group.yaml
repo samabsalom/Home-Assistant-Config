@@ -34,4 +34,5 @@ group:
       - switch.tv
       - media_player.kodi
       - media_player.sams__chromecast
+      - media_player.spotify
       - switch.mirror

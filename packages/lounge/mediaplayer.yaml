@@ -7,3 +7,10 @@ media_player:
     password: !secret kodipass
     turn_off_action: reboot
   - platform: cast
+  - platform: spotify
+    client_id: !secret spotifyid
+    client_secret: !secret spotifysecret
+  # - platform: spotify
+  #   name: spotify player
+  #   client_id: spotify2id
+  #   client_secret: spotify2secret
