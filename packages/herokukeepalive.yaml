@@ -15,7 +15,9 @@ automation:
       platform: time
       minutes: '/5'
       seconds: 00
-    condition: time
+    condition:
+      condition: time
+      # At least one of the following is required.
       after: '10:00:00'
       before: '02:00:00'
     action:
