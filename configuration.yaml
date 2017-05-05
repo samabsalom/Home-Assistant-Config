@@ -24,7 +24,7 @@ homeassistant:
     pack_9: !include packages/loungelightswitch.yaml
     pack_10: !include packages/rebootpi.yaml
     pack_11: !include packages/arduino.yaml
-
+    pack_12: !include_dir_merge_named packages/garden
 config:
 frontend:
 http:
