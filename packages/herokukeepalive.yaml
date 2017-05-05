@@ -1,7 +1,7 @@
 
 #  https://github.com/dragondgold/octo-control  for below shell commands
 shell_command:
-  keep alive: curl https://calm-bastion-96798.herokuapp.com/
+  keepalive: curl https://calm-bastion-96798.herokuapp.com/
 
 script:
   keepalive:
