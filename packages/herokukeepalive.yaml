@@ -1,0 +1,24 @@
+
+#  https://github.com/dragondgold/octo-control  for below shell commands
+shell_command:
+  keep alive: curl https://calm-bastion-96798.herokuapp.com/
+
+script:
+  keepalive:
+    sequence:
+    - service: shell_command.keepalive
+
+
+automation:
+  - alias: notify about printer error
+    trigger:
+      platform: time
+      minutes: '/5'
+      seconds: 00
+    condition: time
+    # At least one of the following is required.
+      after: '10:00:00'
+      before: '02:00:00'
+    action:
+      service: homeassistant.turn_on
+      entity_id: script.keepalive
