@@ -42,7 +42,7 @@ panel_iframe:
   router:
     title: 'Router'
     url: 'https://10.10.10.1'
-  Gazebo:
+  gazebo:
     title: 'Gazebo'
     url: 'http://garden.local'
   Garden:
