@@ -45,7 +45,7 @@ panel_iframe:
   gazebo:
     title: 'Gazebo'
     url: 'http://garden.local'
-  Garden:
+  garden:
     title: 'Garden'
     url: 'http://10.10.10.76'
 updater:
