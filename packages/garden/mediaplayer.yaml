@@ -1,0 +1,4 @@
+media_player:
+  - platform: volumio
+    host: garden.local
+    port: 3000

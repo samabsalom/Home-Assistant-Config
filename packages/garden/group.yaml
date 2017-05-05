@@ -1,0 +1,7 @@
+group:
+  Lounge:
+    name: Garden
+    icon: mdi:flower
+    view: yes
+    entities:
+      - media_player.volumio
