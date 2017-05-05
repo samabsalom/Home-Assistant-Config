@@ -10,7 +10,7 @@ script:
 
 
 automation:
-  - alias: notify about printer error
+  - alias: keep heroku alive
     trigger:
       platform: time
       minutes: '/5'

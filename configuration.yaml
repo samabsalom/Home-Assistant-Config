@@ -25,6 +25,7 @@ homeassistant:
     pack_10: !include packages/rebootpi.yaml
     pack_11: !include packages/arduino.yaml
     pack_12: !include packages/octoprint.yaml
+    pack_13: !include packages/herokukeepalive.yaml
 
 config:
 frontend:
