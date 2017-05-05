@@ -1,7 +1,7 @@
 
   default_view:
     view: yes
-    icon: mdi:sofa
+    icon: mdi:home-variant
     entities:
       - group.living_room
       - group.thermostat_quick_settings

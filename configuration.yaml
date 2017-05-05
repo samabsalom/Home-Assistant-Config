@@ -15,7 +15,7 @@ homeassistant:
     pack_2: !include packages/bedroom.yaml
     pack_3: !include_dir_merge_named packages/heating
     pack_4: !include packages/hall.yaml
-    pack_5: !include packages/octoprint.yaml
+    pack_5: !include_dir_merge_named packages/garden
     pack_6: !include packages/tinterweb.yaml
     pack_7: !include packages/weather.yaml
     pack_8: !include_dir_merge_named packages/testing
@@ -24,7 +24,8 @@ homeassistant:
     pack_9: !include packages/loungelightswitch.yaml
     pack_10: !include packages/rebootpi.yaml
     pack_11: !include packages/arduino.yaml
-    pack_12: !include_dir_merge_named packages/garden
+    pack_12: !include packages/octoprint.yaml
+
 config:
 frontend:
 http:
