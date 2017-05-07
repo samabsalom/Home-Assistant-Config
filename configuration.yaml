@@ -26,6 +26,7 @@ homeassistant:
     pack_11: !include packages/arduino.yaml
     pack_12: !include packages/octoprint.yaml
     pack_13: !include packages/herokukeepalive.yaml
+    pack_14: !include packages/rss.yaml
 
 config:
 frontend:
