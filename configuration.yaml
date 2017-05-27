@@ -44,13 +44,19 @@ http:
 panel_iframe:
   router:
     title: 'Router'
-    url: 'https://10.10.10.1'
-  gazebo:
-    title: 'Gazebo'
-    url: 'http://garden.local'
+    url: https://10.10.10.1
   garden:
     title: 'Garden'
     url: 'http://10.10.10.76'
+  printer:
+    title: 'Printer'
+    url: http://10.10.10.195
+  tv:
+    title: 'Tele'
+    url: http://10.10.10.83
+  admin:
+    title: 'Admin'
+    url: https://10.10.10.40:10000
 updater:
 conversation:
 history:

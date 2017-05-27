@@ -398,3 +398,35 @@ iphone:
   picture:
   track: false
   vendor: Apple, Inc.
+
+hillcrestprinter:
+  hide_if_away: false
+  mac: B8:27:EB:4A:18:DE
+  name: HillcrestPrinter
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+esp_983b83:
+  hide_if_away: false
+  mac: 5C:CF:7F:98:3B:83
+  name: ESP 983B83
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+iphone_2:
+  hide_if_away: false
+  mac: 3C:D0:F8:41:84:93
+  name: iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+pi_dmcc_iphone:
+  hide_if_away: false
+  mac:
+  name: pi
+  picture:
+  track: false
+  vendor:
