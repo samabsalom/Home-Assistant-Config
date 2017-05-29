@@ -19,9 +19,9 @@ scene:
 
   - name: Evening
     entities:
-      light.bedroom_light:
-        state: on
-        brightness: 255
+      # light.bedroom_light:
+      #   state: on
+      #   brightness: 255
       switch.main_light: off
       switch.spot_lights: on
       switch.lamp: on

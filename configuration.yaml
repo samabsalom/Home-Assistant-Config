@@ -41,22 +41,22 @@ http:
 #     sidebar_icon: mdi:checkbox-marked-outline
 #     config:
 #       title: Wow hello!
-panel_iframe:
-  router:
-    title: 'Router'
-    url: https://10.10.10.1
-  garden:
-    title: 'Garden'
-    url: 'http://10.10.10.76'
-  printer:
-    title: 'Printer'
-    url: http://10.10.10.195
-  tv:
-    title: 'Tele'
-    url: http://10.10.10.83
-  admin:
-    title: 'Admin'
-    url: https://10.10.10.40:10000
+# panel_iframe:
+#   router:
+#     title: 'Router'
+#     url: https://10.10.10.1
+#   garden:
+#     title: 'Garden'
+#     url: 'http://10.10.10.76'
+#   printer:
+#     title: 'Printer'
+#     url: http://10.10.10.195
+#   tv:
+#     title: 'Tele'
+#     url: http://10.10.10.83
+#   admin:
+#     title: 'Admin'
+#     url: https://10.10.10.40:10000
 updater:
 conversation:
 history:
@@ -74,7 +74,7 @@ automation: !include_dir_merge_list automation
 mqtt:
   broker: !secret mqttbroker
   port: 1883
-  client_id: home-assistant-1
+  client_id: sam-home
   username: !secret mqttuser
   password: !secret mqttpass
 

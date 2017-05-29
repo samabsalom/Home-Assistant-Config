@@ -1,18 +1,12 @@
       # Only the 'entity_id' is required.  All other options are optional.
+
+      ############   ICONS
       switch.boiler:
         icon: mdi:fire
       switch.main_light:
         icon: mdi:lightbulb
       switch.spot_lights:
         icon: mdi:spotlight
-      device_tracker.hazbag:
-        entity_picture: !secret hazpic
-      device_tracker.pi_nexus:
-        entity_picture: !secret sampic
-      device_tracker.lizzie:
-        entity_picture: !secret lizziepic
-      device_tracker.rosie:
-        entity_picture: !secret rosiepic
       switch.mirror:
         icon: mdi:glassdoor
       climate.home:
@@ -32,12 +26,47 @@
       switch.tv:
         icon: mdi:television
         assumed_state: true
-      light.living_room_light:
-        friendly_name: lounge light
+      switch.blinds:
+        icon: mdi:blinds
+      switch.desktop:
+        icon: mdi:desktop-mac
         emulated_hue: false
+      switch.linux:
+        emulated_hue: false
+      switch.ubuntu:
+        icon: mdi:desktop-mac
+
+
+      ############      DEVICE TRACKER PICS
+      device_tracker.hazbag:
+        entity_picture: !secret hazpic
+      device_tracker.pi_nexus:
+        entity_picture: !secret sampic
+      device_tracker.lizzie:
+        entity_picture: !secret lizziepic
+      device_tracker.rosie:
+        entity_picture: !secret rosiepic
+
+      ######### HUE BULB - NOT TO EMULATE
       light.bedroom_light:
-        emulated_hue_name: sams room light
+        friendly_name: Bedroom light
         emulated_hue: false
+      light.hall_light:
+        emulated_hue_name: Hall light hue
+        friendly_name: Hall light
+        emulated_hue: false
+      light.bedroom_light_2:
+        emulated_hue_name: bedroom light 2 hue
+        emulated_hue: false
+      ###### hue group
+      light.bedroom:
+        emulated_hue: false
+      light.living_room:
+        emulated_hue: false
+      light.hall:
+        emulated_hue: false
+
+
       group.thermostat:
         emulated_hue: false
       group.breach:
@@ -52,12 +81,3 @@
         emulated_hue: false
       group.who_is_in:
         emulated_hue: false
-      switch.blinds:
-        icon: mdi:blinds
-      switch.desktop:
-        icon: mdi:desktop-mac
-        emulated_hue: false
-      switch.linux:
-        emulated_hue: false
-      switch.ubuntu:
-        icon: mdi:desktop-mac

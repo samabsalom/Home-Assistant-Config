@@ -430,3 +430,11 @@ pi_dmcc_iphone:
   picture:
   track: false
   vendor:
+
+android8412a09cc5eb8d1e:
+  hide_if_away: false
+  mac: 28:3F:69:18:4E:61
+  name: android-8412a09cc5eb8d1e
+  picture:
+  track: false
+  vendor: Sony Mobile Communications AB
