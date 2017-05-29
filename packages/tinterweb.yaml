@@ -23,9 +23,7 @@ sensor:
     monitored_conditions:
       - download
       - upload
-  # Own public IPv4 address
   - platform: dnsip
-  # Resolve IP address of home-assistant.io via Google DNS
   - platform: dnsip
     hostname: !secret parentsdns
     resolver: 8.8.8.8
@@ -35,18 +33,16 @@ sensor:
     resolver: 8.8.8.8
     name: Cornwall DNS
 
-digital_ocean:
-  access_token: !secret digocean
-
-switch:
-  - platform: digital_ocean
-    droplets:
-      - 'ubuntu-512mb-sgp1-01'
-
-binary_sensor:
-  - platform: digital_ocean
-    droplets:
-      - 'ubuntu-512mb-sgp1-01'
+# digital_ocean:
+#   access_token: !secret digocean
+# switch:
+#   - platform: digital_ocean
+#     droplets:
+#       - 'ubuntu-512mb-sgp1-01'
+# binary_sensor:
+#   - platform: digital_ocean
+#     droplets:
+#       - 'ubuntu-512mb-sgp1-01'
 
 group:
   Network:
@@ -77,5 +73,5 @@ group:
       - group.network
       - group.dns
 
-      - binary_sensor.ubuntu512mbsgp101
-      - switch.ubuntu512mbsgp101
+      # - binary_sensor.ubuntu512mbsgp101
+      # - switch.ubuntu512mbsgp101

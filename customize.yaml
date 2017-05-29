@@ -25,12 +25,11 @@
         icon: mdi:wifi
       switch.tv:
         icon: mdi:television
-        assumed_state: true
+        assumed_state: true   # dont know why ive put this -- need to find out
       switch.blinds:
         icon: mdi:blinds
       switch.desktop:
-        icon: mdi:desktop-mac
-        emulated_hue: false
+        emulated_hue: false   #because these are put into ubuntu switch so no need to have duplicates
       switch.linux:
         emulated_hue: false
       switch.ubuntu:
@@ -65,7 +64,6 @@
         emulated_hue: false
       light.hall:
         emulated_hue: false
-
 
       group.thermostat:
         emulated_hue: false
