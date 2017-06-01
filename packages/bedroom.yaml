@@ -54,6 +54,12 @@ script:
         data:
           media_content_type: video
           media_content_id: http://hybrid.servemp3.com/storage/fireplace.mp4
+  alarm:
+    sequence:
+      - service: notify.pushbullet
+        data:
+          title: "Wake up you lazy sh**"
+          message: "Alexa's alarm has gone off and it is time to get out of bed"
 
 # light:
   # - platform: mqtt
