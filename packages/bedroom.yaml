@@ -18,7 +18,7 @@ switch:
   - platform: command_line
     switches:
       desktop:
-        command_off: "bash /home/pi/pcoff.sh"  # need to make sure user hass can run this - could copy rebootpi packages shell command to accomplish this
+        command_off: "bash /home/hass/.homeassistant/conf/pcoff.sh"  # need to make sure user hass can run this - could copy rebootpi packages shell command to accomplish this
 
   - platform: wake_on_lan
     mac_address: "00:1A:92:66:F7:22"
