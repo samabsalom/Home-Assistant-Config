@@ -32,6 +32,11 @@ sensor:
     hostname: !secret cornwalldns
     resolver: 8.8.8.8
     name: Cornwall DNS
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: !secret sslcert
 
 # digital_ocean:
 #   access_token: !secret digocean
@@ -43,6 +48,18 @@ sensor:
 #   - platform: digital_ocean
 #     droplets:
 #       - 'ubuntu-512mb-sgp1-01'
+
+shell_command:
+  renew_ssl: ~/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
+
+automation:
+  - alias: 'Auto Renew SSL Cert'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.ssl_cert_expiry
+      below: 29
+    action:
+      service: shell_command.renew_ssl
 
 group:
   Network:
