@@ -438,3 +438,19 @@ android8412a09cc5eb8d1e:
   picture:
   track: false
   vendor: Sony Mobile Communications AB
+
+epsonfb9cdd:
+  hide_if_away: false
+  mac: AC:18:26:FB:9C:DD
+  name: EPSONFB9CDD
+  picture:
+  track: false
+  vendor: Seiko Epson Corporation
+
+andys_tab:
+  hide_if_away: false
+  mac: 60:21:C0:4C:94:02
+  name: andys tab
+  picture:
+  track: false
+  vendor: Murata Manufacturing Co., Ltd.

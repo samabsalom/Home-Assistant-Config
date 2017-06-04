@@ -9,10 +9,10 @@ sensor:
       - Current State
       - Temperatures
       - Job Percentage
-  - platform: command_line
-    command: python3 /home/homeassistant/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
-    name: time left on print
-    scan_interval: 5
+#  - platform: command_line
+#    command: python3 /home/homeassistant/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
+#    name: time left on print
+#    scan_interval: 5 
   - platform: mqtt
     name: extrudermm
     state_topic: "octoprint/extruder/mm"
