@@ -49,8 +49,8 @@ sensor:
 #     droplets:
 #       - 'ubuntu-512mb-sgp1-01'
 
-shell_command:
-  renew_ssl: ~/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
+shell_command:   # this needs to have had ssh-keygen and ssh-copy-id run to work - this bypasses the need for a homeassistant user password
+  renew_ssl: ssh pi@127.0.0.1 /home/pi/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
 automation:
   - alias: 'Auto Renew SSL Cert'
@@ -89,6 +89,7 @@ group:
       - group.breach
       - group.network
       - group.dns
+      - sensor.ssl_cert_expiry
 
       # - binary_sensor.ubuntu512mbsgp101
       # - switch.ubuntu512mbsgp101
