@@ -34,7 +34,12 @@
         emulated_hue: false
       switch.ubuntu:
         icon: mdi:desktop-mac
-
+      switch.pc:
+        emulated_hue: false   #because these are put into ubuntu switch so no need to have duplicates
+      switch.windowswol:
+        emulated_hue: false
+      switch.windows:
+        icon: mdi:desktop-mac
 
       ############      DEVICE TRACKER PICS
       device_tracker.hazbag:
