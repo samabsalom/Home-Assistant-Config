@@ -1,0 +1,6 @@
+group:
+  Kettle:
+    view: yes
+    icon: mdi:kettle
+    entities:
+      - 

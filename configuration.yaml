@@ -110,6 +110,8 @@ light:
   - platform: hue
     host: !secret huebridgeip
     allow_unreachable: true
+    allow_in_emulated_hue: false
+    allow_hue_groups: false
 
 notify:
   - name: kodi

@@ -51,24 +51,24 @@
       device_tracker.rosie:
         entity_picture: !secret rosiepic
 
-      ######### HUE BULB - NOT TO EMULATE
-      light.bedroom_light:
-        friendly_name: Bedroom light
-        emulated_hue: false
-      light.hall_light:
-        emulated_hue_name: Hall light hue
-        friendly_name: Hall light
-        emulated_hue: false
-      light.bedroom_light_2:
-        emulated_hue_name: bedroom light 2 hue
-        emulated_hue: false
-      ###### hue group
-      light.bedroom:
-        emulated_hue: false
-      light.living_room:
-        emulated_hue: false
-      light.hall:
-        emulated_hue: false
+      # ######### HUE BULB - NOT TO EMULATE    no longer needed as changed config.yaml
+      # light.bedroom_light:
+      #   friendly_name: Bedroom light
+      #   emulated_hue: false
+      # light.hall_light:
+      #   emulated_hue_name: Hall light hue
+      #   friendly_name: Hall light
+      #   emulated_hue: false
+      # light.bedroom_light_2:
+      #   emulated_hue_name: bedroom light 2 hue
+      #   emulated_hue: false
+      # ###### hue group
+      # light.bedroom:
+      #   emulated_hue: false
+      # light.living_room:
+      #   emulated_hue: false
+      # light.hall:
+      #   emulated_hue: false
 
       group.thermostat:
         emulated_hue: false
