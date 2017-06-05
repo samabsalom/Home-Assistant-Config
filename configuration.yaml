@@ -84,6 +84,9 @@ google:
 
 shell_command:
   hibernatelinux: "ssh ubuntu sudo pm-hibernate"
+  startdash: ssh pi@127.0.0.1 cd hadashboard && dashing start &
+  starthapush: ssh pi@127.0.0.1 cd hadashboard/hapush && ./hapush.py hapush.cfg &
+
 
 tts:
   - platform: google

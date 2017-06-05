@@ -1,0 +1,13 @@
+
+################################   update   ####################################
+  - alias: 'Start HA Dashboard'
+    trigger:
+      platform: homeassistant
+      # Event can also be 'shutdown'
+      event: start
+    action:
+      - service: shell_command.startdash
+      - service: shell_command.starthapush
+      - service: notify.pushbullet
+        data:
+          message: 'Home Assistant has started'
