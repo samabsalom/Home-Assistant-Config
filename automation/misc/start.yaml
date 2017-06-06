@@ -11,3 +11,7 @@
       - service: notify.pushbullet
         data:
           message: 'Home Assistant has started'
+      - service: mqtt.publish
+        data_template:
+          topic: "avondale/temp/set"
+          payload: 10
