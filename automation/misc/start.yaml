@@ -6,8 +6,8 @@
       # Event can also be 'shutdown'
       event: start
     action:
-      - service: shell_command.startdash
-      - service: shell_command.starthapush
+      # - service: shell_command.startdash  # made these system services so no need for them - keep just incase for now
+      # - service: shell_command.starthapush
       - service: notify.pushbullet
         data:
           message: 'Home Assistant has started'
