@@ -7,9 +7,9 @@
 pi_nexus:
   hide_if_away: false
   mac: AC:CF:85:2A:13:2D
-  name: Sam
+  name: Sam2
   picture:
-  track: true
+  track: false
 
 Hazbag:
   name: Hazbag
@@ -405,7 +405,7 @@ hillcrestprinter:
   name: HillcrestPrinter
   picture:
   track: false
-  vendor: Raspberry Pi Foundation
+  vendor@: Raspberry Pi Foundation
 
 esp_983b83:
   hide_if_away: false
@@ -454,3 +454,84 @@ andys_tab:
   picture:
   track: false
   vendor: Murata Manufacturing Co., Ltd.
+
+andrew:
+  hide_if_away: false
+  mac:
+  name: andrew
+  picture:
+  track: false
+  vendor:
+
+janesiphone:
+  hide_if_away: false
+  mac: B4:8B:19:03:58:A3
+  name: Janes-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+sooryasiphone:
+  hide_if_away: false
+  mac: AC:61:EA:ED:00:93
+  name: Sooryas-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+jamesiphone:
+  hide_if_away: false
+  mac: 18:65:90:22:02:64
+  name: James-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+dannysiphone:
+  hide_if_away: false
+  mac: 48:BF:6B:1A:68:37
+  name: Dannys-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+kristen:
+  hide_if_away: false
+  mac: BC:54:36:DB:C4:E5
+  name: Kirsten
+  picture:
+  track: true
+
+pi_mate9:
+  hide_if_away: false
+  mac: 44:C3:46:2E:A6:11
+  name: Sam
+  picture:
+  track: true
+  vendor:
+
+elizabethsipad:
+  hide_if_away: false
+  mac: 5C:F9:38:79:70:33
+  name: Elizabeths-iPad
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iansipod:
+  hide_if_away: false
+  icon:
+  mac: B8:09:8A:18:85:F9
+  name: Ians-iPod
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+juliaphone:
+  hide_if_away: false
+  icon:
+  mac: 6C:D2:C3:A4:B5:2F
+  name: Julia-phone
+  picture:
+  track: false
+  vendor: unknown

@@ -44,7 +44,7 @@
       ############      DEVICE TRACKER PICS
       device_tracker.hazbag:
         entity_picture: !secret hazpic
-      device_tracker.pi_nexus:
+      device_tracker.pi_mate9:
         entity_picture: !secret sampic
       device_tracker.lizzie:
         entity_picture: !secret lizziepic

@@ -29,7 +29,12 @@ homeassistant:
     pack_14: !include packages/rss.yaml
 
 config:
+
 frontend:
+  themes:
+    green:
+      primary-color: "#6CA518"
+
 http:
   api_password: !secret http_apipassword
   ssl_certificate: !secret ssl_cert
