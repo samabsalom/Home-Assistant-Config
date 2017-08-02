@@ -59,6 +59,7 @@ group:
       - group.set_the_temperature
       - script.boost_the_heating
       - group.boost
+      - automation.set_climate_from_mqtt
   Thermostat quick settings:
     entities:
       - switch.boiler

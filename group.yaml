@@ -7,12 +7,12 @@
       - group.thermostat_quick_settings
       - group.hallway
 
-      - device_tracker.pi_nexus
+      - device_tracker.pi_mate9
       - device_tracker.rosie
       - device_tracker.lizzie
       - device_tracker.hazbag
       - device_tracker.andy
-
+      - device_tracker.kristen
 
       - sensor.lounge_sound
       - sensor.lounge_light

@@ -29,7 +29,12 @@ homeassistant:
     pack_14: !include packages/rss.yaml
 
 config:
+
 frontend:
+  themes:
+    green:
+      primary-color: "#6CA518"
+
 http:
   api_password: !secret http_apipassword
   ssl_certificate: !secret ssl_cert
@@ -84,6 +89,9 @@ google:
 
 shell_command:
   hibernatelinux: "ssh ubuntu sudo pm-hibernate"
+  startdash: ssh pi@127.0.0.1 cd hadashboard && dashing start &
+  starthapush: ssh pi@127.0.0.1 cd hadashboard/hapush && ./hapush.py hapush.cfg &
+
 
 tts:
   - platform: google
@@ -110,6 +118,8 @@ light:
   - platform: hue
     host: !secret huebridgeip
     allow_unreachable: true
+    allow_in_emulated_hue: false
+    allow_hue_groups: false
 
 notify:
   - name: kodi

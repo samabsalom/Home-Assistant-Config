@@ -14,16 +14,22 @@ switch:
   #   state_topic: 'sonoff/2/status'
   #   command_topic: 'sonoff/2/switch'
   #   optimistic: false
-########### DESKTOP ########################
+########### DESKTOPS ########################
   - platform: command_line
     switches:
       desktop:
-        command_off: "bash /home/hass/.homeassistant/conf/pcoff.sh"  # need to make sure user hass can run this - could copy rebootpi packages shell command to accomplish this
+        command_off: "bash /home/homeassistant/.homeassistant/conf/pcoff.sh"  # need to make sure user homeassistant can run this - could copy rebootpi packages shell command to accomplish this
+      pc:
+        command_off: 'net rpc shutdown -I 10.10.10.70 -U sam%sam'
 
   - platform: wake_on_lan
     mac_address: "00:1A:92:66:F7:22"
     name: linux
     host: 10.10.10.199
+  - platform: wake_on_lan
+    mac_address: "00:22:68:46:CC:D4"
+    name: windowswol
+    host: 10.10.10.70
 
   - platform: template
     switches:
@@ -35,6 +41,14 @@ switch:
         turn_off:
           service: switch.turn_off
           entity_id: switch.desktop
+      windows:
+        value_template: '{{ states.switch.windowswol.state }}'
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.windowswol
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.pc
 ########### end desktop  ####################
 
 media_player:
@@ -117,6 +131,7 @@ group:
       - media_player.bedroom_television
       # - switch.blinds
       - switch.ubuntu
+      - switch.windows
       - switch.bedroom_lamp
       # - switch.desk
       - group.phone
