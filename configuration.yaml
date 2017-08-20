@@ -110,7 +110,7 @@ proximity:
       - Parents
       - Cornwall
     devices:
-      - device_tracker.pi_nexus
+      - device_tracker.pi_mate9
     tolerance: 50
     unit_of_measurement: mi
 
