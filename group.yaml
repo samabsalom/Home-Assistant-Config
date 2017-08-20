@@ -20,6 +20,6 @@
 
   Phone:
     entities:
-      - device_tracker.pi_nexus
-      - sensor.battery_nexus
-      - sensor.connectivity_nexus
+      - device_tracker.pi_mate9
+      - sensor.battery_mate9
+      - sensor.connectivity_mate9
