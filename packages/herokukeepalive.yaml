@@ -18,7 +18,7 @@ automation:
     condition:
       condition: time
       # At least one of the following is required.
-      after: '10:00:00'
+      at: '10:00:00'
       before: '02:00:00'
     action:
       service: homeassistant.turn_on

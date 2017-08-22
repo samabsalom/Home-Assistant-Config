@@ -51,7 +51,7 @@ automation:
       condition: and
       conditions:
         - condition: sun
-          after: sunset
+          at: sunset
           before_offset: "-1:00:00"
         - condition: time
           before: '22:59:55'
@@ -69,7 +69,7 @@ automation:
         - condition: time
           before: 08:00:00
         - condition: time
-          after: '23:00:00'
+          at: '23:00:00'
     action:
       service: homeassistant.turn_on
       entity_id: script.halldim
