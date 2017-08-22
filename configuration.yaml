@@ -216,3 +216,10 @@ zone 8:
   longitude: !secret 8longitude
   radius: 1000
   icon: mdi:hospital
+
+zone 9:
+  name: Rosie
+  latitude: !secret 9latitude
+  longitude: !secret 9longitude
+  radius: 200
+  icon: mdi:home-variant
