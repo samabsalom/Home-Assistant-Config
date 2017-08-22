@@ -72,6 +72,7 @@ sun:
 sensor: !include sensor.yaml
 # scene: !include scene.yaml
 # script: !include_dir_merge_named script
+alexa:
 intent_script: !include intent.yaml
 group: !include group.yaml
 automation: !include_dir_merge_list automation
