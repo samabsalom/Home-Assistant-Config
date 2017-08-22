@@ -77,7 +77,7 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.hall_motion
-      state: "off"
+      to: "off"
       for:
         minutes: 3
     action:
