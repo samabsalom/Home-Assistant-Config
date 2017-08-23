@@ -122,7 +122,7 @@ script:
   #   brightness_scale: 100
   #   optimistic: false
 light:
-  + platform: mqtt_json
+  - platform: mqtt_json
     name: Bed light
     state_topic: "home/rgb1"
     command_topic: "home/rgb1/set"
