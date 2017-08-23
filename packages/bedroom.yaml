@@ -121,13 +121,23 @@ script:
   #   rgb_command_topic: 'bed/rgb1/rgb/set'
   #   brightness_scale: 100
   #   optimistic: false
+light:
+  + platform: mqtt_json
+    name: Bed light
+    state_topic: "home/rgb1"
+    command_topic: "home/rgb1/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
 group:
   Bedroom:
     view: yes
     icon: mdi:hotel
     entities:
       - light.bedroom_light
-      # - light.bed_light
+      - light.bed_light
       - media_player.bedroom_television
       # - switch.blinds
       - switch.ubuntu
