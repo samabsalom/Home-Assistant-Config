@@ -133,10 +133,6 @@ light:
           service: script.rgbon
         turn_off:
           service: script.rgboff
-        set_level:
-          service: script.theater_lights_level
-          data_template:
-          brightness: "{{brightness}}"
 
 shell_command:
   rgboff: curl http://10.10.10.167/ledsoff?fade=500
