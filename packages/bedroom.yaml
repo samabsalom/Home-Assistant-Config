@@ -116,7 +116,7 @@ script:
           transition: 15
           rgb_color: [252, 162, 16]
 
-# light:
+light:
   # - platform: mqtt_json
   #   name: Bed light
   #   state_topic: "home/rgb1"
