@@ -73,6 +73,10 @@ script:
   rainbow:
     sequence:
       - service: shell_command.rainbow
+  changecolour:
+    sequence:
+      - service: shell_command.changecolour
+
   bedroomfire:
     sequence:
       - service: media_player.play_media
@@ -140,20 +144,50 @@ light:
         turn_off:
           service: script.rgboff
 
+input_slider:
+  rgbblue:
+    name: Blue
+    initial: 0
+    min: 0
+    max: 255
+    step: 1
+  rgbred:
+    name: Red
+    initial: 0
+    min: 0
+    max: 255
+    step: 1
+  rgbgreen:
+    name: Green
+    initial: 0
+    min: 0
+    max: 255
+    step: 1
+
 shell_command:
   rgboff: curl http://10.10.10.167/ledsoff?fade=500
-  rgbon: curl http://10.10.10.167/setleds?r=255&g=255&b=255&fade=1000
+  rgbon: curl http://10.10.10.167/setleds?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=1000
   rainbow: curl http://10.10.10.167/rainbow?fade=3000
-  wave: curl http://10.10.10.167/wave?r=255&g=32&b=10&fade=5000
-
+  wave: curl http://10.10.10.167/wave?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=5000
+  changecolour: curl curl http://10.10.10.167/setleds?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=1000
 
 group:
+  Bed LED:
+    entities:
+      - light.bed_light
+      - input_slider.rgbblue
+      - input_slider.rgbred
+      - input_slider.rgbgreen
+      - script.rainbow
+      - script.wave
+      - script.changecolour
+
   Bedroom:
     view: yes
     icon: mdi:hotel
     entities:
+      - group.bed_led
       - light.bedroom_light
-      - light.bed_light
       - media_player.bedroom_television
       # - switch.blinds
       - switch.ubuntu
@@ -163,5 +197,3 @@ group:
       - group.phone
       - script.bedroomfire
       - script.alarm
-      - script.rainbow
-      - script.wave
