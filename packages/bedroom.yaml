@@ -67,6 +67,12 @@ script:
   rgbon:
     sequence:
       - service: shell_command.rgbon
+  wave:
+    sequence:
+      - service: shell_command.wave
+  rainbow:
+    sequence:
+      - service: shell_command.rainbow
   bedroomfire:
     sequence:
       - service: media_player.play_media
@@ -127,7 +133,7 @@ light:
   #   qos: 0
   - platform: template
     lights:
-      bed_strip:
+      bed_light:
         friendly_name: "Bed light"
         turn_on:
           service: script.rgbon
@@ -157,4 +163,5 @@ group:
       - group.phone
       - script.bedroomfire
       - script.alarm
-      - shell_command.rainbow
+      - script.rainbow
+      - script.wave
