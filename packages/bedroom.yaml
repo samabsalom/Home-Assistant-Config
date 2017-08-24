@@ -61,6 +61,12 @@ media_player:
     turn_off_action: reboot
 
 script:
+  rgboff:
+    sequence:
+      - service: shell_command.rgboff
+  rgbon:
+    sequence:
+      - service: shell_command.rgbon
   bedroomfire:
     sequence:
       - service: media_player.play_media
@@ -111,25 +117,33 @@ script:
           rgb_color: [252, 162, 16]
 
 # light:
-  # - platform: mqtt
-  #   name: 'Bed light'
-  #   state_topic: 'bed/rgb1/light/status'
-  #   command_topic: 'bed/rgb1/light/switch'
-  #   brightness_state_topic: 'bed/rgb1/brightness/status'
-  #   brightness_command_topic: 'bed/rgb1/brightness/set'
-  #   rgb_state_topic: 'bed/rgb1/rgb/status'
-  #   rgb_command_topic: 'bed/rgb1/rgb/set'
-  #   brightness_scale: 100
+  # - platform: mqtt_json
+  #   name: Bed light
+  #   state_topic: "home/rgb1"
+  #   command_topic: "home/rgb1/set"
+  #   brightness: true
+  #   rgb: true
   #   optimistic: false
-light:
-  - platform: mqtt_json
-    name: Bed light
-    state_topic: "home/rgb1"
-    command_topic: "home/rgb1/set"
-    brightness: true
-    rgb: true
-    optimistic: false
-    qos: 0
+  #   qos: 0
+  - platform: template
+    lights:
+      bed_strip:
+        friendly_name: "Bed light"
+        turn_on:
+          service: script.rgbon
+        turn_off:
+          service: script.rgboff
+        set_level:
+          service: script.theater_lights_level
+          data_template:
+          brightness: "{{brightness}}"
+
+shell_command:
+  rgboff: curl http://10.10.10.167/ledsoff?fade=500
+  rgbon: curl http://10.10.10.167/setleds?r=255&g=255&b=255&fade=1000
+  rainbow: curl http://10.10.10.167/rainbow?fade=3000
+  wave: curl http://10.10.10.167/wave?r=255&g=32&b=10&fade=5000
+
 
 group:
   Bedroom:
@@ -147,3 +161,4 @@ group:
       - group.phone
       - script.bedroomfire
       - script.alarm
+      - shell_command.rainbow
