@@ -26,6 +26,8 @@
       switch.tv:
         icon: mdi:television
         assumed_state: true   # dont know why ive put this -- need to find out
+      light.bed_light:
+        assumed_state: true   # dont know why ive put this -- need to find out
       switch.blinds:
         icon: mdi:blinds
       switch.desktop:
