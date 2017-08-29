@@ -127,14 +127,6 @@ script:
           rgb_color: [252, 162, 16]
 
 light:
-  # - platform: mqtt_json
-  #   name: Bed light
-  #   state_topic: "home/rgb1"
-  #   command_topic: "home/rgb1/set"
-  #   brightness: true
-  #   rgb: true
-  #   optimistic: false
-  #   qos: 0
   - platform: template
     lights:
       bed_light:
@@ -143,6 +135,16 @@ light:
           service: script.rgbon
         turn_off:
           service: script.rgboff
+  - platform: mqtt_json
+    name: Bed strip
+    state_topic: "bed/rgb1"
+    command_topic: "bed/rgb1/set"
+    brightness: true
+    rgb: true
+    effect: true
+    effect_list: [colorfade_slow, colorfade_fast, flash]
+    optimistic: false
+    qos: 0
 
 input_slider:
   rgbblue:
@@ -187,6 +189,8 @@ group:
     icon: mdi:hotel
     entities:
       - group.bed_led
+      - light.bed_strip
+      - light.bed_light
       - light.bedroom_light
       - media_player.bedroom_television
       # - switch.blinds
