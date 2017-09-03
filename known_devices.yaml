@@ -47,3 +47,210 @@ pi_mate9:
   picture:
   track: true
   vendor:
+
+esp_2cc819:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:2C:C8:19
+  name: ESP 2CC819
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+samsipad:
+  hide_if_away: false
+  icon:
+  mac: 4C:B1:99:27:9B:C0
+  name: Sams-iPad
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+esp_16fade:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:16:FA:DE
+  name: ESP 16FADE
+  picture:
+  track: false
+  vendor: unknown
+
+50f5da22b75e:
+  hide_if_away: false
+  icon:
+  mac: 50:F5:DA:22:B7:5E
+  name: 50f5da22b75e
+  picture:
+  track: false
+  vendor: unknown
+
+amazone4042c539:
+  hide_if_away: false
+  icon:
+  mac: 34:D2:70:0D:8E:35
+  name: amazon-e4042c539
+  picture:
+  track: false
+  vendor: unknown
+
+esp_983b83:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:98:3B:83
+  name: ESP 983B83
+  picture:
+  track: false
+  vendor: unknown
+
+samsmbp2:
+  hide_if_away: false
+  icon:
+  mac: 14:10:9F:D6:19:8B
+  name: Sams-MBP-2
+  picture:
+  track: false
+  vendor: unknown
+
+hass:
+  hide_if_away: false
+  icon:
+  mac: 80:1F:02:AF:1A:44
+  name: Hass
+  picture:
+  track: false
+  vendor: unknown
+
+esp_85e8a1:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:85:E8:A1
+  name: ESP 85E8A1
+  picture:
+  track: false
+  vendor: unknown
+
+esp_16a00c:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:16:A0:0C
+  name: ESP 16A00C
+  picture:
+  track: false
+  vendor: unknown
+
+kristensmbp:
+  hide_if_away: false
+  icon:
+  mac: F4:5C:89:C3:AA:DF
+  name: Kristens-MBP
+  picture:
+  track: false
+  vendor: unknown
+
+esp_d9fa13:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:D9:FA:13
+  name: ESP D9FA13
+  picture:
+  track: false
+  vendor: unknown
+
+hp9de945:
+  hide_if_away: false
+  icon:
+  mac: 3C:D9:2B:9D:E9:45
+  name: HP9DE945
+  picture:
+  track: false
+  vendor: unknown
+
+ipad:
+  hide_if_away: false
+  icon:
+  mac: 70:11:24:47:AC:7E
+  name: iPad
+  picture:
+  track: false
+  vendor: unknown
+
+esp_0a90c9:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:0A:90:C9
+  name: ESP 0A90C9
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+kristensimac:
+  hide_if_away: false
+  icon:
+  mac: 88:63:DF:9D:92:13
+  name: Kristens-iMac
+  picture:
+  track: false
+  vendor: unknown
+
+chromecast:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:B4:3F:0A
+  name: Chromecast
+  picture:
+  track: false
+  vendor: AzureWave Technology Inc.
+
+egc001000002:
+  hide_if_away: false
+  icon:
+  mac: E0:06:E6:52:34:87
+  name: egc001000002
+  picture:
+  track: false
+  vendor: Hon Hai Precision Ind. Co.,Ltd.
+
+kristenplewatch:
+  hide_if_away: false
+  icon:
+  mac: 30:63:6B:5F:C4:3B
+  name: KristenpleWatch
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+elizabethsair:
+  hide_if_away: false
+  icon:
+  mac: A4:D1:8C:E6:40:6E
+  name: Elizabeths-Air
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+epsonfb9cdd:
+  hide_if_away: false
+  icon:
+  mac: AC:18:26:FB:9C:DD
+  name: EPSONFB9CDD
+  picture:
+  track: false
+  vendor: Seiko Epson Corporation
+
+christiasiphone:
+  hide_if_away: false
+  icon:
+  mac: 00:B3:62:E4:5A:FC
+  name: ChristiasiPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+mirror:
+  hide_if_away: false
+  icon:
+  mac: 74:DA:38:2E:17:21
+  name: mirror
+  picture:
+  track: false
+  vendor: Edimax Technology Co. Ltd.
