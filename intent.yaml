@@ -1,6 +1,6 @@
   WhereAreWeIntent:
     speech:
-      type: plaintext
+      type: plain
       text: >
         {%- if is_state('device_tracker.pi_nexus', 'home') and
                is_state('device_tracker.hazbag', 'home') and
@@ -62,7 +62,7 @@
       data_template:
         message: The location of {{ User }} has been queried via Alexa.
     speech:
-      type: plaintext
+      type: plain
       text: >
         {%- for state in states.device_tracker -%}
           {%- if state.name.lower() == User.lower() -%}
@@ -82,7 +82,7 @@
       data_template:
         entity_id: script.{{ Script | replace(" ", "_") }}
     speech:
-      type: plaintext
+      type: plain
       text: !include alexa_confirm.yaml
 
   ActivateSceneIntent:
@@ -91,7 +91,7 @@
       data_template:
         entity_id: scene.{{ Scene | replace(" ", "_") }}
     speech:
-      type: plaintext
+      type: plain
       text: !include alexa_confirm.yaml
 
   WhatTempIntent:
@@ -101,7 +101,7 @@
         message: "It is currently {{ states.sensor.lounge_temperature.state | int }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
         title: "Somebody asked alexa about the temperature"
     speech:
-      type: plaintext
+      type: plain
       text: >
         It is currently {{ states.sensor.lounge_temperature.state | int }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}
     # card:
@@ -118,7 +118,7 @@
       data:
         entity_id: script.bedtemp95
     speech:
-      type: plaintext
+      type: plain
       text: >
         Alrighty then. Heating the 3D printer bed to 95 degrees celcius for you Sam
   BedTempOFF:
@@ -127,7 +127,7 @@
       data:
         entity_id: script.bedtemp0
     speech:
-      type: plaintext
+      type: plain
       text: >
         Turning off the printers heated bed
   ExtTempON:
@@ -136,7 +136,7 @@
       data:
         entity_id: script.exttemp240
     speech:
-      type: plaintext
+      type: plain
       text: >
         Ok. Heating the 3D printer extruder to 240 degrees celcius
   ExtTempOFF:
@@ -145,7 +145,7 @@
       data:
         entity_id: script.exttemp0
     speech:
-      type: plaintext
+      type: plain
       text: >
         Turning off the printers extruder
   HeatAllON:
@@ -154,7 +154,7 @@
       data:
         entity_id: script.heatall
     speech:
-      type: plaintext
+      type: plain
       text: >
         Heating the whole printer
   HeatAllOFF:
@@ -163,7 +163,7 @@
       data:
         entity_id: script.heatoff
     speech:
-      type: plaintext
+      type: plain
       text: >
         Turning off the extruder and heat bed
   Pause:
@@ -172,7 +172,7 @@
       data:
         entity_id: script.pause
     speech:
-      type: plaintext
+      type: plain
       text: >
         Pausing the print
   Cancel:
@@ -181,7 +181,7 @@
       data:
         entity_id: script.cancel
     speech:
-      type: plaintext
+      type: plain
       text: >
         Cancelling the print
   Resume:
@@ -190,7 +190,7 @@
       data:
         entity_id: script.resume
     speech:
-      type: plaintext
+      type: plain
       text: >
         Resuming the print
   HomeXY:
@@ -199,7 +199,7 @@
       data:
         entity_id: script.homexy
     speech:
-      type: plaintext
+      type: plain
       text: >
         Homing the x and y axis'
   HomeZ:
@@ -208,7 +208,7 @@
       data:
         entity_id: script.homez
     speech:
-      type: plaintext
+      type: plain
       text: >
         Homing the z axis
   HomeXYZ:
@@ -217,7 +217,7 @@
       data:
         entity_id: script.homexyz
     speech:
-      type: plaintext
+      type: plain
       text: >
         Homing all axis'
   FilamentClean:
@@ -226,7 +226,7 @@
       data:
         entity_id: script.filamentclean
     speech:
-      type: plaintext
+      type: plain
       text: >
         {{ [
         "It's blocked again?",
@@ -248,7 +248,7 @@
         data:
           entity_id: script.extrudemanual
     speech:
-      type: plaintext
+      type: plain
       text: >
         Extruding {{Number}} millimeters of filament
   ExtTempManual:
@@ -264,7 +264,7 @@
         data:
           entity_id: script.exttempmanual
     speech:
-      type: plaintext
+      type: plain
       text: >
         Setting the extruder to {{ExtNumber}} degrees
   BedTempManual:
@@ -280,6 +280,6 @@
         data:
           entity_id: script.bedtempmanual
     speech:
-      type: plaintext
+      type: plain
       text: >
         Setting the heat bed to {{BedNumber}} degrees

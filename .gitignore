@@ -1,3 +1,4 @@
+known_devices.yaml
 secrets.yaml
 *.txt
 /www
@@ -23,3 +24,4 @@ stuff
 emulated_hue_ids.json
 group.yaml.save
 .spotify-token-cache
+
