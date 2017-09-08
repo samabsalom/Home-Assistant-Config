@@ -109,7 +109,21 @@
     #   title: Sample title
     #   content: Some more content
 
-
+  MovieTime:
+    action:
+      - service: homeassistant.turn_off
+        data:
+          entities:
+            - switch.main_light
+            - switch.lamp
+            - switch.spot_lights
+      - service: homeassistant.turn_on
+        data:
+          entities:
+            - switch.tv
+    speech:
+      type: plain
+      text: Enjoy your movie everybody. I know i will
 
 ##################  printer skill
   BedTempON:
