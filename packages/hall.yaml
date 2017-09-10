@@ -52,7 +52,7 @@ automation:
       conditions:
         - condition: sun
           after: sunset
-          before_offset: "-1:00:00"
+          before_offset: "-2:00:00"
         - condition: time
           before: '22:59:55'
     action:
