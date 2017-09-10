@@ -3,8 +3,10 @@
       ############   ICONS
       switch.boiler:
         icon: mdi:fire
+        haaska_hidden: false
       switch.main_light:
         icon: mdi:lightbulb
+        haaska_hidden: false
       switch.spot_lights:
         icon: mdi:spotlight
       switch.mirror:
@@ -42,6 +44,8 @@
         emulated_hue: false
       switch.windows:
         icon: mdi:desktop-mac
+      media_player.kodi:
+        haaska_hidden: false
 
       ############      DEVICE TRACKER PICS
       device_tracker.hazbag:
@@ -52,7 +56,8 @@
         entity_picture: !secret lizziepic
       device_tracker.rosie:
         entity_picture: !secret rosiepic
-
+      device_tracker.kristen:
+        entity_picture: !secret kristenpic
       # ######### HUE BULB - NOT TO EMULATE    no longer needed as changed config.yaml
       # light.bedroom_light:
       #   friendly_name: Bedroom light

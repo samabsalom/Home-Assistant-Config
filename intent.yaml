@@ -2,57 +2,58 @@
     speech:
       type: plain
       text: >
-        {%- if is_state('device_tracker.pi_nexus', 'home') and
+        {%- if is_state('device_tracker.pi_mate9', 'home') and
                is_state('device_tracker.hazbag', 'home') and
                is_state('device_tracker.lizzie', 'home') and
-               is_state('device_tracker.rosie', 'home') -%}
+               is_state('device_tracker.kristen', 'home') -%}
           Everyone is in the house
         {% endif %}
+
         {%- if is_state('device_tracker.hazbag', 'not_home') and
                is_state('device_tracker.lizzie', 'home') and
-               is_state('device_tracker.rosie', 'home') -%}
-               is_state('device_tracker.pi_nexus', 'home') and
+               is_state('device_tracker.kristen', 'home') and
+               is_state('device_tracker.pi_mate9', 'home') -%}
         Harriet has left. but everyone else is in
         {% endif %}
 
         {%- if is_state('device_tracker.hazbag', 'home') and
-               is_state('device_tracker.pi_nexus', 'home') and
+               is_state('device_tracker.pi_mate9', 'home') and
                is_state('device_tracker.lizzie', 'not_home') and
-               is_state('device_tracker.rosie', 'home') -%}
-          Lizzie has left and rosie, sam and harriet are in.
+               is_state('device_tracker.kristen', 'home') -%}
+          Lizzie has left and kristen, sam and harriet are in.
         {% endif %}
 
         {%- if is_state('device_tracker.hazbag', 'home') and
                is_state('device_tracker.lizzie', 'home') and
-               is_state('device_tracker.rosie', 'not_home') -%}
-               is_state('device_tracker.pi_nexus', 'home') and
-          Rosie has left. but harriet, sam and lizzie are home.
+               is_state('device_tracker.kristen', 'not_home') and
+               is_state('device_tracker.pi_mate9', 'home') -%}
+          kristen has left. but harriet, sam and lizzie are home.
         {% endif %}
 
         {%- if is_state('device_tracker.hazbag', 'not_home') and
                is_state('device_tracker.lizzie', 'not_home') and
-               is_state('device_tracker.rosie', 'not_home') -%}
-               is_state('device_tracker.pi_nexus', 'home') and
+               is_state('device_tracker.kristen', 'not_home') and
+               is_state('device_tracker.pi_mate9', 'home') -%}
           Sam is the only one in.
         {% endif %}
 
         {%- if is_state('device_tracker.hazbag', 'not_home') and
                is_state('device_tracker.lizzie', 'not_home') and
-               is_state('device_tracker.pi_nexus', 'home') and
-               is_state('device_tracker.rosie', 'home') -%}
-          Harriet and lizzie have left but rosie is here with sam
+               is_state('device_tracker.pi_mate9', 'home') and
+               is_state('device_tracker.kristen', 'home') -%}
+          Harriet and lizzie have left but kristen is here with sam
         {% endif %}
         {%- if is_state('device_tracker.hazbag', 'not_home') and
-               is_state('device_tracker.pi_nexus', 'home') and
+               is_state('device_tracker.pi_mate9', 'home') and
                is_state('device_tracker.lizzie', 'home') and
-               is_state('device_tracker.rosie', 'not_home') -%}
-          Harriet and Rosie have left. but liz and sam are in
+               is_state('device_tracker.kristen', 'not_home') -%}
+          Harriet and kristen have left. but liz and sam are in
         {% endif %}
         {%- if is_state('device_tracker.hazbag', 'not_home') and
                is_state('device_tracker.lizzie', 'home') and
-               is_state('device_tracker.rosie', 'not_home') -%}
-               is_state('device_tracker.pi_nexus', 'home') and
-          Lizzie and Rosie have left. but haz is in with sam.
+               is_state('device_tracker.kristen', 'not_home') and
+               is_state('device_tracker.pi_mate9', 'home') -%}
+          Lizzie and kristen have left. but haz is in with sam.
         {% endif %}
 
 # Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}
@@ -113,17 +114,10 @@
     action:
       - service: homeassistant.turn_off
         data:
-          entities:
-            - switch.main_light
-            - switch.lamp
-            - switch.spot_lights
-      - service: homeassistant.turn_on
-        data:
-          entities:
-            - switch.tv
+          entity_id: scene.movie
     speech:
       type: plain
-      text: Enjoy your movie everybody. I know i will
+      text: Enjoy your movie
 
 ##################  printer skill
   BedTempON:

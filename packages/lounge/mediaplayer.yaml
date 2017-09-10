@@ -1,7 +1,7 @@
 media_player:
   - platform: kodi
     host: !secret kodihost
-    port: 80
+    port: 8080
     name: Kodi
     username: !secret kodiuser
     password: !secret kodipass

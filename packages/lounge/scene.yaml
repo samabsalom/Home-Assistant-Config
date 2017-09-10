@@ -26,3 +26,12 @@ scene:
       switch.spot_lights: on
       switch.lamp: on
       switch.mirror: on
+
+  - name: movie
+    entities:
+      switch.main_light: off
+      switch.spot_lights: off
+      switch.lamp: on
+      switch.mirror: off
+      switch.tv: on
+  
