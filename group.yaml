@@ -6,7 +6,16 @@
       - group.living_room
       - group.thermostat_quick_settings
       - group.hallway
+      - group.people
+      - sensor.lounge_sound
+      - sensor.lounge_light
+      - proximity.home
+      - media_player.kodi
+      - media_player.sams__chromecast
+      - media_player.spotify
 
+  people:
+    entities:
       - device_tracker.pi_mate9
       - device_tracker.rosie
       - device_tracker.lizzie
@@ -14,9 +23,7 @@
       - device_tracker.andy
       - device_tracker.kristen
 
-      - sensor.lounge_sound
-      - sensor.lounge_light
-      - proximity.home
+
 
   Phone:
     entities:
