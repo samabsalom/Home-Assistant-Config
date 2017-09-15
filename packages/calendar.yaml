@@ -2,11 +2,11 @@
 sensor:
  - platform: google_travel_time
    api_key: !secret googletravel
-   origin: zone.home
+   origin: device_tracker.pi_mate9
    destination: sensor.new_cal_location
    options:
      arrival_time: sensor.cal_start_time
-     mode: driving
+     mode: walking
  - platform: template
    sensors:
      cal_title:
@@ -22,15 +22,15 @@ sensor:
        value_template: '{{ states.calendar.medicine.attributes.start_time }}'
        friendly_name: 'Start Time'
      calc_leave_time:
-       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
        friendly_name: 'Leave Time'
        unit_of_measurement: 'time'
      sys_time:
        value_template: '{{ (now().strftime("%s") | int | timestamp_custom("%Y-%m-%d %H:%M")) }}'
        unit_of_measurement: 'time'
      wake_up_time:
-       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
-       friendly_name: 'Leave Time minus getting ready time'
+       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       friendly_name: 'Time I will wake you up'
        unit_of_measurement: 'time'
 
 
@@ -59,7 +59,13 @@ input_select:
       - 90
       - 120
     initial: '60'
-
+  # travelmode:
+  #   name: How are you getting there
+  #   options:
+  #     - driving
+  #     - walking
+  #     - cycling
+  #   initial: 'walking'
 
 
 automation:
