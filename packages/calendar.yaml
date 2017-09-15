@@ -1,0 +1,182 @@
+# swap in google config later here
+sensor:
+ - platform: google_travel_time
+   api_key: !secret googletravel
+   origin: zone.home
+   destination: sensor.new_cal_location
+   options:
+     arrival_time: sensor.cal_start_time
+     mode: driving
+ - platform: template
+   sensors:
+     cal_title:
+       value_template: '{{ states.calendar.medicine.attributes.message }}'
+       friendly_name: 'Title'
+     cal_location:
+       value_template: '{{ states.calendar.medicine.attributes.location }}'
+       friendly_name: 'Location'
+     new_cal_location:
+       value_template: '{% if is_state("sensor.cal_location", "None") %}{{ zone.hospital }}{% else %}{{ states.calendar.medicine.attributes.location }}{% endif %}'
+       friendly_name: 'Location'
+     cal_start_time:
+       value_template: '{{ states.calendar.medicine.attributes.start_time }}'
+       friendly_name: 'Start Time'
+     calc_leave_time:
+       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       friendly_name: 'Leave Time'
+       unit_of_measurement: 'time'
+     sys_time:
+       value_template: '{{ (now().strftime("%s") | int | timestamp_custom("%Y-%m-%d %H:%M")) }}'
+       unit_of_measurement: 'time'
+     wake_up_time:
+       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       friendly_name: 'Leave Time minus getting ready time'
+       unit_of_measurement: 'time'
+
+
+input_boolean:
+  announce_time_to_leave:
+    name: Announce over kodi
+    initial: on
+    icon: mdi:speaker-wireless
+  display_time_to_leave:
+    name: Display with Persistent Notification
+    initial: on
+    icon: mdi:cards-variant
+  set_auto_alarm:
+    name: Wake up an hour before you need to leave
+    initial: on
+    icon: mdi:alarm
+
+input_select:
+  getreadytime:
+    name: Time in minutes needed to get ready
+    options:
+      - 5
+      - 15
+      - 30
+      - 60
+      - 90
+      - 120
+    initial: '60'
+
+
+
+automation:
+  - alias: 'Announce Calendar Leave time'
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ states.sensor.sys_time.state == states.sensor.calc_leave_time.state }}'
+        - condition: state
+          entity_id: input_boolean.announce_time_to_leave
+          state: 'on'
+        - condition: state
+          entity_id: device_tracker.pi_mate9
+          state: home
+    action:
+      - service: tts.google_say
+        data_template:
+          entity_id: "media_player.kodi"
+          message: 'Excuse me. It is now time to leave for {{ states.calendar.medicine.attributes.message }}  It will take you {{ states.sensor.google_travel_time__driving.attributes.duration }} travel time.'
+      - delay: '00:00:{{ states.media_player.kodi.attributes.media_duration | int }}'
+      - service: notify.pushbullet
+        data:
+          title: "Time to leave for {{ states.calendar.medicine.attributes.message }} "
+          message: "It will take {{ states.sensor.google_travel_time__driving.attributes.duration }}"
+
+
+  - alias: 'Display Calendar Leave time'
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ states.sensor.sys_time.state == states.sensor.calc_leave_time.state }}'
+        - condition: state
+          entity_id: input_boolean.display_time_to_leave
+          state: 'on'
+        - condition: state
+          entity_id: device_tracker.pi_mate9
+          state: home
+    action:
+      service: persistent_notification.create
+      data:
+        message: 'It is now time to leave for {{ states.calendar.medicine.attributes.message }}  It will take you {{ states.sensor.google_travel_time__driving.attributes.duration }} travel time.'
+        title: "Calendar Event"
+
+  - alias: wake up from calendar event
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ states.sensor.wake_up_time.state == states.sensor.calc_leave_time.state }}'
+        - condition: state
+          entity_id: input_boolean.set_auto_alarm
+          state: 'on'
+        - condition: state
+          entity_id: device_tracker.pi_mate9
+          state: home
+        - condition: time
+          before: '11:00:00'
+          after: '03:00:00'
+    action:
+      - service: media_player.select_source
+        entity_id: media_player.spotify
+        data_template:
+          source: Sam's Echo Dot
+      - service: media_player.play_media
+        entity_id: media_player.spotify
+        data:
+          media_content_type: playlist
+          media_content_id: spotify:user:samuelabsalom:playlist:61kuO4QryxTOOaj3vKjwDp  # this is my wake up pplaylist from spotify
+
+
+
+camera:
+ - platform: generic
+   name: Destination
+   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{states.calendar.medicine.attributes.location}}&zoom=17&size=600x300&maptype=roadmap&markers=color:blue
+   limit_refetch_to_url_change: true
+ - platform: generic
+   name: Street View
+   still_image_url: !secret googlestreetviewurl  #https://maps.googleapis.com/maps/api/streetview?size=600x300&location={{states.calendar.medicine.attributes.location}}&key=YOURAPIKEYHERE
+   limit_refetch_to_url_change: true
+
+group:
+  Calendar:
+    view: yes
+    icon: mdi:calendar
+    entities:
+      - automation.display_calendar_leave_time
+      - automation.announce_calendar_leave_time
+      - automation.wake_up_from_calendar_event
+      - group.next_appointment
+      - camera.street_view
+      - camera.destination
+      - input_select.getreadytime
+
+  next_appointment:
+    view: no
+    name: Next Appointment
+    entities:
+      - sensor.cal_title
+      - sensor.cal_location
+      - sensor.cal_start_time
+      - sensor.google_travel_time__driving
+      - sensor.wake_up_time
+      - input_boolean.announce_time_to_leave
+      - input_boolean.display_time_to_leave
+      - input_boolean.set_auto_alarm
