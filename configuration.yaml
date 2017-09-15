@@ -27,6 +27,7 @@ homeassistant:
     pack_12: !include packages/octoprint.yaml
     pack_13: !include packages/herokukeepalive.yaml
     pack_14: !include packages/rss.yaml
+    pack_15: !include packages/calendar.yaml
 
 config:
 
