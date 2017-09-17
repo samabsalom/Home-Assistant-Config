@@ -7,6 +7,14 @@ sensor:
    options:
      arrival_time: sensor.cal_start_time
      mode: walking
+ - platform: google_travel_time
+   api_key: !secret googletravel
+   origin: device_tracker.pi_mate9
+   destination: sensor.new_cal_location
+   options:
+     arrival_time: sensor.cal_start_time
+     mode: driving
+
  - platform: template
    sensors:
      cal_title:
@@ -21,17 +29,42 @@ sensor:
      cal_start_time:
        value_template: '{{ states.calendar.medicine.attributes.start_time }}'
        friendly_name: 'Start Time'
+    #  calc_leave_time:
+    #    value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+    #    friendly_name: 'Leave Time for walking'
+    #    unit_of_measurement: 'time'
+    #  calc_leave_time_driving:
+    #    value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+    #    friendly_name: 'Leave Time for driving'
      calc_leave_time:
-       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       value_template: >
+          {% if states('sensor.distance') | float < 3.0 %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% else %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% endif %}
        friendly_name: 'Leave Time'
-       unit_of_measurement: 'time'
      sys_time:
        value_template: '{{ (now().strftime("%s") | int | timestamp_custom("%Y-%m-%d %H:%M")) }}'
        unit_of_measurement: 'time'
+    #  wake_up_time:
+    #    value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+    #    friendly_name: 'Time I will wake you up'
+    #  wake_up_time_driving:
+    #    value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+    #    friendly_name: 'Time I will wake you up for driving'
      wake_up_time:
-       value_template: '{{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}'
+       value_template: >
+          {% if states('sensor.distance') | float < 3.0 %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% else %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% endif %}
        friendly_name: 'Time I will wake you up'
-       unit_of_measurement: 'time'
+     distance:
+       value_template: '{{ states.sensor.google_travel_time__walking.attributes.distance.split(" ")[0] }}'
+       friendly_name: 'Distance to Appointment'
+       unit_of_measurement: 'km'
 
 
 input_boolean:
@@ -55,17 +88,12 @@ input_select:
       - 5
       - 15
       - 30
+      - 45
       - 60
+      - 75
       - 90
       - 120
     initial: '60'
-  # travelmode:
-  #   name: How are you getting there
-  #   options:
-  #     - driving
-  #     - walking
-  #     - cycling
-  #   initial: 'walking'
 
 
 automation:
@@ -95,7 +123,6 @@ automation:
         data:
           title: "Time to leave for {{ states.calendar.medicine.attributes.message }} "
           message: "It will take {{ states.sensor.google_travel_time__driving.attributes.duration }}"
-
 
   - alias: 'Display Calendar Leave time'
     trigger:
@@ -128,7 +155,7 @@ automation:
       condition: and
       conditions:
         - condition: template
-          value_template: '{{ states.sensor.wake_up_time.state == states.sensor.calc_leave_time.state }}'
+          value_template: '{{ states.sensor.wake_up_time.state == states.sensor.sys_time.state }}'
         - condition: state
           entity_id: input_boolean.set_auto_alarm
           state: 'on'
@@ -166,13 +193,16 @@ group:
     view: yes
     icon: mdi:calendar
     entities:
-      - automation.display_calendar_leave_time
-      - automation.announce_calendar_leave_time
-      - automation.wake_up_from_calendar_event
+      # - automation.display_calendar_leave_time
+      # - automation.announce_calendar_leave_time
+      # - automation.wake_up_from_calendar_event
       - group.next_appointment
       - camera.street_view
       - camera.destination
       - input_select.getreadytime
+      - input_boolean.announce_time_to_leave
+      - input_boolean.display_time_to_leave
+      - input_boolean.set_auto_alarm
 
   next_appointment:
     view: no
@@ -181,8 +211,11 @@ group:
       - sensor.cal_title
       - sensor.cal_location
       - sensor.cal_start_time
-      - sensor.google_travel_time__driving
+      - sensor.calc_leave_time
       - sensor.wake_up_time
-      - input_boolean.announce_time_to_leave
-      - input_boolean.display_time_to_leave
-      - input_boolean.set_auto_alarm
+      # - sensor.calc_leave_time_driving
+      - sensor.google_travel_time__driving
+      - sensor.google_travel_time__walking
+      # - sensor.wake_up_time_driving
+      # - sensor.actual_wake_up_time
+      - sensor.distance
