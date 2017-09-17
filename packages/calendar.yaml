@@ -174,7 +174,7 @@ automation:
         entity_id: media_player.spotify
         data:
           media_content_type: playlist
-          media_content_id: spotify:user:samuelabsalom:playlist:61kuO4QryxTOOaj3vKjwDp  # this is my wake up pplaylist from spotify
+          media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX0UrRvztWcAU # spotify:user:samuelabsalom:playlist:61kuO4QryxTOOaj3vKjwDp  # this is my wake up pplaylist from spotify
       - service: homeassistant.turn_on
         entity_id: script.alarm
 
