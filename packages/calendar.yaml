@@ -65,6 +65,14 @@ sensor:
        value_template: '{{ states.sensor.google_travel_time__walking.attributes.distance.split(" ")[0] }}'
        friendly_name: 'Distance to Appointment'
        unit_of_measurement: 'km'
+     boiler_on_time_from_cal:
+       value_template: >
+          {% if states('sensor.distance') | float < 3.0 %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 - states.input_select.boilerontime.state | int *60) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% else %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 - states.input_select.boilerontime.state | int *60) | timestamp_custom("%Y-%m-%d %H:%M") }}
+          {% endif %}
+       friendly_name: 'Time I will turn the boiler on'
 
 
 input_boolean:
@@ -80,6 +88,10 @@ input_boolean:
     name: Wake up an hour before you need to leave
     initial: on
     icon: mdi:alarm
+  boilerontime:
+    name: Turn the boiler on before you wake up
+    initial: on
+    icon: mdi:radiator
 
 input_select:
   getreadytime:
@@ -94,6 +106,33 @@ input_select:
       - 90
       - 120
     initial: '60'
+  boilerontime:
+    name: Time in minutes before your alarm to turn on the boiler
+    options:
+      - 0
+      - 5
+      - 15
+      - 30
+      - 45
+      - 60
+      - 75
+    initial: '0'
+  tempformorningautoalarm:
+    name: Temperature to set the boiler from your calendar
+    options:
+      - 5
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+    initial: 19
+
 
 
 automation:
@@ -178,6 +217,30 @@ automation:
       - service: homeassistant.turn_on
         entity_id: script.alarm
 
+  - alias: Turn on the boiler before auto alarm
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ states.sensor.boiler_on_time.state == states.sensor.sys_time.state }}'
+        - condition: state
+          entity_id: input_boolean.boilerontime
+          state: 'on'
+        - condition: state
+          entity_id: device_tracker.pi_mate9
+          state: home
+        - condition: time
+          before: '11:00:00'
+          after: '03:00:00'
+    action:
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.tempformorningautoalarm.state | int }} "
+
 
 
 camera:
@@ -245,9 +308,13 @@ group:
       - camera.street_view
       - camera.destination
       - input_select.getreadytime
+      - input_select.boilerontime
+      - input_select.tempformorningautoalarm
+
       - input_boolean.announce_time_to_leave
       - input_boolean.display_time_to_leave
       - input_boolean.set_auto_alarm
+      - input_boolean.boilerontime
 
   next_appointment:
     view: no
@@ -258,6 +325,7 @@ group:
       - sensor.cal_start_time
       - sensor.calc_leave_time
       - sensor.wake_up_time
+      - sensor.boiler_on_time_from_cal
       # - sensor.calc_leave_time_driving
       - sensor.google_travel_time__driving
       - sensor.google_travel_time__walking
