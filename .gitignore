@@ -1,3 +1,4 @@
+.monzo-token-cache
 known_devices.yaml
 secrets.yaml
 *.txt

@@ -9,3 +9,9 @@
     name: "Connectivity Nexus"
     unit_of_measurement: "-"
     value_template: "{{ value_json.conn }}"
+
+
+  - platform: monzo
+    client_id: !secret monzoid
+    client_secret: !secret monzosecret
+    name: 'Monzo balance'

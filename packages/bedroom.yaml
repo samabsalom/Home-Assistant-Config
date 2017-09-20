@@ -161,3 +161,4 @@ group:
       - group.phone
       - script.bedroomfire
       - script.alarm
+      - sensor.monzo_balance

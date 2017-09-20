@@ -116,7 +116,7 @@ input_select:
       - 45
       - 60
       - 75
-    initial: '0'
+    initial: '30'
   tempformorningautoalarm:
     name: Temperature to set the boiler from your calendar
     options:
@@ -131,7 +131,7 @@ input_select:
       - 22
       - 23
       - 24
-    initial: 19
+    initial: 20
 
 
 
@@ -213,7 +213,7 @@ automation:
         entity_id: media_player.spotify
         data:
           media_content_type: playlist
-          media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX0UrRvztWcAU # spotify:user:samuelabsalom:playlist:61kuO4QryxTOOaj3vKjwDp  # this is my wake up pplaylist from spotify
+          media_content_id: spotify:user:samuelabsalom:playlist:61kuO4QryxTOOaj3vKjwDp  # this is my wake up pplaylist from spotify
       - service: homeassistant.turn_on
         entity_id: script.alarm
 
@@ -236,10 +236,17 @@ automation:
         - condition: time
           before: '11:00:00'
           after: '03:00:00'
+        # - condition: template
+        #   value_template: '{{ states.sensor.lounge_temperature.state < 19 }}'
     action:
       - service_template: climate.set_temperature
         data_template:
           temperature: " {{ states.input_select.tempformorningautoalarm.state | int }} "
+      - service: notify.pushbullet
+        data:
+          message: "This was done automatically from your calendar"
+          title: "Boiler was turned up for the morning"
+
 
 
 
@@ -295,15 +302,60 @@ script:
           entity_id: light.bedroom_light
           transition: 15
           rgb_color: [252, 162, 16]
+      - service: homeassistant.turn_on
+        entity_id: switch.lamp
+      # - service: light.turn_on     # http://colrd.com/palette/22735/?download=css            # rgb_color: 246,180,23
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [15, 15, 6]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [65, 65, 40]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [120, 120, 60]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [145, 145, 75]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [165, 165, 85]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [200, 200, 95]
+      # - delay: 00:00:16
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.bedroom_light
+      #     transition: 15
+      #     rgb_color: [255, 255, 135]
+
 
 group:
   Calendar:
     view: yes
     icon: mdi:calendar
     entities:
-      # - automation.display_calendar_leave_time
-      # - automation.announce_calendar_leave_time
-      # - automation.wake_up_from_calendar_event
+      - automation.display_calendar_leave_time
+      - automation.announce_calendar_leave_time
+      - automation.wake_up_from_calendar_event
+      - automation.Turn_on_the_boiler_before_auto_alarm
       - group.next_appointment
       - camera.street_view
       - camera.destination
