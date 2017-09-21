@@ -226,7 +226,7 @@ automation:
       condition: and
       conditions:
         - condition: template
-          value_template: '{{ states.sensor.boiler_on_time.state == states.sensor.sys_time.state }}'
+          value_template: '{{ states.sensor.boiler_on_time_from_cal.state == states.sensor.sys_time.state }}'
         - condition: state
           entity_id: input_boolean.boilerontime
           state: 'on'
