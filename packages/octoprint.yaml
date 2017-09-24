@@ -1,6 +1,8 @@
 octoprint:
   host: "10.10.10.195"
   api_key: !secret octoapi
+  bed: true
+  number_of_tools: 1
 
 sensor:
   - platform: octoprint
@@ -12,7 +14,7 @@ sensor:
 #  - platform: command_line
 #    command: python3 /home/homeassistant/.homeassistant/conf/octo-control/octo-control.py --apikey 'absalomoctoprintapi' --host 10.10.10.195 --port 80 --left-time
 #    name: time left on print
-#    scan_interval: 5 
+#    scan_interval: 5
   - platform: mqtt
     name: extrudermm
     state_topic: "octoprint/extruder/mm"
