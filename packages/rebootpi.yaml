@@ -21,7 +21,7 @@ automation:
       entity_id: switch.router
       to: 'off'
       for:
-        minutes: 5
+        minutes: 3
     action:
       - service_template: notify.pushbullet
         data_template:

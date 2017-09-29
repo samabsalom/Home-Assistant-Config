@@ -17,7 +17,7 @@
   people:
     entities:
       - device_tracker.pi_mate9
-      - device_tracker.rosie
+      - device_tracker.pi_nexus5x
       - device_tracker.lizzie
       - device_tracker.hazbag
       - device_tracker.andy

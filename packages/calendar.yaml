@@ -198,9 +198,9 @@ automation:
         - condition: state
           entity_id: input_boolean.set_auto_alarm
           state: 'on'
-        - condition: state
-          entity_id: device_tracker.pi_mate9
-          state: home
+        # - condition: state
+        #   entity_id: device_tracker.pi_mate9
+        #   state: home
         - condition: time
           before: '11:00:00'
           after: '03:00:00'
@@ -230,9 +230,9 @@ automation:
         - condition: state
           entity_id: input_boolean.boilerontime
           state: 'on'
-        - condition: state
-          entity_id: device_tracker.pi_mate9
-          state: home
+        # - condition: state
+        #   entity_id: device_tracker.pi_mate9
+        #   state: home
         - condition: time
           before: '11:00:00'
           after: '03:00:00'

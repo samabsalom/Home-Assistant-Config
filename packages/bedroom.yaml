@@ -20,16 +20,16 @@ switch:
       desktop:
         command_off: "bash /home/homeassistant/.homeassistant/conf/pcoff.sh"  # need to make sure user homeassistant can run this - could copy rebootpi packages shell command to accomplish this
       pc:
-        command_off: 'net rpc shutdown -I 10.10.10.70 -U sam%sam'
+        command_off: 'curl http://10.10.10.70:5001/hibernate'
 
   - platform: wake_on_lan
     mac_address: "00:1A:92:66:F7:22"
     name: linux
     host: 10.10.10.199
   - platform: wake_on_lan
-    mac_address: "00:22:68:46:CC:D4"
     name: windowswol
     host: 10.10.10.70
+    mac_address: D8:CB:8A:C3:8C:A2
 
   - platform: template
     switches:
@@ -105,6 +105,15 @@ light:
     effect_list: [colorfade_slow, colorfade_fast, flash]
     optimistic: false
     qos: 0
+  - platform: mqtt_json
+    name: "SN1 LED"
+    state_topic: "bruh/sensornode1"
+    command_topic: "bruh/sensornode1/set"
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
 
 input_slider:
   rgbblue:
@@ -133,7 +142,45 @@ shell_command:
   wave: curl http://10.10.10.167/wave?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=5000
   changecolour: curl curl http://10.10.10.167/setleds?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=1000
 
+sensor:
+  - platform: mqtt
+    state_topic: "bruh/sensornode1"
+    name: "SN1 Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.humidity | round(1) }}'
+
+  - platform: mqtt
+    state_topic: "bruh/sensornode1"
+    name: "SN1 LDR"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"
+    value_template: '{{ value_json.ldr }}'
+
+  - platform: mqtt
+    state_topic: "bruh/sensornode1"
+    name: "SN1 PIR"
+    value_template: '{{ value_json.motion }}'
+
+  - platform: mqtt
+    state_topic: "bruh/sensornode1"
+    name: "SN1 Temperature"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: "bruh/sensornode1"
+    name: "SN1 Real Feel"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+
 group:
+  sensor_node_1_card:
+    name: Sensor Node 1
+    entities:
+      - sensor.sn1_temperature
+      - sensor.sn1_humidity
+      - sensor.sn1_ldr
+      - sensor.sn1_pir
+      - light.sn1_led
   Bed LED:
     entities:
       - light.bed_light
@@ -149,6 +196,7 @@ group:
     icon: mdi:hotel
     entities:
       - group.bed_led
+      - group.sensor_node_1_card
       - light.bed_strip
       - light.bed_light
       - light.bedroom_light

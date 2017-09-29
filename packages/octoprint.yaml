@@ -3,7 +3,15 @@ octoprint:
   api_key: !secret octoapi
   bed: true
   number_of_tools: 1
-
+switch:
+  platform: mqtt
+  name: "Printer"
+  state_topic: "home/sonoff/printer/1/stat"
+  command_topic: "home/sonoff/printer/1"
+  qos: 1
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
 sensor:
   - platform: octoprint
     name: OctoPrint
@@ -24,6 +32,21 @@ sensor:
   - platform: mqtt
     name: heatbedtemp
     state_topic: "octoprint/bed/temp"
+# Sonoff Pow -------------------------------------
+
+  - platform: mqtt
+    name: "Printer Power"
+    state_topic: "home/sonoff/printer/1/power"
+    qos: 1
+    unit_of_measurement: "W"
+    value_template: "{{ value_json.Power }}"
+
+  - platform: mqtt
+    name: "Printer Voltage"
+    state_topic: "home/sonoff/printer/1/power"
+    qos: 1
+    unit_of_measurement: "V"
+    value_template: "{{ value_json.Voltage }}"
 
 binary_sensor:
   - platform: octoprint
@@ -148,7 +171,9 @@ group:
       - group.control_temperatures
       - group.control
       - camera.printcam
-      - sensor.time_left_on_print
+      - sensor.printer_voltage
+      - sensor.printer_power
+      - switch.printer
 
   Control temperatures:
     entities:

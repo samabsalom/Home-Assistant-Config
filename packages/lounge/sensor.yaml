@@ -1,0 +1,6 @@
+sensor:
+  - platform: template
+    sensors:
+      echo:
+        friendly_name: "Echo spotify"
+        value_template: "{{ states.media_player.spotify.attributes.source }}"

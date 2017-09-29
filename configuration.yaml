@@ -208,7 +208,7 @@ zone 6:
   icon: mdi:heart
 
 zone 7:
-  name: Danny
+  name: Dannys
   latitude: !secret 7latitude
   longitude: !secret 7longitude
   radius: 200
@@ -222,7 +222,7 @@ zone 8:
   icon: mdi:hospital
 
 zone 9:
-  name: Rosie
+  name: Rosies
   latitude: !secret 9latitude
   longitude: !secret 9longitude
   radius: 200
