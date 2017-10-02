@@ -72,7 +72,7 @@ automation:
           - group.bedroom
       - service: scene.turn_on
         entity_id: scene.loungeoff
-
+################# spotify music off when tv plays #################
   - alias: turn off spotify when the tv plays
     trigger:
       platform: state
@@ -90,3 +90,23 @@ automation:
     action:
       - service: media_player.media_pause
         entity_id: media_player.spotify
+
+####################### turn on lights from switch ############################
+  - alias: light on from lightswitch
+    trigger:
+      platform: mqtt
+      topic: avondale/7/switch
+      payload: ON
+    action:
+      - service: homeassistant.toggle
+        entity_id: light.lamp
+  - alias: light off from lightswitch
+    trigger:
+      platform: mqtt
+      topic: avondale/7/switch
+      payload: OFF
+    action:
+      - service: homeassistant.toggle
+        entity_id: light.lamp
+
+################### lights off with tv

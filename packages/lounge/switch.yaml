@@ -30,11 +30,11 @@ switch:
     state_topic: 'avondale/6/status'
     command_topic: 'avondale/6/switch'
     optimistic: false
-  - platform: mqtt
-    name: Lamp
-    state_topic: 'avondale/7/status'
-    command_topic: 'avondale/7/switch'
-    optimistic: false
+  # - platform: mqtt
+  #   name: Lamp
+  #   state_topic: 'avondale/7/status'
+  #   command_topic: 'avondale/7/switch'
+  #   optimistic: false
   - platform: mqtt
     name: Fish Tank
     state_topic: 'avondale/8/status'

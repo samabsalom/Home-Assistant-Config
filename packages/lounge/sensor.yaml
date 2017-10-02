@@ -4,3 +4,6 @@ sensor:
       echo:
         friendly_name: "Echo spotify"
         value_template: "{{ states.media_player.spotify.attributes.source }}"
+      koditype:
+        friendly_name: "Kodi media type"
+        value_template: "{{ states.media_player.kodi.attributes.media_content_type }}"

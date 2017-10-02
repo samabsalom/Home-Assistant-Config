@@ -2,7 +2,7 @@ scene:
   - name: loungeoff
     entities:
       switch.tv: off
-      switch.lamp: off
+      light.lamp: off
       switch.fish_tank: off
       switch.mirror: off
       switch.main_light: off
@@ -11,7 +11,7 @@ scene:
   - name: loungeon
     entities:
       switch.tv: on
-      switch.lamp: on
+      light.lamp: on
       switch.fish_tank: on
       switch.mirror: on
       switch.main_light: on
@@ -24,14 +24,13 @@ scene:
       #   brightness: 255
       switch.main_light: off
       switch.spot_lights: on
-      switch.lamp: on
+      light.lamp: on
       switch.mirror: on
 
   - name: movie
     entities:
       switch.main_light: off
       switch.spot_lights: off
-      switch.lamp: on
+      light.lamp: on
       switch.mirror: off
       switch.tv: on
-  

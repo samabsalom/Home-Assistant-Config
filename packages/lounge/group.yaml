@@ -34,6 +34,6 @@ group:
       - switch.main_light
       - switch.spot_lights
       - switch.fish_tank
-      - switch.lamp
+      - light.lamp
       - switch.tv
       - switch.mirror

@@ -15,7 +15,7 @@
         icon: mdi:home-variant
       switch.christmas_tree:
         icon: mdi:pine-tree
-      switch.lamp:
+      light.lamp:
         icon: mdi:lamp
       switch.bedroom_lamp:
         icon: mdi:lamp
@@ -46,7 +46,6 @@
         icon: mdi:desktop-mac
       media_player.kodi:
         haaska_hidden: false
-
       ############      DEVICE TRACKER PICS
       device_tracker.hazbag:
         entity_picture: !secret hazpic
