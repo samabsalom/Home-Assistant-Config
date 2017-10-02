@@ -110,3 +110,95 @@ automation:
         entity_id: light.lamp
 
 ################### lights off with tv
+#Condition beginning 30 min before sunset (and including after sunset): https://home-assistant.io/docs/scripts/conditions/#sun-condition
+# - condition: sun
+#   after: sunset
+  # after_offset: "-0:30:00"
+#Condition ending 30 min after sunrise (and including before sunrise)
+# - condition: sun
+#   before: sunrise
+#   before_offset: "-0:30:00"
+
+  - alias: lights from pause
+    trigger:
+      platform: state
+      entity_id: media_player.kodi
+      to: paused
+    condition:
+      condition: and
+      conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-01:00:00"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.tv_pause
+
+  - alias: lights from idle
+    trigger:
+      platform: state
+      entity_id: media_player.kodi
+      to: idle
+    condition:
+      condition: and
+      conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-01:00:00"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.tv_idle
+
+  - alias: lights from Movie
+    trigger:
+      platform: state
+      entity_id: media_player.kodi
+      to: playing
+    condition:
+      condition: and
+      conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-01:00:00"
+        - condition: state
+          entity_id: sensor.koditype2
+          state: movie
+    action:
+      - service: scene.turn_on
+        entity_id: scene.movie
+
+  - alias: lights from tv show
+    trigger:
+      platform: state
+      entity_id: media_player.kodi
+      to: playing
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sensor.koditype
+          state: tvshow
+        - condition: sun
+          after: sunset
+          after_offset: "-01:00:00"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.tv_show
+
+  - alias: lights from PVR
+    trigger:
+      platform: state
+      entity_id: media_player.kodi
+      to: playing
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sensor.koditype2
+          state: pvr
+        - condition: sun
+          after: sunset
+          after_offset: "-01:00:00"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.pvr

@@ -7,3 +7,17 @@ sensor:
       koditype:
         friendly_name: "Kodi media type"
         value_template: "{{ states.media_player.kodi.attributes.media_content_type }}"
+      koditype2:
+        friendly_name: "Kodi media type2"
+        value_template: >-
+          {% if is_state('sensor.koditype', 'movie') %}
+            movie
+          {% elif is_state('sensor.koditype', 'tvshow') %}
+            tv show
+          {% elif is_state('media_player.kodi', 'idle') %}
+            idle
+          {% elif is_state('media_player.kodi', 'paused') %}
+            paused
+          {% else %}
+            pvr
+          {% endif %}

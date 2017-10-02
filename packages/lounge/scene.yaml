@@ -31,6 +31,51 @@ scene:
     entities:
       switch.main_light: off
       switch.spot_lights: off
-      light.lamp: on
+      light.lamp:
+        state: on
+        brightness: 50
       switch.mirror: off
+      switch.tv: on
+      switch.fish_tank: off
+
+  - name: tv pause
+    entities:
+      switch.main_light: off
+      switch.spot_lights: on
+      light.lamp:
+        state: on
+        brightness: 255
+      switch.mirror: on
+      switch.tv: on
+      switch.fish_tank: on
+
+  - name: tv idle
+    entities:
+      switch.main_light: off
+      switch.spot_lights: on
+      light.lamp:
+        state: on
+        brightness: 255
+      switch.mirror: on
+      switch.tv: on
+      switch.fish_tank: on
+
+  - name: tv show
+    entities:
+      switch.main_light: off
+      switch.spot_lights: on
+      light.lamp:
+        state: on
+        brightness: 255
+      switch.mirror: on
+      switch.tv: on
+
+  - name: pvr
+    entities:
+      switch.main_light: off
+      switch.spot_lights: on
+      light.lamp:
+        state: on
+        brightness: 255
+      switch.mirror: on
       switch.tv: on
