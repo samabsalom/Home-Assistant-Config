@@ -241,7 +241,7 @@
         "Isn't 3D printing shit and infuriating",
         "why do we even bother",
         "throw it out of the window",
-        "for fucks sake",
+        "for fucks sake"
         ] | random }}
   ExtrudeManual:
     action:
@@ -291,3 +291,12 @@
       type: plain
       text: >
         Setting the heat bed to {{BedNumber}} degrees
+  checkalarmtime:
+    action:
+      service: notify.pushbullet
+      data_template:
+        message: Your alarm is set for {{states.sensor.wake_up_time_for_alexa.state}}
+    speech:
+      type: plain
+      text: >
+        Your alarm is set for {{states.sensor.wake_up_time_for_alexa.state}}

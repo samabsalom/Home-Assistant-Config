@@ -73,7 +73,13 @@ sensor:
             {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 - states.input_select.boilerontime.state | int *60) | timestamp_custom("%Y-%m-%d %H:%M") }}
           {% endif %}
        friendly_name: 'Time I will turn the boiler on'
-
+     wake_up_time_for_alexa:
+       value_template: >
+          {% if states('sensor.distance') | float < 3.0 %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__walking.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%H:%M") }}
+          {% else %}
+            {{ (as_timestamp(states.calendar.medicine.attributes.start_time) - states.input_select.getreadytime.state | int *60 - states.sensor.google_travel_time__driving.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%H:%M") }}
+          {% endif %}
 
 input_boolean:
   announce_time_to_leave:
