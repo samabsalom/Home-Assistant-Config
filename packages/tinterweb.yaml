@@ -1,4 +1,26 @@
+switch:
+  - platform: mqtt
+    name: changeme1
+    state_topic: 'changeme/1/status'
+    command_topic: 'changeme/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: changeme2
+    state_topic: 'changeme/2/status'
+    command_topic: 'changeme/2/switch'
+    optimistic: false
 sensor:
+  - platform: pi_hole
+    host: 10.10.10.40
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
   - platform: haveibeenpwned
     email:
       - !secret yahoo
@@ -37,17 +59,81 @@ sensor:
     unit_of_measurement: days
     scan_interval: 10800
     command: !secret sslcert
-
-# digital_ocean:
-#   access_token: !secret digocean
-# switch:
-#   - platform: digital_ocean
-#     droplets:
-#       - 'ubuntu-512mb-sgp1-01'
-# binary_sensor:
-#   - platform: digital_ocean
-#     droplets:
-#       - 'ubuntu-512mb-sgp1-01'
+  - platform: darksky
+    api_key: !secret darkskyapi
+    monitored_conditions:
+      - summary
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - icon
+      - nearest_storm_distance
+  - platform: openweathermap
+    api_key: !secret openweatherkey
+    monitored_conditions:
+      - weather
+      - temperature
+      - wind_speed
+      - humidity
+      - pressure
+      - clouds
+      - rain
+      - snow
+  - platform: wunderground
+    api_key: !secret wundergroundapi
+    monitored_conditions:
+      - alerts
+      - dewpoint_c
+      - dewpoint_f
+      - dewpoint_string
+      - feelslike_c
+      - feelslike_f
+      - feelslike_string
+      - heat_index_c
+      - heat_index_f
+      - heat_index_string
+      - elevation
+      - location
+      - observation_time
+      - precip_1hr_in
+      - precip_1hr_metric
+      - precip_1hr_string
+      - precip_today_in
+      - precip_today_metric
+      - precip_today_string
+      - pressure_in
+      - pressure_mb
+      - pressure_trend
+      - relative_humidity
+      - station_id
+      - solarradiation
+      - temperature_string
+      - temp_c
+      - temp_f
+      - UV
+      - visibility_km
+      - visibility_mi
+      - weather
+      - wind_degrees
+      - wind_dir
+      - wind_gust_kph
+      - wind_gust_mph
+      - wind_kph
+      - wind_mph
+      - wind_string
 
 shell_command:   # this needs to have had ssh-keygen and ssh-copy-id run to work - this bypasses the need for a homeassistant user password
   renew_ssl: ssh pi@127.0.0.1 /home/pi/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
@@ -62,6 +148,24 @@ automation:
       service: shell_command.renew_ssl
 
 group:
+  tinterweb:
+    name: Misc
+    icon: mdi:ethernet
+    view: yes
+    entities:
+      - group.breach
+      - group.network
+      - group.dns
+      - group.weather1
+      - group.weather2
+      - group.flying
+      - sensor.ssl_cert_expiry
+      - switch.changeme1
+      - switch.changeme2
+
+      - script.wake_up
+      - script.ttstest
+
   Network:
     entities:
       - sensor.speedtest_download
@@ -81,15 +185,171 @@ group:
       - sensor.myipopendnscom
       - sensor.huntsfieldddnsnet
       - sensor.penymorfaddnsnet
-  tinterweb:
-    name: Misc
-    icon: mdi:ethernet
-    view: yes
-    entities:
-      - group.breach
-      - group.network
-      - group.dns
-      - sensor.ssl_cert_expiry
 
       # - binary_sensor.ubuntu512mbsgp101
       # - switch.ubuntu512mbsgp101
+  # Weather:
+  #   view: yes
+  #   icon: mdi:weather-cloudy
+  #   entities:
+
+
+  Weather1:
+    entities:
+      - sun.sun
+      - sensor.owm_cloud_coverage
+      - sensor.owm_condition
+      - sensor.owm_humidity
+      - sensor.owm_pressure
+      - sensor.owm_rain
+      - sensor.owm_temperature
+      - sensor.owm_wind_speed
+      - sensor.owm_snow
+  Weather2:
+    entities:
+      - sensor.pws_alerts
+      - sensor.pws_dewpoint_c
+      - sensor.pws_feelslike_c
+      - sensor.pws_elevation
+      - sensor.pws_precip_1hr_metric
+      - sensor.pws_precip_today_metric
+      - sensor.pws_pressure_mb
+      - sensor.pws_pressure_trend
+      - sensor.pws_relative_humidity
+      - sensor.pws_solarradiation
+      - sensor.pws_temp_c
+      - sensor.pws_UV
+      - sensor.pws_weather
+      - sensor.pws_wind_degrees
+      - sensor.pws_wind_dir
+      - sensor.pws_wind_gust_mph
+      - sensor.pws_wind_mph
+  Flying:
+    entities:
+      - sensor.pws_dewpoint_c
+      - sensor.pws_feelslike_c
+      - sensor.pws_pressure_mb
+      - sensor.pws_temp_c
+      - sensor.pws_visibility_km
+      - sensor.pws_visibility_mi
+      - sensor.pws_wind_degrees
+      - sensor.pws_wind_dir
+      - sensor.pws_wind_gust_kph
+      - sensor.pws_wind_kph
+
+
+script:
+  ttstest:
+    alias: testing voice
+    sequence:
+      - service: tts.google_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.voicerss_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.picotts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+      - service: tts.yandextts_say
+        entity_id: media_player.bedroom
+        data:
+          message: the quick brown fox jumped over the lazy dog
+  wake_up:
+    sequence:
+      - service_template: tts.picotts_say
+        data_template:
+          entity_id: media_player.bedroom
+          message: >
+            {% if now().strftime("%H")|int < 8 and now().strftime("%w")|int > 0 and now().strftime("%w")|int < 6 %}
+            jesus fucking christ its early. anyway.
+            {% endif %}
+
+            {% if now().strftime("%H")|int < 12 %}
+            Good morning Sam.
+            {% elif now().strftime("%H")|int < 18 %}
+            Good afternoon Sam.
+            {% else %}
+            Good evening Sam.
+            {% endif %}
+            It's currently {{states.sensor.lounge_temperature.state | int }} inside and {{states.sensor.owm_temperature.state|round}} degrees outside in Lancaster but it feels like {{states.sensor.pws_feelslike_c.state|round}}. Today will be {{states.sensor.pws_weather.state}}, with {{states.sensor.pws_precip_today_metric.state}} millimeters of rain.
+
+            {% if now().strftime("%w")|int == 1 %}
+            and happy monday.
+            {% endif %}
+
+
+            {% if states('sensor.pws_precip_today_metric') | float > 3 %}
+            I would recommend a rain coat today.
+            {% endif %}
+
+            {% if states('sensor.battery_nexus') | float > 95 %}
+            it also looks like your phone charged properly.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'not_home') and
+                   is_state('device_tracker.lizzie', 'home') and
+                   is_state('device_tracker.rosie', 'home') %}
+              Harriet has left.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'home') and
+                   is_state('device_tracker.lizzie', 'not_home') and
+                   is_state('device_tracker.rosie', 'home') %}
+              Lizzie has left.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'home') and
+                   is_state('device_tracker.lizzie', 'home') and
+                   is_state('device_tracker.rosie', 'not_home') %}
+              Rosie has left.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'not_home') and
+                   is_state('device_tracker.lizzie', 'not_home') and
+                   is_state('device_tracker.rosie', 'not_home') %}
+              You are in the house alone. Time to shit with the door open.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'not_home') and
+                   is_state('device_tracker.lizzie', 'not_home') and
+                   is_state('device_tracker.rosie', 'home') %}
+              Harriet and lizzie have left.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'not_home') and
+                   is_state('device_tracker.lizzie', 'home') and
+                   is_state('device_tracker.rosie', 'not_home') %}
+              Harriet and Rosie have left.
+            {% endif %}
+
+            {% if is_state('device_tracker.hazbag', 'not_home') and
+                   is_state('device_tracker.lizzie', 'home') and
+                   is_state('device_tracker.rosie', 'not_home') %}
+              Lizzie and Rosie have left.
+            {% endif %}
+
+            {% if now().strftime("%w")|int == 0 or now().strftime("%w")|int == 6 %}
+              Enjoy your weekend.
+            {% endif %}
+
+            Prepare your eyes, i will turn the light on dim now and turn it up brighter in a couple of minutes.
+
+      - delay: 00:00:25
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.bedroom_light
+          brightness: 10
+      - delay:
+          minutes: 3
+      - service: tts.picotts_say
+        entity_id: media_player.bedroom
+        data:
+          message: "as promised up go the lights"
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.bedroom_light
+          brightness: 200

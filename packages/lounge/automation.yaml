@@ -95,16 +95,16 @@ automation:
   - alias: light on from lightswitch
     trigger:
       platform: mqtt
-      topic: avondale/7/switch
-      payload: ON
+      topic: avondale/7/status
+      payload: 'ON'
     action:
       - service: homeassistant.toggle
         entity_id: light.lamp
   - alias: light off from lightswitch
     trigger:
       platform: mqtt
-      topic: avondale/7/switch
-      payload: OFF
+      topic: avondale/7/status
+      payload: 'OFF'
     action:
       - service: homeassistant.toggle
         entity_id: light.lamp

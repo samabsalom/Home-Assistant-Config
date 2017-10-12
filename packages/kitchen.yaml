@@ -3,4 +3,31 @@ group:
     view: yes
     icon: mdi:kettle
     entities:
-      - 
+      - switch.coffee_machine
+
+switch:
+  - platform: mqtt
+    name: coffee machine
+    state_topic: 'coffee/1/status'
+    command_topic: 'coffee/1/switch'
+    optimistic: false
+  - platform: mqtt
+    name: capuccino
+    state_topic: 'coffee/2/status'
+    command_topic: 'coffee/2/switch'
+    optimistic: false
+  - platform: mqtt
+    name: latte
+    state_topic: 'coffee/3/status'
+    command_topic: 'coffee/3/switch'
+    optimistic: false
+  - platform: mqtt
+    name: espresso
+    state_topic: 'coffee/4/status'
+    command_topic: 'coffee/4/switch'
+    optimistic: false
+  - platform: mqtt
+    name: lungo
+    state_topic: 'coffee/5/status'
+    command_topic: 'coffee/5/switch'
+    optimistic: false

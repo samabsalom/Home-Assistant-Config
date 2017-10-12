@@ -309,7 +309,7 @@ script:
           transition: 15
           rgb_color: [252, 162, 16]
       - service: homeassistant.turn_on
-        entity_id: switch.lamp
+        entity_id: light.lamp
       # - service: light.turn_on     # http://colrd.com/palette/22735/?download=css            # rgb_color: 246,180,23
       #   data:
       #     entity_id: light.bedroom_light
