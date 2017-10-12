@@ -1,0 +1,155 @@
+  - alias: Mark person as just arrived
+    trigger:
+      - platform: state
+        entity_id: device_tracker.lizzie
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.kristen
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.hazbag
+        from: 'not_home'
+        to: 'home'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'device_tracker.lizzie' %}
+              input_select.liz_status_dropdown
+            {% elif trigger.entity_id == 'device_tracker.hazbag' %}
+              input_select.haz_status_dropdown
+            {% else %}
+              input_select.kristen_status_dropdown
+            {% endif %}
+          option: Just Arrived
+
+  - alias: Mark person as home
+    trigger:
+      - platform: state
+        entity_id: input_select.liz_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.haz_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.kristen_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.liz_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+      - platform: state
+        entity_id: input_select.haz_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+      - platform: state
+        entity_id: input_select.kristen_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'input_select.liz_status_dropdown' %}
+              input_select.liz_status_dropdown
+            {% elif trigger.entity_id == 'input_select.haz_status_dropdown' %}
+              input_select.haz_status_dropdown
+            {% else %}
+              input_select.kristen_status_dropdown
+            {% endif %}
+          option: Home
+
+  - alias: Mark person as just left
+    trigger:
+      - platform: state
+        entity_id: device_tracker.lizzie
+        from: 'home'
+        to: 'not_home'
+      - platform: state
+        entity_id: device_tracker.hazbag
+        from: 'home'
+        to: 'not_home'
+      - platform: state
+        entity_id: device_tracker.kristen
+        from: 'home'
+        to: 'not_home'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'device_tracker.lizzie' %}
+              input_select.liz_status_dropdown
+            {% elif trigger.entity_id == 'device_tracker.hazbag' %}
+              input_select.haz_status_dropdown
+            {% else %}
+              input_select.kristen_status_dropdown
+            {% endif %}
+          option: Just Left
+
+  - alias: Mark person as away
+    trigger:
+      - platform: state
+        entity_id: input_select.liz_status_dropdown
+        to: 'Just Left'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.haz_status_dropdown
+        to: 'Just Left'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.kristen_status_dropdown
+        to: 'Just Left'
+        for:
+          minutes: 10
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'input_select.liz_status_dropdown' %}
+              input_select.liz_status_dropdown
+            {% elif trigger.entity_id == 'input_select.haz_status_dropdown' %}
+              input_select.haz_status_dropdown
+            {% else %}
+              input_select.kristen_status_dropdown
+            {% endif %}
+          option: Away
+
+  - alias: Mark person as extended away
+    trigger:
+      - platform: state
+        entity_id: input_select.liz_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.haz_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.kristen_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'input_select.liz_status_dropdown' %}
+              input_select.liz_status_dropdown
+            {% elif trigger.entity_id == 'input_select.haz_status_dropdown' %}
+              input_select.haz_status_dropdown
+            {% else %}
+              input_select.kristen_status_dropdown
+            {% endif %}
+          option: Extended Away
