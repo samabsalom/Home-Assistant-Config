@@ -1,0 +1,28 @@
+input_select:
+  liz_status_dropdown:
+    name: Lizzie
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+  haz_status_dropdown:
+    name: Hazbag
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+  kristen_status_dropdown:
+    name: Kristen
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home

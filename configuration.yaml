@@ -29,6 +29,7 @@ homeassistant:
     pack_12: !include packages/octoprint.yaml
     pack_13: !include packages/herokukeepalive.yaml
     pack_14: !include packages/rss.yaml
+    pack_15: !include_dir_merge_named packages/presence
 config:
 
 frontend:
@@ -164,36 +165,6 @@ device_tracker:
  - platform: owntracks
    max_gps_accuracy: 300
    waypoints: True
-
-input_select:
-  liz_status_dropdown:
-    name: Lizzie
-    options:
-      - Home
-      - Just Arrived
-      - Just Left
-      - Away
-      - Extended Away
-    initial: Home
-  haz_status_dropdown:
-    name: Hazbag
-    options:
-      - Home
-      - Just Arrived
-      - Just Left
-      - Away
-      - Extended Away
-    initial: Home
-  kristen_status_dropdown:
-    name: Kristen
-    options:
-      - Home
-      - Just Arrived
-      - Just Left
-      - Away
-      - Extended Away
-    initial: Home
-
 
 zone:
   name: Uni

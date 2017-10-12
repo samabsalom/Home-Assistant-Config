@@ -18,13 +18,13 @@
     entities:
       - device_tracker.pi_mate9
       - device_tracker.pi_nexus5x
-      # - device_tracker.lizzie
-      # - device_tracker.hazbag
+      - device_tracker.lizzie
+      - device_tracker.hazbag
       - device_tracker.andy
-      # - device_tracker.kristen
-      - sensor.liz_status
-      - sensor.kristen_status
-      - sensor.haz_status
+      - device_tracker.kristen
+      # - sensor.liz_status
+      # - sensor.kristen_status
+      # - sensor.haz_status
 
 
 

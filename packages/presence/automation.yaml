@@ -1,3 +1,4 @@
+automation:
   - alias: Mark person as just arrived
     trigger:
       - platform: state
@@ -81,6 +82,7 @@
         entity_id: device_tracker.kristen
         from: 'home'
         to: 'not_home'
+
     action:
       - service: input_select.select_option
         data_template:

@@ -1,0 +1,12 @@
+sensor:
+  - platform: template
+    sensors:
+      liz_status:
+        value_template: '{{ states.input_select.liz_status_dropdown.state }}'
+        friendly_name: 'Lizzie'
+      haz_status:
+        value_template: '{{ states.input_select.haz_status_dropdown.state }}'
+        friendly_name: 'Hazbag'
+      kristen_status:
+        value_template: '{{ states.input_select.kristen_status_dropdown.state }}'
+        friendly_name: 'Kristen'
