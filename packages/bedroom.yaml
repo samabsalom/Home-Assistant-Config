@@ -115,7 +115,7 @@ light:
     optimistic: false
     qos: 0
 
-input_slider:
+input_number:
   rgbblue:
     name: Blue
     initial: 0
@@ -139,8 +139,8 @@ shell_command:
   rgboff: curl http://10.10.10.167/ledsoff?fade=500
   rgbon: curl http://10.10.10.167/setleds?r=255&g=255&b=255&fade=1000
   rainbow: curl http://10.10.10.167/rainbow?fade=3000
-  wave: curl http://10.10.10.167/wave?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=5000
-  changecolour: curl curl http://10.10.10.167/setleds?r={{ states.input_slider.rgbred.state | int }}&g={{ states.input_slider.rgbgreen.state | int }}&b={{ states.input_slider.rgbblue.state | int }}&fade=1000
+  wave: curl http://10.10.10.167/wave?r={{ states.input_number.rgbred.state | int }}&g={{ states.input_number.rgbgreen.state | int }}&b={{ states.input_number.rgbblue.state | int }}&fade=5000
+  changecolour: curl curl http://10.10.10.167/setleds?r={{ states.input_number.rgbred.state | int }}&g={{ states.input_number.rgbgreen.state | int }}&b={{ states.input_number.rgbblue.state | int }}&fade=1000
 
 sensor:
   - platform: mqtt
@@ -184,9 +184,9 @@ group:
   Bed LED:
     entities:
       - light.bed_light
-      - input_slider.rgbblue
-      - input_slider.rgbred
-      - input_slider.rgbgreen
+      - input_number.rgbblue
+      - input_number.rgbred
+      - input_number.rgbgreen
       - script.rainbow
       - script.wave
       - script.changecolour

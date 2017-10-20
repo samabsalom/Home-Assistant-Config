@@ -1,4 +1,4 @@
-input_slider:
+input_number:
   slider1:
     name: temperature
     initial: 22

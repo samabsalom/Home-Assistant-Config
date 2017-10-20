@@ -7,12 +7,12 @@ automation:
   - alias: Set MQTT temp from Slider
     trigger:
       platform: state
-      entity_id: input_slider.slider1
+      entity_id: input_number.slider1
     action:
       - service: mqtt.publish
         data_template:
           topic: "avondale/temp/set"
-          payload: '{{ states.input_slider.slider1.state | int }}'
+          payload: '{{ states.input_number.slider1.state | int }}'
 
   - alias: Set Climate from MQTT
     trigger:

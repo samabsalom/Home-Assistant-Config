@@ -63,7 +63,7 @@ group:
   Thermostat quick settings:
     entities:
       - switch.boiler
-      - input_slider.slider1
+      - input_number.slider1
       - climate.home
   Boost:
     entities:
@@ -83,4 +83,4 @@ group:
 
   Set the temperature:
     entities:
-      - input_slider.slider1
+      - input_number.slider1
