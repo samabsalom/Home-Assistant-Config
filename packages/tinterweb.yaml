@@ -11,7 +11,7 @@ switch:
     optimistic: false
 sensor:
   - platform: pi_hole
-    host: 10.10.10.40
+    host: 10.10.10.173
     monitored_conditions:
       - ads_blocked_today
       - ads_percentage_today

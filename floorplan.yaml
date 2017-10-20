@@ -1,0 +1,38 @@
+        name: Floorplan
+        image: /local/custom_ui/floorplan/floorplan.svg
+        stylesheet: /local/custom_ui/floorplan/floorplan.css
+        pan_zoom:
+        hide_app_toolbar:
+        warnings:
+        groups:
+          - name: Lights
+            entities:
+               - light.hall_light
+               - light.bedroom_light
+               - light.lamp
+            states:
+              - state: 'on'
+                class: 'light-on'
+              - state: 'off'
+                class: 'light-off'
+            action:
+              domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+              service: toggle
+          - name: Switches
+            entities:
+               - switch.fish_tank
+               - switch.bedroom_lamp
+               - switch.tv
+               - switch.windows
+               - switch.main_light
+               - switch.spot_lights
+               - switch.coffee_machine
+               - switch.mirror
+            states:
+              - state: 'on'
+                class: 'doorbell-on'
+              - state: 'off'
+                class: 'doorbell-off'
+            action:
+              domain: switch
+              service: toggle

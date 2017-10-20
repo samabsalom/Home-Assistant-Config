@@ -31,3 +31,15 @@ switch:
     state_topic: 'coffee/5/status'
     command_topic: 'coffee/5/switch'
     optimistic: false
+
+automation:
+  - alias: coffeeoff
+    trigger:
+      platform: state
+      entity_id: switch.coffee_machine
+      to: "on"
+      for:
+        minutes: 10
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.coffee_machine

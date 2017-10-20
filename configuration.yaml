@@ -29,7 +29,7 @@ homeassistant:
     pack_12: !include packages/octoprint.yaml
     pack_13: !include packages/herokukeepalive.yaml
     pack_14: !include packages/rss.yaml
-    pack_15: !include_dir_merge_named packages/presence
+    pack_17: !include_dir_merge_named packages/presence
 config:
 
 frontend:
@@ -44,7 +44,13 @@ http:
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret sslkey
   base_url: !secret baseurl
-# panel_custom:
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
 #   - name: react
 #     sidebar_title: TodoMVC
 #     sidebar_icon: mdi:checkbox-marked-outline

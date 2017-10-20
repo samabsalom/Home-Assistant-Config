@@ -95,7 +95,7 @@ automation:
   - alias: light on from lightswitch
     trigger:
       platform: mqtt
-      topic: avondale/7/status
+      topic: avondale/7/switch
       payload: 'ON'
     action:
       - service: homeassistant.toggle
@@ -103,7 +103,7 @@ automation:
   - alias: light off from lightswitch
     trigger:
       platform: mqtt
-      topic: avondale/7/status
+      topic: avondale/7/switch
       payload: 'OFF'
     action:
       - service: homeassistant.toggle
