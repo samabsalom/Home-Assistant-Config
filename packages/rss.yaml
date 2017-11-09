@@ -2,7 +2,7 @@ rss_feed_template:
 
   lounge:
     requires_api_password: False
-    title: "Lounge {{ as_timestamp(now())|timestamp_custom('%H:%m', True) }}"
+    title: "Lounge"    # {{ as_timestamp(now())|timestamp_custom('%H:%m', True) }}"
     items:
     - title: "Lounge temperature"
       description: "{% if is_state('sensor.lounge_temperature','unknown') %}---{% else %}{{states.sensor.lounge_temperature.state}} °C{% endif %}"

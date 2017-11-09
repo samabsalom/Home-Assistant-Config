@@ -28,6 +28,7 @@
                - switch.spot_lights
                - switch.coffee_machine
                - switch.mirror
+               - switch.printer
             states:
               - state: 'on'
                 class: 'doorbell-on'
@@ -36,3 +37,22 @@
             action:
               domain: switch
               service: toggle
+          - name: Binary Sensors
+            entities:
+              - binary_sensor.hall_motion
+            states:
+              - state: 'off'
+                class: 'info-background'
+              - state: 'on'
+                class: 'warning-background'
+            state_transitions:
+              - name: On to off
+                from_state: 'on'
+                to_state: 'off'
+                duration: 10
+          - name: Cameras
+            entities:
+              - camera.printcam
+            states:
+              - state: 'idle'
+                class: 'camera-idle'

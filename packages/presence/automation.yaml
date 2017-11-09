@@ -3,15 +3,15 @@ automation:
     trigger:
       - platform: state
         entity_id: device_tracker.lizzie
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
       - platform: state
         entity_id: device_tracker.kristen
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
       - platform: state
         entity_id: device_tracker.hazbag
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
     action:
       - service: input_select.select_option
@@ -72,17 +72,16 @@ automation:
     trigger:
       - platform: state
         entity_id: device_tracker.lizzie
-        from: 'home'
+        # from: 'home'
         to: 'not_home'
       - platform: state
         entity_id: device_tracker.hazbag
-        from: 'home'
+        # from: 'home'
         to: 'not_home'
       - platform: state
         entity_id: device_tracker.kristen
-        from: 'home'
+        # from: 'home'
         to: 'not_home'
-
     action:
       - service: input_select.select_option
         data_template:

@@ -97,7 +97,7 @@
 
   WhatTempIntent:
     action:
-      service_template: notify.kodi
+      service_template: notify.house
       data_template:
         message: "It is currently {{ states.sensor.lounge_temperature.state | int }} degrees and the heating is set to {{ states.sensor.target_temperature.state }}"
         title: "Somebody asked alexa about the temperature"
@@ -291,6 +291,7 @@
       type: plain
       text: >
         Setting the heat bed to {{BedNumber}} degrees
+#   ALARM
   checkalarmtime:
     action:
       service: notify.pushbullet

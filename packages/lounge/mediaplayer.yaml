@@ -6,6 +6,7 @@ media_player:
     username: !secret kodiuser
     password: !secret kodipass
     turn_off_action: reboot
+    enable_websocket: true
   - platform: cast
   - platform: spotify
     client_id: !secret spotifyid

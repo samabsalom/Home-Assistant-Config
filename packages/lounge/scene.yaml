@@ -7,6 +7,7 @@ scene:
       switch.mirror: off
       switch.main_light: off
       switch.spot_lights: off
+      switch.cabinet_lights: off
 
   - name: loungeon
     entities:

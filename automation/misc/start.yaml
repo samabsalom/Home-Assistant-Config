@@ -8,7 +8,7 @@
     action:
       # - service: shell_command.startdash  # made these system services so no need for them - keep just incase for now
       # - service: shell_command.starthapush
-      - service: notify.pushbullet
+      - service: notify.house
         data:
           message: 'Home Assistant has started'
       - service: mqtt.publish

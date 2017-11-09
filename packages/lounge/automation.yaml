@@ -34,7 +34,7 @@ automation:
     action:
       - service: homeassistant.turn_on
         entity_id: script.return_home
-      - service: notify.kodi
+      - service: notify.house
         data:
           message: "This was done automatically"
           title: "Turning the lights as someone has arrived home"
@@ -72,6 +72,58 @@ automation:
           - group.bedroom
       - service: scene.turn_on
         entity_id: scene.loungeoff
+
+################ arrival of people ############################
+  - alias: Sam left
+    trigger:
+      platform: state
+      entity_id: device_tracker.pi_mate9
+      from: home
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.bedroomelectrics
+
+  - alias: tell kodi a person has just arrived
+    trigger:
+      - platform: state
+        entity_id: device_tracker.lizzie
+        # from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.kristen
+        # from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.hazbag
+        # from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.pi_mate9
+        # from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.pi_nexus5x
+        # from: 'not_home'
+        to: 'home'
+    action:
+      - service: notify.kodi
+        data:
+          message: ".............."
+          title: >
+            {% if trigger.entity_id == 'device_tracker.lizzie' %}
+              Lizzie has returned home
+            {% elif trigger.entity_id == 'device_tracker.hazbag' %}
+              Harriet has returned home
+            {% elif trigger.entity_id == 'device_tracker.andy' %}
+              Andy has arrived
+            {% elif trigger.entity_id == 'device_tracker.pi_mate9' %}
+              Sam has returned home
+            {% elif trigger.entity_id == 'device_tracker.pi_nexus5x' %}
+              Rosie has returned home
+            {% elif trigger.entity_id == 'device_tracker.kristen' %}
+              Kirsten has returned home
+            {% endif %}
+
 ################# spotify music off when tv plays #################
   - alias: turn off spotify when the tv plays
     trigger:
@@ -90,6 +142,10 @@ automation:
     action:
       - service: media_player.media_pause
         entity_id: media_player.spotify
+      - service: notify.kodi
+        data:
+          message: "This was done automatically"
+          title: "Turned off spotify for you"
 
 ####################### turn on lights from switch ############################
   - alias: light on from lightswitch

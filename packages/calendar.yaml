@@ -252,8 +252,15 @@ automation:
         data:
           message: "This was done automatically from your calendar"
           title: "Boiler was turned up for the morning"
-
-
+      - delay:
+          minutes: 90
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.tempfornormal.state | int }} "
+      - service: notify.kodi
+        data_template:
+          message: "This was done automatically after the preheat boost"
+          title: "Boiler set to the normal temperature"
 
 
 camera:

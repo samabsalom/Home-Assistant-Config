@@ -1,9 +1,15 @@
 group:
-  Kettle:
+  kitchenview:
     view: yes
     icon: mdi:kettle
     entities:
       - switch.coffee_machine
+      - switch.cabinet_lights
+  kitchen:
+    icon: mdi:kettle
+    entities:
+      - switch.coffee_machine
+      - switch.cabinet_lights
 
 switch:
   - platform: mqtt
@@ -31,6 +37,14 @@ switch:
     state_topic: 'coffee/5/status'
     command_topic: 'coffee/5/switch'
     optimistic: false
+  - platform: mqtt
+    name: "cabinet lights"
+    state_topic: "avondale/sonoff/touch/1/stat"
+    command_topic: "avondale/sonoff/touch/1"
+    qos: 0
+    payload_on: "1on"
+    payload_off: "1off"
+    retain: false
 
 automation:
   - alias: coffeeoff

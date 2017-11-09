@@ -23,13 +23,10 @@ automation:
       for:
         minutes: 3
     action:
-      - service_template: notify.pushbullet
+      - service_template: notify.house
         data_template:
           message: "This was done because HA lost connection to the router"
           title: "REBOOT"
-      - service_template: notify.kodi
-        data_template:
-          message: "This was done because HA lost connection to the router"
-          title: "REBOOT"
+
       - service: homeassistant.turn_on
         entity_id: script.reboot_pi

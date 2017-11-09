@@ -46,7 +46,7 @@ svg, svg * {
 }
 
 .warning-background, .warning-text-background  {
-  fill: #fcf8e3 !important;
+  fill: #fc0000 !important;
   fill-opacity: 1 !important;
   stroke: #faebcc !important;
   stroke-width: 1px !important;

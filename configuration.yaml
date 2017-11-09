@@ -38,7 +38,7 @@ frontend:
       primary-color: "#6CA518"
     Haz:
       primary-color: "#cc33ff"
-
+map:
 http:
   api_password: !secret http_apipassword
   ssl_certificate: !secret ssl_cert
@@ -139,14 +139,18 @@ notify:
     host: !secret kodihost
     username: !secret kodiuser
     password: !secret kodipass
-    port: 80
+    port: 8080
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet
   - name: printer
     platform: command_line
     command: ""
-
+  - name: house
+    platform: group
+    services:
+      - service: kodi
+      - service: pushbullet
 emulated_hue:
   host_ip: !secret hueip
   listen_port: 8300
@@ -171,6 +175,16 @@ device_tracker:
  - platform: owntracks
    max_gps_accuracy: 300
    waypoints: True
+
+google_assistant:
+  project_id: hassassuk
+  client_id: !secret googleassid
+  access_token: !secret googleasstoken
+  exposed_domains:
+    - switch
+    - light
+    - group
+
 
 zone:
   name: Uni

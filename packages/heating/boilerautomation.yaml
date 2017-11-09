@@ -22,15 +22,10 @@ automation:
       - service_template: climate.set_temperature
         data_template:
           temperature: " {{trigger.payload}} "
-      - service_template: notify.pushbullet
-        data_template:
-          message: "This was done by a user"
-          title: "Set the boiler to {{trigger.payload}}C"
-      - service_template: notify.kodi
+      - service_template: notify.house
         data_template:
           message: "This was done by a user"
           title: "The boiler has been set to {{trigger.payload}}C"
-
 
 ##############################  automations based on location
   - alias: Turn boiler on when people return
@@ -55,15 +50,10 @@ automation:
       - service_template: climate.set_temperature
         data_template:
           temperature: " {{ states.input_select.away_from_home_temp.state | int }} "
-      - service: notify.pushbullet
+      - service: notify.house
         data:
           message: "This was done automatically as everybody left"
           title: "set the boiler to away"
-      - service: notify.kodi
-        data:
-          message: "This was done automatically as everybody left"
-          title: "set the boiler to away"
-
 ############### on in the morning   ##########################
 
   - alias: set heating to 21 if below 3 degrees outside in morning
