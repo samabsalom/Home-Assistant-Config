@@ -1,0 +1,26 @@
+automation:
+  - alias: run script from doorbell on
+    trigger:
+      platform: mqtt
+      topic: doorbell/switch1/status
+      payload: 'ON'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.doorbell
+
+  - alias: run script from doorbell off
+    trigger:
+      platform: mqtt
+      topic: doorbell/switch1/status
+      payload: 'OFF'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: script.doorbell
+
+script:
+  doorbell:
+    sequence:
+      - service: notify.house
+        data_template:
+          message: "Go check !"
+          title: "Somebody is at the door"
