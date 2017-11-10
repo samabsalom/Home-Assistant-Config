@@ -14,6 +14,16 @@ automation:
           topic: "avondale/temp/set"
           payload: '{{ states.input_number.slider1.state | int }}'
 
+  - alias: set MQTT from climate
+    trigger:
+      platform: state
+      entity_id: sensor.climatetemp
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "avondale/temp/set"
+          payload: '{{ states.sensor.climatetemp.state | int }}'
+
   - alias: Set Climate from MQTT
     trigger:
       platform: mqtt
@@ -53,7 +63,7 @@ automation:
       - service: notify.house
         data:
           message: "This was done automatically as everybody left"
-          title: "set the boiler to away"
+          title: "set the boiler to away temperature"
 ############### on in the morning   ##########################
 
   - alias: set heating to 21 if below 3 degrees outside in morning
@@ -68,7 +78,7 @@ automation:
          entity_id: group.all_devices
          state: home
        - condition: numeric_state
-         entity_id: 'sensor.owm_temperature'
+         entity_id: 'sensor.pws_temp_c'
          below: '3'
     action:
       - service: input_select.select_option

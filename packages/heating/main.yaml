@@ -16,8 +16,14 @@ sensor:
   - platform: mold_indicator
     indoor_temp_sensor: sensor.lounge_temperature
     indoor_humidity_sensor: sensor.lounge_humidity
-    outdoor_temp_sensor: sensor.owm_temperature
+    outdoor_temp_sensor: sensor.pws_temp_c
     calibration_factor: 2.0
+  - platform: template
+    sensors:
+      climatetemp:
+        friendly_name: "Lounge temp"
+        value_template: "{{ states.climate.home.attributes.temperature }}"
+
 switch:
   - platform: mqtt
     name: boiler
@@ -54,6 +60,7 @@ group:
       - sensor.target_temperature
       - sensor.lounge_temperature
       - sensor.lounge_humidity
+      - sensor.climatetemp
       - sensor.mold_indicator
       - group.auto_heating_settings
       - group.set_the_temperature
