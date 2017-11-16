@@ -1,0 +1,96 @@
+sensor:
+  - platform: mqtt
+    state_topic: "avondale/temp/set"
+    name: Target temperature
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge temperature'
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    state_topic: 'avondale/temp/both'
+    name: 'Lounge humidity'
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.humidity }}'
+  - platform: mold_indicator
+    indoor_temp_sensor: sensor.lounge_temperature
+    indoor_humidity_sensor: sensor.lounge_humidity
+    outdoor_temp_sensor: sensor.pws_temp_c
+    calibration_factor: 2.0
+  - platform: template
+    sensors:
+      climatetemp:
+        friendly_name: "Lounge temp"
+        value_template: "{{ states.climate.home.attributes.temperature }}"
+      climatetempcurrent:
+        friendly_name: "lounge current"
+        value_template: "{{ states.climate.home.attributes.current_temperature }}"
+
+switch:
+  - platform: mqtt
+    name: boiler
+    state_topic: 'avondale/boiler/status'
+    command_topic: 'avondale/boiler/switch'
+    optimistic: false
+
+light:
+  - platform: mqtt
+    name: heating
+    command_topic: 'avondale/temp/poo/switch'
+    state_topic: 'avondale/temp/poo/status'
+    brightness_command_topic: 'avondale/temp/set'
+    brightness_state_topic: 'avondale/temp/set'
+    optimistic: false
+    brightness_scale: 102
+
+climate:
+  - platform: generic_thermostat
+    name: Home
+    heater: switch.boiler
+    target_sensor: sensor.lounge_temperature
+    min_temp: 7
+    max_temp: 32
+    target_temp: 19
+
+group:
+  Heating:
+    view: yes
+    icon: mdi:radiator
+    entities:
+      - switch.boiler
+      - climate.home
+      - sensor.target_temperature
+      - sensor.lounge_temperature
+      - sensor.lounge_humidity
+      # - sensor.climatetemp
+      - sensor.mold_indicator
+      - group.auto_heating_settings
+      - group.set_the_temperature
+      - script.boost_the_heating
+      - group.boost
+      - automation.set_climate_from_mqtt
+  Thermostat quick settings:
+    entities:
+      - switch.boiler
+      - input_number.slider1
+      - climate.home
+  Boost:
+    entities:
+      - script.boost_the_heating
+      - input_select.boostdelay
+  Auto heating settings:
+    entities:
+      - input_select.boiler_on_time
+      - input_select.tempformorning
+      - input_select.preheatdelay
+      # - input_select.tempfornormal
+      # - input_select.away_from_home_temp
+      - automation.set_heating_to_21_if_below_3_degrees_outside_in_morning
+      # - automation.heating_on_at_6
+      - automation.turn_boiler_on_when_people_return
+      - automation.turn_boiler_off_when_people_leave
+
+  Set the temperature:
+    entities:
+      - input_number.slider1

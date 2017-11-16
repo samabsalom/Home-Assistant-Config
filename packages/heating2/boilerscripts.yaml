@@ -1,0 +1,61 @@
+script:
+  boilerwhenhome:
+    sequence:
+      - service: climate.set_operation_mode
+        data:
+          operation_mode: auto
+          entity_id: climate.home
+      # - service_template: climate.set_temperature
+      #   data_template:
+      #     temperature: " {{ states.input_select.tempfornormal.state | int }} "
+      - service: notify.house
+        data:
+          message: "This was done automatically as someone has returned home"
+          title: "Turned the heating back on "
+
+  warmhouseinmorning:
+    sequence:
+      ###### this saves the current temperature to revert back to
+      - service: input_select.select_option
+        entity_id: input_select.savetemp
+        data_template:
+          option: "{{ states.sensor.climatetemp.state }}"
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.tempformorning.state | int }} "
+      - service_template: notify.house
+        data_template:
+          message: "This was done automatically at {{ states.input_select.boiler_on_time.state }}"
+          title: "I set the boiler to {{ states.input_select.tempformorning.state | int }}C"
+      - delay: '{{ states.input_select.preheatdelay.state }}:00'
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.savetemp.state | int }} "
+      - service_template: notify.house
+        data_template:
+          message: "This was done automatically after {{ states.input_select.preheatdelay.state }}:00"
+          title: "I set the boiler back to {{ states.input_select.savetemp.state | int }}C"
+
+  boost_the_heating:
+    sequence:
+      - service: input_select.select_option
+        entity_id: input_select.savetemp
+        data_template:
+          option: "{{ states.sensor.climatetemp.state }}"
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.sensor.climatetemp.state | float + 3 }} "
+      - service_template: notify.house
+        data_template:
+          message: "I set the boiler to 3 degrees higher than current lounge temp for the specified time"
+          title: "Heating boost!"
+
+      - delay: '{{ states.input_select.boostdelay.state }}:00'
+
+      - service_template: climate.set_temperature
+        data_template:
+          temperature: " {{ states.input_select.savetemp.state | int }} "
+      - service_template: notify.house
+        data_template:
+          message: "This is back to pre boost temp"
+          title: "I auto set the boiler to {{ states.input_select.savetemp.state | int }}C "

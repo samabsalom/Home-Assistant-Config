@@ -1,0 +1,137 @@
+input_number:
+  slider1:
+    name: temperature
+    initial: 22
+    min: 10
+    max: 30
+    step: 1
+  savetemp:
+    name: save the temp
+    initial: 10
+    min: 0
+    max: 50
+    step: 1
+input_select:
+  boiler_on_time:
+    name: Time for the boiler to come on
+    options:
+      - 'Do not turn on'
+      - '1am'
+      - '2am'
+      - '3am'
+      - '4am'
+      - '5am'
+      - '6am'
+      - '7am'
+      - '8am'
+      - '9am'
+      - '10am'
+      - '11am'
+      # - 'midday'
+      # - '1pm'
+      # - '2pm'
+      # - '3pm'
+      # - '4pm'
+      # - '5pm'
+      # - '6pm'
+      # - '7pm'
+      # - '8pm'
+      # - '9pm'
+      # - '10pm'
+      # - '11pm'
+      # - 'midnight'
+    initial: 'Do not turn on'
+  tempformorning:
+    name: Set temperature for morning
+    options:
+      - 5
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+    initial: 19
+  # tempfornormal:
+  #   name: Set the normal temperature
+  #   options:
+  #     - 5
+  #     - 15
+  #     - 16
+  #     - 17
+  #     - 18
+  #     - 19
+  #     - 20
+  #     - 21
+  #     - 22
+  #     - 23
+  #     - 24
+  #   initial: 18
+  savetemp:
+    name: Save the temperature
+    options:
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 28
+      - 29
+    initial: 18
+  preheatdelay:
+    name: morning preheat length
+    options:
+      - 00:01
+      - 00:30
+      - 01:00
+      - 01:30
+      - 02:00
+      - 02:30
+    initial: 01:00
+  boostdelay:
+    name: Boost heating length
+    options:
+      - 00:01
+      - 00:30
+      - 01:00
+      - 01:30
+      - 02:00
+      - 02:30
+    initial: 01:00
+  # away_from_home_temp:
+  #   name: temperature for when away from home
+  #   options:
+  #     - 5
+  #     - 15
+  #     - 16
+  #     - 17
+  #     - 18
+  #     - 19
+  #     - 20
+  #     - 21
+  #     - 22
+  #     - 23
+  #     - 24
+  #   initial: 17
