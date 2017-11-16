@@ -32,10 +32,10 @@ automation:
       - service_template: climate.set_temperature
         data_template:
           temperature: " {{trigger.payload}} "
-      - service_template: notify.house
-        data_template:
-          message: "This was done by a user"
-          title: "The boiler has been set to {{trigger.payload}}C"
+      # - service_template: notify.house
+      #   data_template:
+      #     message: "This was done by a user"
+      #     title: "The boiler has been set to {{trigger.payload}}C"
 
 ##############################  automations based on location
   - alias: Turn boiler on when people return

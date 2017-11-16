@@ -24,3 +24,31 @@ script:
         data_template:
           message: "Go check !"
           title: "Somebody is at the door"
+      # - service: homeassistant.toggle
+      #   entity_id: switch.main_light
+      # - service: homeassistant.toggle
+      #   entity_id: switch.spot_lights
+      # - service: homeassistant.toggle
+      #   entity_id: switch.fish_tank
+      # - delay: 00:00:01
+      # - service: homeassistant.toggle
+      #   entity_id: switch.main_light
+      # - service: homeassistant.toggle
+      #   entity_id: switch.spot_lights
+      # - service: homeassistant.toggle
+      #   entity_id: switch.fish_tank
+      # - delay: 00:00:01
+      # - service: homeassistant.toggle
+      #   entity_id: switch.main_light
+      # - service: homeassistant.toggle
+      #   entity_id: switch.spot_lights
+      # - service: homeassistant.toggle
+      #   entity_id: switch.fish_tank
+      # - delay: 00:00:01
+      # - service: homeassistant.toggle
+      #   entity_id: switch.main_light
+      # - service: homeassistant.toggle
+      #   entity_id: switch.spot_lights
+      # - service: homeassistant.toggle
+      #   entity_id: switch.fish_tank
+      # - delay: 00:00:01

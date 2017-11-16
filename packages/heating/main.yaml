@@ -23,6 +23,9 @@ sensor:
       climatetemp:
         friendly_name: "Lounge temp"
         value_template: "{{ states.climate.home.attributes.temperature }}"
+      climatetempcurrent:
+        friendly_name: "lounge current"
+        value_template: "{{ states.climate.home.attributes.current_temperature }}"
 
 switch:
   - platform: mqtt

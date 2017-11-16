@@ -99,12 +99,12 @@
     action:
       service_template: notify.house
       data_template:
-        message: "It is currently {{ states.climate.home.attributes.currenttemperature | int }} degrees and the heating is set to {{ states.climate.home.attributes.temperature }}"
+        message: "It is currently {{ states.climate.home.attributes.current_temperature | int }} degrees and the heating is set to be {{ states.climate.home.attributes.temperature | int }}"
         title: "Somebody asked alexa about the temperature"
     speech:
       type: plain
       text: >
-        It is currently {{ states.climate.home.attributes.currenttemperature | int }} degrees and the heating is set to {{ states.climate.home.attributes.temperature }}
+        It is currently {{ states.climate.home.attributes.current_temperature | int }} degrees and the heating is set to be {{ states.climate.home.attributes.temperature | int }}
     # card:
     #   type: simple
     #   title: Sample title
